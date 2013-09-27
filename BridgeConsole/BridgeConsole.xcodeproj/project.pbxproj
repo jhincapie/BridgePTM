@@ -15,6 +15,7 @@
 		E82AE8D117EFC91B0067E353 /* libopencv_legacy.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82AE8CB17EFC91B0067E353 /* libopencv_legacy.2.4.6.dylib */; };
 		E82AE8D217EFC91B0067E353 /* libopencv_ml.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82AE8CC17EFC91B0067E353 /* libopencv_ml.2.4.6.dylib */; };
 		E82AE8D317EFC91B0067E353 /* libopencv_video.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82AE8CD17EFC91B0067E353 /* libopencv_video.2.4.6.dylib */; };
+		E843419C17F54C7E009FDC49 /* libBridgePTM.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E843419B17F54C7E009FDC49 /* libBridgePTM.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		E82AE8CB17EFC91B0067E353 /* libopencv_legacy.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_legacy.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_legacy.2.4.6.dylib; sourceTree = "<group>"; };
 		E82AE8CC17EFC91B0067E353 /* libopencv_ml.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ml.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_ml.2.4.6.dylib; sourceTree = "<group>"; };
 		E82AE8CD17EFC91B0067E353 /* libopencv_video.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_video.2.4.6.dylib; sourceTree = "<group>"; };
+		E843419B17F54C7E009FDC49 /* libBridgePTM.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBridgePTM.dylib; path = "../../../Library/Developer/Xcode/DerivedData/BridgePTM-arnjgpranbjzonavbptwywbfkqba/Build/Products/Debug/libBridgePTM.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E843419C17F54C7E009FDC49 /* libBridgePTM.dylib in Frameworks */,
 				E82AE8CE17EFC91B0067E353 /* libopencv_core.2.4.6.dylib in Frameworks */,
 				E82AE8CF17EFC91B0067E353 /* libopencv_highgui.2.4.6.dylib in Frameworks */,
 				E82AE8D017EFC91B0067E353 /* libopencv_imgproc.2.4.6.dylib in Frameworks */,
@@ -62,6 +65,7 @@
 		E82AE8B217EFC7900067E353 = {
 			isa = PBXGroup;
 			children = (
+				E843419B17F54C7E009FDC49 /* libBridgePTM.dylib */,
 				E82AE8C717EFC8750067E353 /* OpenCV */,
 				E82AE8BD17EFC7900067E353 /* BridgeConsole */,
 				E82AE8BC17EFC7900067E353 /* Products */,
@@ -187,6 +191,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 			};
 			name = Debug;
 		};
@@ -214,6 +219,7 @@
 				HEADER_SEARCH_PATHS = /opt/local/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 			};
 			name = Release;
 		};
@@ -222,6 +228,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/BridgePTM-arnjgpranbjzonavbptwywbfkqba/Build/Products/Debug\"",
 					/opt/local/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -233,6 +240,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/BridgePTM-arnjgpranbjzonavbptwywbfkqba/Build/Products/Debug\"",
 					/opt/local/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -258,6 +266,7 @@
 				E82AE8C617EFC7900067E353 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

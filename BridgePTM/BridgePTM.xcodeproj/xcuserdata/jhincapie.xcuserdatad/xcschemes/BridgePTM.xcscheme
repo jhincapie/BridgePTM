@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E82AE8BA17EFC7900067E353"
-               BuildableName = "BridgeConsole"
-               BlueprintName = "BridgeConsole"
-               ReferencedContainer = "container:BridgeConsole.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E82AA40717F544130032AFEC"
                BuildableName = "libBridgePTM.dylib"
                BlueprintName = "BridgePTM"
-               ReferencedContainer = "container:../BridgePTM/BridgePTM.xcodeproj">
+               ReferencedContainer = "container:BridgePTM.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E82AE8BA17EFC7900067E353"
-            BuildableName = "BridgeConsole"
-            BlueprintName = "BridgeConsole"
-            ReferencedContainer = "container:BridgeConsole.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -62,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E82AE8BA17EFC7900067E353"
-            BuildableName = "BridgeConsole"
-            BlueprintName = "BridgeConsole"
-            ReferencedContainer = "container:BridgeConsole.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E82AE8BA17EFC7900067E353"
-            BuildableName = "BridgeConsole"
-            BlueprintName = "BridgeConsole"
-            ReferencedContainer = "container:BridgeConsole.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

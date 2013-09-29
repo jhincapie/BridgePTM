@@ -16,6 +16,10 @@
 		E843419917F54883009FDC49 /* FeatureCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E843419817F54883009FDC49 /* FeatureCreator.cpp */; };
 		E843419D17F54D51009FDC49 /* BridgePTM.h in Headers */ = {isa = PBXBuildFile; fileRef = E843419A17F548BA009FDC49 /* BridgePTM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E843419E17F54EA2009FDC49 /* FeatureCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = E843419717F5480F009FDC49 /* FeatureCreator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8C29CFF17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29CFE17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib */; };
+		E8C29D0117F76830008F514F /* libopencv_features2d.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0017F76830008F514F /* libopencv_features2d.2.4.6.dylib */; };
+		E8C29D0517F76A47008F514F /* libopencv_contrib.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0417F76A47008F514F /* libopencv_contrib.2.4.6.dylib */; };
+		E8C29D0917F76DD3008F514F /* libopencv_flann.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0817F76DD3008F514F /* libopencv_flann.2.4.6.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		E843419717F5480F009FDC49 /* FeatureCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureCreator.h; sourceTree = "<group>"; };
 		E843419817F54883009FDC49 /* FeatureCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FeatureCreator.cpp; sourceTree = "<group>"; };
 		E843419A17F548BA009FDC49 /* BridgePTM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgePTM.h; sourceTree = "<group>"; };
+		E8C29CFE17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_nonfree.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_nonfree.2.4.6.dylib; sourceTree = "<group>"; };
+		E8C29D0017F76830008F514F /* libopencv_features2d.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_features2d.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_features2d.2.4.6.dylib; sourceTree = "<group>"; };
+		E8C29D0417F76A47008F514F /* libopencv_contrib.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_contrib.2.4.6.dylib; sourceTree = "<group>"; };
+		E8C29D0817F76DD3008F514F /* libopencv_flann.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_flann.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_flann.2.4.6.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +50,10 @@
 				E843419417F54766009FDC49 /* libopencv_legacy.2.4.6.dylib in Frameworks */,
 				E843419517F54766009FDC49 /* libopencv_ml.2.4.6.dylib in Frameworks */,
 				E843419617F54766009FDC49 /* libopencv_video.2.4.6.dylib in Frameworks */,
+				E8C29CFF17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib in Frameworks */,
+				E8C29D0117F76830008F514F /* libopencv_features2d.2.4.6.dylib in Frameworks */,
+				E8C29D0517F76A47008F514F /* libopencv_contrib.2.4.6.dylib in Frameworks */,
+				E8C29D0917F76DD3008F514F /* libopencv_flann.2.4.6.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +82,10 @@
 		E843418A17F54728009FDC49 /* OpenCV */ = {
 			isa = PBXGroup;
 			children = (
+				E8C29D0817F76DD3008F514F /* libopencv_flann.2.4.6.dylib */,
+				E8C29D0417F76A47008F514F /* libopencv_contrib.2.4.6.dylib */,
+				E8C29D0017F76830008F514F /* libopencv_features2d.2.4.6.dylib */,
+				E8C29CFE17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib */,
 				E843418B17F54766009FDC49 /* libopencv_core.2.4.6.dylib */,
 				E843418C17F54766009FDC49 /* libopencv_highgui.2.4.6.dylib */,
 				E843418D17F54766009FDC49 /* libopencv_imgproc.2.4.6.dylib */,
@@ -156,7 +172,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -193,7 +209,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;

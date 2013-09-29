@@ -10,21 +10,50 @@
 
 FeatureCreator::FeatureCreator()
 {
+    this->extractor = new cv::FREAK(true, false, 13.0F, 2);
+    this->detector = new cv::FastFeatureDetector(30, true);
 }
 
 FeatureCreator::~FeatureCreator(void)
 {
+    free(this->extractor);
+    free(this->detector);
 }
 
-void FeatureCreator::HelloWorld(char* text)
+void FeatureCreator::ComputeDocumentKP(const char* documentFolder)
 {
-    cvNamedWindow( "My Window", 1 );
-    IplImage *img = cvCreateImage( cvSize( 640, 480 ), IPL_DEPTH_8U, 1 );
-    CvFont font;
-    double hScale = 1.0;
-    double vScale = 1.0;
-    int lineWidth = 1;
-    cvInitFont(&font, CV_FONT_HERSHEY_SIMPLEX | CV_FONT_ITALIC, hScale, vScale, 0, lineWidth);
-    cvPutText(img, text, cvPoint( 200, 400 ), &font, cvScalar(255, 255, 0));
-    cvShowImage("My Window", img);
+    //1- Detects the features
+    
+    //2- Creates a descriptor for the gathered features
+//    
+//    documentKP->clear();
+//    dbKeyPoints.clear();
+//	cv::vector<cv::Mat> dbDescriptors;
+//    
+//	//load pages
+//	std::string path = dir_path + "\\*";
+//	std::wstring wsTmp(path.begin(), path.end());
+//	std::wstring ws = wsTmp;
+//	std::vector<std::string> fileNameList;
+//	getFiles(ws, fileNameList);
+//    
+//    for (unsigned int i = 0; i < fileNameList.size(); i++)
+//	{
+//		std::string imagePath = dir_path + "/" + fileNameList[i];
+//		cv::Mat pageImage = cv::imread(imagePath, CV_LOAD_IMAGE_GRAYSCALE);
+//        
+//		cv::vector<cv::KeyPoint> pageKeyPoints;
+//		if (_isCameraInUse)
+//			fastDetectorPageImg->detect(pageImage, pageKeyPoints);
+//		else surfDetectorPageImg->detect(pageImage, pageKeyPoints);
+//        
+//		cv::Mat pageImageDescriptors;
+//		extractor->compute(pageImage, pageKeyPoints, pageImageDescriptors);
+//        
+//		dbDescriptors.push_back(pageImageDescriptors);
+//		dbKeyPoints.push_back(pageKeyPoints);
+//	}
+//    
+//    matcher->add(dbDescriptors);
+//	matcher->train();
 }

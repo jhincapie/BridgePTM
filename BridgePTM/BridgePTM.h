@@ -9,6 +9,13 @@
 #ifndef BridgePTM_BridgePTM_h
 #define BridgePTM_BridgePTM_h
 
+#include "Constants.h"
+
+#include "FeatureSet.h"
+#include "Image.h"
+#include "Document.h"
+
 #include "FeatureCreator.h"
+#include "BridgeMatcher.h"
 
 #endif

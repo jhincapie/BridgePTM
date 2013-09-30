@@ -20,40 +20,50 @@ FeatureCreator::~FeatureCreator(void)
     free(this->detector);
 }
 
-void FeatureCreator::ComputeDocumentKP(const char* documentFolder)
+void FeatureCreator::ComputeDocument(Document* document)
 {
-    //1- Detects the features
+    if(document == NULL)
+        return;
     
-    //2- Creates a descriptor for the gathered features
-//    
-//    documentKP->clear();
-//    dbKeyPoints.clear();
-//	cv::vector<cv::Mat> dbDescriptors;
-//    
-//	//load pages
-//	std::string path = dir_path + "\\*";
-//	std::wstring wsTmp(path.begin(), path.end());
-//	std::wstring ws = wsTmp;
-//	std::vector<std::string> fileNameList;
-//	getFiles(ws, fileNameList);
-//    
-//    for (unsigned int i = 0; i < fileNameList.size(); i++)
-//	{
-//		std::string imagePath = dir_path + "/" + fileNameList[i];
-//		cv::Mat pageImage = cv::imread(imagePath, CV_LOAD_IMAGE_GRAYSCALE);
-//        
-//		cv::vector<cv::KeyPoint> pageKeyPoints;
-//		if (_isCameraInUse)
-//			fastDetectorPageImg->detect(pageImage, pageKeyPoints);
-//		else surfDetectorPageImg->detect(pageImage, pageKeyPoints);
-//        
-//		cv::Mat pageImageDescriptors;
-//		extractor->compute(pageImage, pageKeyPoints, pageImageDescriptors);
-//        
-//		dbDescriptors.push_back(pageImageDescriptors);
-//		dbKeyPoints.push_back(pageKeyPoints);
-//	}
-//    
-//    matcher->add(dbDescriptors);
-//	matcher->train();
+    std::cout << "Computing Document Keypoints: " << document->Root << std::endl;
+    
+    //0- Gets the page files from the document folder
+    std::cout << "Pages Found: " << document->Pages->size() << std::endl;
+    
+    char * pageImagePath = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
+    for(int pageIndex = 0 ; pageIndex < document->Pages->size() ; pageIndex++)
+    {
+        Page* page = document->Pages->at(pageIndex);
+        size_t requiredLenght = strlen(document->Root) + strlen(page->FileName) + 1;
+        if(requiredLenght >= MAX_STRING_SIZE)
+        {
+            std::cout << "Page Path Too Long: " << page->FileName << std::endl;
+            continue;
+        }
+        
+        pageImagePath[0] = 0; //clears the string
+        strlcat(pageImagePath, document->Root, MAX_STRING_SIZE);
+        strlcat(pageImagePath, "/", MAX_STRING_SIZE);
+        strlcat(pageImagePath, page->FileName, MAX_STRING_SIZE);
+        std::cout << "Computing Page Keypoints: " << page->FileName << std::endl;
+        
+        //1- Detects the features or keypoints
+        cv::Mat pageImage = cv::imread(pageImagePath, CV_LOAD_IMAGE_GRAYSCALE);
+        cv::vector<cv::KeyPoint> * pageKeyPoints = new cv::vector<cv::KeyPoint>();
+        this->detector->detect(pageImage, *pageKeyPoints);
+        std::cout << "  -- Keypoints Found: " << pageKeyPoints->size() << std::endl;
+
+        //2- Creates a descriptor for the gathered features
+        cv::Mat * pageImageDescriptors = new cv::Mat();
+        extractor->compute(pageImage, *pageKeyPoints, *pageImageDescriptors);
+        std::cout << "  -- Descriptors Created: " << pageImageDescriptors->size() << std::endl;
+
+        FeatureSet* set = new FeatureSet();
+        set->keypoints = pageKeyPoints;
+        set->descriptors = pageImageDescriptors;
+        
+        page->Features = set;
+    }
+    
+    free(pageImagePath);
 }

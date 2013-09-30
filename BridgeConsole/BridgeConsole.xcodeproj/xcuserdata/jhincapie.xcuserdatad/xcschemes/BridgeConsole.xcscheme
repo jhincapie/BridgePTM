@@ -71,6 +71,12 @@
             ReferencedContainer = "container:BridgeConsole.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "/Users/jhincapie/Development/BridgePTM/Data/SampleDocs/InterruptMe"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

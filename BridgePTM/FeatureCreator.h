@@ -12,29 +12,27 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/features2d/features2d.hpp"
 
+#include "Constants.h"
+#include "Document.h"
 
 #ifndef BridgePTM_FeatureCreator_h
 #define BridgePTM_FeatureCreator_h
 
 class FeatureCreator
 {
+    
 private:
     
-    cv::FREAK *extractor;
-	cv::FastFeatureDetector* detector;
-    
-	std::vector<std::vector<cv::KeyPoint>> documentKP;
-    cv::vector<cv::Mat> documentDes;
-
-    void GetPages(char* documentFolder, std::vector<char *> * pages);
+    cv::FREAK *extractor = NULL;
+	cv::FastFeatureDetector* detector = NULL;
     
 public:
     
 	FeatureCreator();
 	~FeatureCreator(void);
     
-	void ComputeDocumentKP(const char* documentFolder);
-    std::vector<std::vector<cv::KeyPoint>> GetDocumentKP();
+	void ComputeDocument(Document * document);
+    void ComputeImage(Image* image);
 };
 
 #endif

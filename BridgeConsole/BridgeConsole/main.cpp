@@ -34,8 +34,17 @@ int main(int argc, const char * argv[])
     }
     closedir(pDIR);
 
+    //Creates the document object - loads the pages and content on the constructor
+    Document * document = new Document(argv[1]);
+    
+    //Computes the document features
     FeatureCreator* creator = new FeatureCreator();
-    creator->ComputeDocumentKP(argv[1]);
+    creator->ComputeDocument(document);
+    
+    //Trains the matcher for the features of the document
+    BridgeMatcher* matcher = new BridgeMatcher();
+    matcher->Train(document->GetDescriptors());
+    
     cvWaitKey();
 }
 

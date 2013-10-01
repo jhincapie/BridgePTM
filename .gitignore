@@ -13,3 +13,8 @@
 *.a
 
 .DS_Store
+ipch
+Debug
+Release
+bin
+obj

@@ -2,6 +2,7 @@
 OpenFrameworks 0.7.4
 ImageMagick 6.8.6-6 2013-09-26
 --> delegates.xml - in folder
-Open 2.4.6.1
+OpenCV 2.4.6.1
 XCode Version 4.6.3 (4H1503)
+Dirent 1.13 for Windows (it comes already installed for Mac)
 

@@ -12,7 +12,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/features2d/features2d.hpp"
 
-#include "Constants.h"
+#include "General.h"
 #include "Document.h"
 
 #ifndef BridgePTM_FeatureCreator_h
@@ -23,8 +23,8 @@ class FeatureCreator
     
 private:
     
-    cv::FREAK *extractor = NULL;
-	cv::FastFeatureDetector* detector = NULL;
+    cv::FREAK *extractor;
+	cv::FastFeatureDetector* detector;
     
 public:
     

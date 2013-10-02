@@ -10,5 +10,6 @@
 
 Image::Image(const char* imageFile)
 {
+	this->Features = NULL;
     this->FileName = imageFile;
 }

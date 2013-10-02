@@ -10,6 +10,7 @@
 
 BridgeMatcher::BridgeMatcher()
 {
+	this->descriptors = NULL;
     this->matcher = new cv::FlannBasedMatcher(new cv::flann::LshIndexParams(4, 25, 0));
 }
 

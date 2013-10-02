@@ -13,7 +13,7 @@
 #include<fstream>
 #include<dirent.h>
 
-#include "Constants.h"
+#include "General.h"
 #include "Image.h"
 
 #ifndef BridgePTM_Document_h
@@ -38,8 +38,8 @@ private:
     
 public:
     
-    const char* Root = NULL;
-    std::vector<Page *> * Pages = NULL;
+    const char* Root;
+    std::vector<Page *> * Pages;
     
     Document(const char* documentRoot);
     ~Document();

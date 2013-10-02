@@ -9,7 +9,7 @@
 #ifndef BridgePTM_BridgePTM_h
 #define BridgePTM_BridgePTM_h
 
-#include "Constants.h"
+#include "General.h"
 
 #include "FeatureSet.h"
 #include "Image.h"

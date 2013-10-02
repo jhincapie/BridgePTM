@@ -12,6 +12,8 @@
 #include<fstream>
 #include<dirent.h>
 
+#include "stdafx.h"
+
 #include "BridgePTM/BridgePTM.h"
 
 void printUsage();

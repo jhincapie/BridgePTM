@@ -23,8 +23,8 @@ class BridgeMatcher
 {
 private:
     
-    std::vector<cv::Mat> * descriptors = NULL;
-    cv::FlannBasedMatcher* matcher = NULL;
+    std::vector<cv::Mat> * descriptors;
+    cv::FlannBasedMatcher* matcher;
 
 public:
     

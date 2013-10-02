@@ -22,18 +22,20 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="openFrameworksRelease.props" />
+    <Import Project="..\openFrameworksRelease.props" />
+    <Import Project="..\openCV-2.4.6.0-Release.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="openFrameworksDebug.props" />
+    <Import Project="..\openFrameworksDebug.props" />
+    <Import Project="..\openCV-2.4.6.0-Debug.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -101,12 +103,13 @@
     <ClCompile Include="BridgeMatcher.cpp" />
     <ClCompile Include="Document.cpp" />
     <ClCompile Include="FeatureCreator.cpp" />
+    <ClCompile Include="FeatureSet.cpp" />
     <ClCompile Include="Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BridgeMatcher.h" />
     <ClInclude Include="BridgePTM.h" />
-    <ClInclude Include="Constants.h" />
+    <ClInclude Include="General.h" />
     <ClInclude Include="Document.h" />
     <ClInclude Include="FeatureCreator.h" />
     <ClInclude Include="FeatureSet.h" />

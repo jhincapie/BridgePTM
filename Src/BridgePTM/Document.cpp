@@ -15,6 +15,7 @@ Page::Page(const char * pageImage) : Image(pageImage)
 Document::Document(const char* documentRoot)
 {
     this->Root = documentRoot;
+	this->Pages = NULL;
     this->Pages = this->GetPages(this->Root);
 }
 
@@ -39,6 +40,7 @@ std::vector<Page *> * Document::GetPages(const char* documentFolder)
         if(strcasestr(file->d_name, ".jpg") == NULL)
             continue;
         char* imageName = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
+		imageName[0] = '\0';
         strlcat(imageName, file->d_name, MAX_STRING_SIZE);
         
         Page* page = new Page(imageName);

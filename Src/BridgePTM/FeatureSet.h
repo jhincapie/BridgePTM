@@ -21,6 +21,7 @@ public:
     cv::Mat * descriptors;
 
 	FeatureSet();
+	~FeatureSet();
 };
 
 #endif

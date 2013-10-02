@@ -16,7 +16,8 @@ BridgeMatcher::BridgeMatcher()
 
 BridgeMatcher::~BridgeMatcher()
 {
-    free(this->matcher);
+	delete this->descriptors;
+    delete this->matcher;
 }
 
 void BridgeMatcher::Train(std::vector<cv::Mat> * descriptors)

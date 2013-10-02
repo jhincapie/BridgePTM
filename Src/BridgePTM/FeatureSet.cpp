@@ -13,3 +13,9 @@ FeatureSet::FeatureSet()
 	this->keypoints = NULL;
 	this->descriptors = NULL;
 }
+
+FeatureSet::~FeatureSet()
+{
+	delete this->descriptors;
+	delete this->keypoints;
+}

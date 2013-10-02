@@ -6,3 +6,5 @@ OpenCV 2.4.6.1
 XCode Version 4.6.3 (4H1503)
 Dirent 1.13 for Windows (it comes already installed for Mac)
 
+NOTES:
+- VS2010: Check that "Enable .NET Framework source stepping" is disabled in Debugging -> General. 

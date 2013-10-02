@@ -20,7 +20,7 @@ public:
     FeatureSet* Features;
     
     Image(const char* imageFile);
-    
+    ~Image();
 };
 
 #endif

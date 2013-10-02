@@ -21,6 +21,7 @@ Document::Document(const char* documentRoot)
 
 Document::~Document()
 {
+	delete this->Pages;
 }
 
 std::vector<Page *> * Document::GetPages(const char* documentFolder)

@@ -16,8 +16,8 @@ FeatureCreator::FeatureCreator()
 
 FeatureCreator::~FeatureCreator(void)
 {
-    free(this->extractor);
-    free(this->detector);
+    delete this->extractor;
+    delete this->detector;
 }
 
 void FeatureCreator::ComputeDocument(Document* document)

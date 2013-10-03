@@ -10,8 +10,16 @@
 
 Image::Image(const char* imageFile)
 {
+    this->Capture = NULL;
 	this->Features = NULL;
     this->FileName = imageFile;
+}
+
+Image::Image(cv::Mat* capture)
+{
+    this->Features = NULL;
+    this->FileName = NULL;
+    this->Capture = capture;
 }
 
 Image::~Image()

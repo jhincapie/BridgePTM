@@ -16,8 +16,13 @@
 
 #include "BridgePTM/BridgePTM.h"
 
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
 void printUsage();
 void printFolderNotExist();
+void showMatch(const char* window, Image* capture, Match* match);
 
 int main(int argc, const char * argv[])
 {
@@ -45,7 +50,7 @@ int main(int argc, const char * argv[])
     
     //Trains the matcher for the features of the document
     BridgeMatcher* matcher = new BridgeMatcher();
-    matcher->Train(document->GetDescriptors());
+    matcher->Train(document);
     
     char* testvideo = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
     testvideo[0] = 0;
@@ -53,33 +58,54 @@ int main(int argc, const char * argv[])
     strlcat(testvideo, "//", MAX_STRING_SIZE);
     strlcat(testvideo, "test.MOV", MAX_STRING_SIZE);
     
-    CvCapture *capture = cvCaptureFromFile(testvideo);
+    cv::VideoCapture *capture = new cv::VideoCapture(testvideo);
     if(capture == NULL)
         return 1;
 
-    IplImage *frame;
+    cv::Mat frame, halfframe;
+    *capture >> frame;
+    
+    /* calculates the actual frame size */
+    cv::Size smallSize((int)(frame.cols/4), (int)(frame.rows/4));
+    
     int key = 'a';
     /* get fps, needed to set the delay */
-    int fps = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FPS);
+    int fps = (int)capture->get(CV_CAP_PROP_FPS);
+    
     /* display video */
-    cvNamedWindow("video", 0);
+    cv::namedWindow("video");
+    cv::namedWindow("capture");
     while(key != 'q')
     {
         /* get a frame */
-        frame = cvQueryFrame( capture );
+        *capture >> frame;
         /* always check */
+        if(frame.empty())
+            break;
         
-        if( !frame ) break;
-        /* display frame */
-        cvShowImage( "video", frame );
+        /* reduce in size */
+        cv::resize(frame, halfframe, smallSize);
+        cv::transpose(halfframe, halfframe);
+        cv::flip(halfframe, halfframe, 1);
+        
+        Image bridgeIMG(&halfframe);
+        creator->ComputeImage(&bridgeIMG);
+        Match* match = matcher->Match(&bridgeIMG);
+        if(match == NULL)
+            continue;
+        
+        cv::imshow("capture", *bridgeIMG.Capture);
+        showMatch("video", &bridgeIMG, match);
+        
         /* quit if user press 'q' */
         cvWaitKey( 1000 / fps );
     }
     
     /* free memory */
-    cvReleaseCapture( &capture );
-    cvDestroyWindow( "video" );
-
+    capture->release();
+    cvDestroyWindow("video");
+    
+    delete capture;
 	delete creator;
 	delete matcher;
 	delete document;
@@ -93,4 +119,36 @@ void printUsage()
 void printFolderNotExist()
 {
     std::cout << "Given folder does not exist, please use full path." << std::endl;
+}
+
+void showMatch(const char* window, Image* capture, Match* match)
+{
+    char * pageImagePath = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
+    
+    pageImagePath[0] = 0; //clears the string
+    strlcat(pageImagePath, match->Document->Root, MAX_STRING_SIZE);
+    strlcat(pageImagePath, "/", MAX_STRING_SIZE);
+    strlcat(pageImagePath, match->Page->FileName, MAX_STRING_SIZE);
+
+    cv::Mat pageImage = cv::imread(pageImagePath, CV_LOAD_IMAGE_GRAYSCALE);
+    
+    std::vector<cv::Point2f> device_corners(5);
+	device_corners[0] = cvPoint(0,0);
+	device_corners[1] = cvPoint(capture->Capture->cols, 0 );
+	device_corners[2] = cvPoint(capture->Capture->cols, capture->Capture->rows );
+	device_corners[3] = cvPoint(0, capture->Capture->rows );
+	device_corners[4] = cvPoint(capture->Capture->cols/2.0f, capture->Capture->rows/2.0f);
+    
+	if (!match->Homography.empty())
+	{
+		cv::perspectiveTransform(device_corners, device_corners, match->Homography);
+        
+		//-- Draw lines between the corners (the mapped object in the scene - image_2 )
+		cv::line( pageImage, device_corners[0], device_corners[1] , cv::Scalar( 0, 255, 0), 4 );
+		cv::line( pageImage, device_corners[1], device_corners[2] , cv::Scalar( 0, 255, 0), 4 );
+		cv::line( pageImage, device_corners[2], device_corners[3] , cv::Scalar( 0, 255, 0), 4 );
+		cv::line( pageImage, device_corners[3] , device_corners[0] , cv::Scalar( 0, 255, 0), 4 );
+	}
+    
+	cv::imshow(window, pageImage);
 }

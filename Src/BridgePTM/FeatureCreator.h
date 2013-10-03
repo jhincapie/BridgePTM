@@ -8,10 +8,6 @@
 //  Copyright (c) 2013 Juan David Hincapié-Ramos. All rights reserved.
 //
 
-#include "opencv2/core/core.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/features2d/features2d.hpp"
-
 #include "General.h"
 #include "Document.h"
 
@@ -25,6 +21,8 @@ private:
     
     cv::FREAK *extractor;
 	cv::FastFeatureDetector* detector;
+    
+    void ComputeKeypoitsAndDescriptor(Image* image);
     
 public:
     

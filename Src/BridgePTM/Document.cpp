@@ -54,7 +54,14 @@ std::vector<Page *> * Document::GetPages(const char* documentFolder)
 
 std::vector<std::vector<cv::KeyPoint>> * Document::GetKeypoints()
 {
-    return NULL;
+    if(this->Pages == NULL || this->Pages->size() == 0)
+        return NULL;
+    
+    std::vector<std::vector<cv::KeyPoint>> * documentKP = new std::vector<std::vector<cv::KeyPoint>>();
+    for(int pageIndex = 0 ; pageIndex < this->Pages->size() ; pageIndex++)
+        documentKP->push_back(* this->Pages->at(pageIndex)->Features->keypoints);
+    
+    return documentKP;
 }
 
 std::vector<cv::Mat> * Document::GetDescriptors()

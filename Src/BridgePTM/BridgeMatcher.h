@@ -13,10 +13,10 @@
 //  Copyright (c) 2013 Juan David Hincapié-Ramos. All rights reserved.
 //
 
-#include "opencv2/core/core.hpp"
-#include "opencv2/features2d/features2d.hpp"
-
 #include "General.h"
+#include "Image.h"
+#include "Document.h"
+#include "Match.h"
 
 #ifndef BridgePTM_BridgeMatcher_h
 #define BridgePTM_BridgeMatcher_h
@@ -25,16 +25,16 @@ class BridgeMatcher
 {
 private:
     
-    std::vector<cv::Mat> * descriptors;
+    Document* document;
     cv::FlannBasedMatcher* matcher;
-
+    
 public:
     
 	BridgeMatcher();
 	~BridgeMatcher(void);
     
-	void Train(std::vector<cv::Mat> * descriptors);
-    void Match(cv::Mat capture);
+	void Train(Document* document);
+    Match* Match(Image* capture);
 };
 
 #endif

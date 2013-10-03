@@ -41,32 +41,61 @@ void FeatureCreator::ComputeDocument(Document* document)
             continue;
         }
         
-        clock_t start = clock();
         pageImagePath[0] = 0; //clears the string
         strlcat(pageImagePath, document->Root, MAX_STRING_SIZE);
         strlcat(pageImagePath, "/", MAX_STRING_SIZE);
         strlcat(pageImagePath, page->FileName, MAX_STRING_SIZE);
-        std::cout << "Computing Page Keypoints: " << page->FileName << std::endl;
         
         //1- Detects the features or keypoints
         cv::Mat pageImage = cv::imread(pageImagePath, CV_LOAD_IMAGE_GRAYSCALE);
-        cv::vector<cv::KeyPoint> * pageKeyPoints = new cv::vector<cv::KeyPoint>();
-        this->detector->detect(pageImage, *pageKeyPoints);
-        std::cout << "  -- Keypoints Found: " << pageKeyPoints->size() << std::endl;
-
-        //2- Creates a descriptor for the gathered features
-        cv::Mat * pageImageDescriptors = new cv::Mat();
-        extractor->compute(pageImage, *pageKeyPoints, *pageImageDescriptors);
-        std::cout << "  -- Descriptors Created: " << pageImageDescriptors->size() << std::endl;
-
-        clock_t end = clock();
-        std::cout << "  -- Computing Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
-        
-        FeatureSet* set = new FeatureSet();
-        set->keypoints = pageKeyPoints;
-        set->descriptors = pageImageDescriptors;
-        page->Features = set;
+        page->Capture = &pageImage;
+        this->ComputeKeypoitsAndDescriptor(page);
     }
     
     free(pageImagePath);
+}
+
+void FeatureCreator::ComputeImage(Image* image)
+{
+    if(image == NULL)
+        return;
+    this->ComputeKeypoitsAndDescriptor(image);
+}
+
+void FeatureCreator::ComputeKeypoitsAndDescriptor(Image* image)
+{
+    if(image == NULL)
+    {
+        std::cout << "ComputeKeypoitsAndDescriptor: Image* image == NULL" << std::endl;
+        return;
+    }
+    
+    if(image->Capture == NULL)
+    {
+        std::cout << "ComputeKeypoitsAndDescriptor: image->Capture == NULL" << std::endl;
+        return;
+    }
+    
+    if(image->FileName != NULL)
+        std::cout << "Computing Page Keypoints: " << image->FileName << std::endl;
+    else
+        std::cout << "Computing Page Keypoints (Capture)" << std::endl;
+    clock_t start = clock();
+    
+    cv::vector<cv::KeyPoint> * pageKeyPoints = new cv::vector<cv::KeyPoint>();
+    this->detector->detect(*image->Capture, *pageKeyPoints);
+    std::cout << "  -- Keypoints Found: " << pageKeyPoints->size() << std::endl;
+    
+    //2- Creates a descriptor for the gathered features
+    cv::Mat * pageImageDescriptors = new cv::Mat();
+    extractor->compute(*image->Capture, *pageKeyPoints, *pageImageDescriptors);
+    std::cout << "  -- Descriptors Created: " << pageImageDescriptors->size() << std::endl;
+    
+    clock_t end = clock();
+    std::cout << "  -- Computing Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
+    
+    FeatureSet* set = new FeatureSet();
+    set->keypoints = pageKeyPoints;
+    set->descriptors = pageImageDescriptors;
+    image->Features = set;
 }

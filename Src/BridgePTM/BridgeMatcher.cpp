@@ -10,81 +10,84 @@
 
 BridgeMatcher::BridgeMatcher()
 {
-	this->descriptors = NULL;
+	this->document = NULL;
     this->matcher = new cv::FlannBasedMatcher(new cv::flann::LshIndexParams(4, 25, 0));
 }
 
 BridgeMatcher::~BridgeMatcher()
 {
-	delete this->descriptors;
     delete this->matcher;
 }
 
-void BridgeMatcher::Train(std::vector<cv::Mat> * descriptors)
+void BridgeMatcher::Train(Document* document)
 {
-    std::cout << "Training the Matcher for " << descriptors->size() << " descriptors." << std::endl;
+    this->document = document;
+    std::cout << "Training the Matcher for " << this->document->Pages->size() << " descriptors." << std::endl;
     clock_t start = clock();
-    
-    this->descriptors = descriptors;
-    this->matcher->add(*this->descriptors);
+
+    std::vector<cv::Mat> * docDescriptors = this->document->GetDescriptors();    
+    this->matcher->add(*docDescriptors);
 	this->matcher->train();
     
     clock_t end = clock();
     std::cout << "  -- Training Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
 }
 
-void BridgeMatcher::Match(cv::Mat capture)
+Match* BridgeMatcher::Match(Image* capture)
 {
-//	std::vector<cv::KeyPoint> deviceKeypoints;
-//	cv::Mat deviceImageDescriptors;
-//    
-//	if (isCameraInUse_)
-//		fastDetectorCamImg->detect(deviceImage, deviceKeypoints);
-//	else
-//		surfDetectorCamImg->detect(deviceImage, deviceKeypoints);
-//	extractor->compute(deviceImage, deviceKeypoints, deviceImageDescriptors);
-//	
-//	if (deviceImageDescriptors.rows > 4)
-//	{
-//		std::vector<std::vector<cv::DMatch>> dmatches;
-//		fMatcher->knnMatch(deviceImageDescriptors, dmatches, 2);
-//        
-//		//set votingPageIndices to null
-//		int count = dbKeyPoints.size();
-//		cv::vector<int> votingPageIndices;
-//		for (int i = 0; i < count; i++)
-//			votingPageIndices.push_back(0);
-//        
-//		std::vector<cv::Point2f> mpts_1, mpts_2; // Used for homography
-//		std::vector<std::vector<cv::DMatch>>::iterator endIterator = dmatches.end();
-//		for (std::vector<std::vector<cv::DMatch>>::iterator iter = dmatches.begin(); iter != endIterator; ++iter)
-//		{
-//			std::vector<cv::DMatch>::iterator firstMatch = iter->begin();
-//			if(!iter->empty())
-//			{
-//				if (firstMatch->distance < 0.7*(++(iter->begin()))->distance)
-//				{
-//					mpts_1.push_back(deviceKeypoints[firstMatch->queryIdx].pt);
-//					mpts_2.push_back(dbKeyPoints[firstMatch->imgIdx][firstMatch->trainIdx].pt);
-//					votingPageIndices[firstMatch->imgIdx]++;
-//				}
-//			}
-//		}
-//        
-//		int max = 0;
-//		PageIdx = -1;
-//		for (unsigned int i = 0; i < votingPageIndices.size(); ++i)
-//		{
-//			if (votingPageIndices[i] > max)
-//			{
-//				max = votingPageIndices[i];
-//				PageIdx = i;
-//			}
-//		}
-//        
-//		if (mpts_1.size() >= 4)
-//			return findHomography(mpts_1, mpts_2, cv::RANSAC);
-//	}
-//    
-//	return cv::Mat();
+    if(capture->Features->descriptors->rows < 4)
+        return NULL;
+    
+    std::cout << "Matching Image" << std::endl;
+    clock_t start = clock();
+    
+    std::vector<std::vector<cv::KeyPoint>> * docKeypoints = this->document->GetKeypoints();
+    std::vector<std::vector<cv::DMatch>> dmatches;
+    this->matcher->knnMatch(*capture->Features->descriptors, dmatches, 2);
+    
+    //Initializes the vote indices to 0 in each page
+    int nrPages = (int)this->document->Pages->size();
+    cv::vector<int> votingIndices;
+    for (int i = 0; i < nrPages; i++)
+        votingIndices.push_back(0);
+    
+    std::vector<cv::Point2f> mpts_1, mpts_2; // Used for homography
+    std::vector<std::vector<cv::DMatch>>::iterator endIterator = dmatches.end();
+    for (std::vector<std::vector<cv::DMatch>>::iterator iter = dmatches.begin(); iter != endIterator; ++iter)
+    {
+        std::vector<cv::DMatch>::iterator match = iter->begin();
+        if(!iter->empty())
+        {
+            if (match->distance < 0.7*(++(iter->begin()))->distance)
+            {
+                mpts_1.push_back(capture->Features->keypoints->at(match->queryIdx).pt);
+                mpts_2.push_back(docKeypoints->at(match->imgIdx).at(match->trainIdx).pt);
+                votingIndices[match->imgIdx]++;
+            }
+        }
+    }
+    
+    int max = 0;
+    int pageIdx = -1;
+    for (unsigned int i = 0; i < votingIndices.size(); ++i)
+    {
+        if (votingIndices[i] <= max)
+            continue;
+        max = votingIndices[i];
+        pageIdx = i;
+    }
+    
+    class Match* result = NULL;
+    if (mpts_1.size() >= 4)
+    {
+        result = new class Match();
+        result->Document = this->document;
+        result->Page = this->document->Pages->at(pageIdx);
+        result->PageIndex = pageIdx;
+        result->Homography = cv::findHomography(mpts_1, mpts_2, cv::RANSAC);
+    }
+    
+    clock_t end = clock();
+    std::cout << "  -- Matching Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
+    return result;
 }

@@ -10,5 +10,11 @@
 
 Image::Image(const char* imageFile)
 {
+	this->Features = NULL;
     this->FileName = imageFile;
+}
+
+Image::~Image()
+{
+	delete this->Features;
 }

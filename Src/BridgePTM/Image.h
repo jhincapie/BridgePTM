@@ -16,11 +16,11 @@ class Image
     
 public:
 
-    const char* FileName = NULL;
-    FeatureSet* Features = NULL;
+    const char* FileName;
+    FeatureSet* Features;
     
     Image(const char* imageFile);
-    
+    ~Image();
 };
 
 #endif

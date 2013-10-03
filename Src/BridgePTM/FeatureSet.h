@@ -12,10 +12,16 @@
 #ifndef BridgePTM_FeatureSet_h
 #define BridgePTM_FeatureSet_h
 
-struct FeatureSet
+class FeatureSet
 {
-    std::vector<cv::KeyPoint> * keypoints = NULL;
-    cv::Mat * descriptors = NULL;
+
+public:
+
+    std::vector<cv::KeyPoint> * keypoints;
+    cv::Mat * descriptors;
+
+	FeatureSet();
+	~FeatureSet();
 };
 
 #endif

@@ -10,12 +10,14 @@
 
 BridgeMatcher::BridgeMatcher()
 {
+	this->descriptors = NULL;
     this->matcher = new cv::FlannBasedMatcher(new cv::flann::LshIndexParams(4, 25, 0));
 }
 
 BridgeMatcher::~BridgeMatcher()
 {
-    free(this->matcher);
+	delete this->descriptors;
+    delete this->matcher;
 }
 
 void BridgeMatcher::Train(std::vector<cv::Mat> * descriptors)

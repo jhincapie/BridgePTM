@@ -12,6 +12,8 @@
 #include<fstream>
 #include<dirent.h>
 
+#include "stdafx.h"
+
 #include "BridgePTM/BridgePTM.h"
 
 void printUsage();
@@ -44,8 +46,10 @@ int main(int argc, const char * argv[])
     //Trains the matcher for the features of the document
     BridgeMatcher* matcher = new BridgeMatcher();
     matcher->Train(document->GetDescriptors());
-    
-    cvWaitKey();
+
+	delete creator;
+	delete matcher;
+	delete document;
 }
 
 void printUsage()

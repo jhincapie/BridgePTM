@@ -46,6 +46,39 @@ int main(int argc, const char * argv[])
     //Trains the matcher for the features of the document
     BridgeMatcher* matcher = new BridgeMatcher();
     matcher->Train(document->GetDescriptors());
+    
+    char* testvideo = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
+    testvideo[0] = 0;
+    strlcat(testvideo, argv[1], MAX_STRING_SIZE);
+    strlcat(testvideo, "//", MAX_STRING_SIZE);
+    strlcat(testvideo, "test.MOV", MAX_STRING_SIZE);
+    
+    CvCapture *capture = cvCaptureFromFile(testvideo);
+    if(capture == NULL)
+        return 1;
+
+    IplImage *frame;
+    int key = 'a';
+    /* get fps, needed to set the delay */
+    int fps = (int)cvGetCaptureProperty(capture, CV_CAP_PROP_FPS);
+    /* display video */
+    cvNamedWindow("video", 0);
+    while(key != 'q')
+    {
+        /* get a frame */
+        frame = cvQueryFrame( capture );
+        /* always check */
+        
+        if( !frame ) break;
+        /* display frame */
+        cvShowImage( "video", frame );
+        /* quit if user press 'q' */
+        cvWaitKey( 1000 / fps );
+    }
+    
+    /* free memory */
+    cvReleaseCapture( &capture );
+    cvDestroyWindow( "video" );
 
 	delete creator;
 	delete matcher;

@@ -16,6 +16,8 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/features2d/features2d.hpp"
 
+#include "General.h"
+
 #ifndef BridgePTM_BridgeMatcher_h
 #define BridgePTM_BridgeMatcher_h
 

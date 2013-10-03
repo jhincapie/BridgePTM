@@ -6,13 +6,6 @@
 //  Copyright (c) 2013 Juan David Hincapié-Ramos. All rights reserved.
 //
 
-#include<stdio.h>
-#include<cstdlib>
-#include<iostream>
-#include<string.h>
-#include<fstream>
-#include<dirent.h>
-
 #include "General.h"
 #include "Image.h"
 

@@ -22,9 +22,15 @@ BridgeMatcher::~BridgeMatcher()
 
 void BridgeMatcher::Train(std::vector<cv::Mat> * descriptors)
 {
+    std::cout << "Training the Matcher for " << descriptors->size() << " descriptors." << std::endl;
+    clock_t start = clock();
+    
     this->descriptors = descriptors;
     this->matcher->add(*this->descriptors);
 	this->matcher->train();
+    
+    clock_t end = clock();
+    std::cout << "  -- Training Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
 }
 
 void BridgeMatcher::Match(cv::Mat capture)

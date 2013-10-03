@@ -41,6 +41,7 @@ void FeatureCreator::ComputeDocument(Document* document)
             continue;
         }
         
+        clock_t start = clock();
         pageImagePath[0] = 0; //clears the string
         strlcat(pageImagePath, document->Root, MAX_STRING_SIZE);
         strlcat(pageImagePath, "/", MAX_STRING_SIZE);
@@ -58,10 +59,12 @@ void FeatureCreator::ComputeDocument(Document* document)
         extractor->compute(pageImage, *pageKeyPoints, *pageImageDescriptors);
         std::cout << "  -- Descriptors Created: " << pageImageDescriptors->size() << std::endl;
 
+        clock_t end = clock();
+        std::cout << "  -- Computing Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
+        
         FeatureSet* set = new FeatureSet();
         set->keypoints = pageKeyPoints;
         set->descriptors = pageImageDescriptors;
-        
         page->Features = set;
     }
     

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E83B10B217F8B5AE00B0E562 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = E83B10B117F8B4DB00B0E562 /* Constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E83B10B517F8CD7B00B0E562 /* BridgeMatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E83B10B417F8CD7B00B0E562 /* BridgeMatcher.cpp */; };
 		E83B10B617F8DEF600B0E562 /* BridgeMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = E83B10B317F8CD6800B0E562 /* BridgeMatcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E83B10BB17F8E49700B0E562 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E83B10BA17F8E49600B0E562 /* Document.cpp */; };
@@ -24,6 +23,8 @@
 		E843419D17F54D51009FDC49 /* BridgePTM.h in Headers */ = {isa = PBXBuildFile; fileRef = E843419A17F548BA009FDC49 /* BridgePTM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E843419E17F54EA2009FDC49 /* FeatureCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = E843419717F5480F009FDC49 /* FeatureCreator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E878768917F923FF0004F637 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E878768817F923FF0004F637 /* Image.cpp */; };
+		E8B3439617FDC65A0019FF1A /* FeatureSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B3439417FDC65A0019FF1A /* FeatureSet.cpp */; };
+		E8B3439717FDC65A0019FF1A /* General.h in Headers */ = {isa = PBXBuildFile; fileRef = E8B3439517FDC65A0019FF1A /* General.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8C29CFF17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29CFE17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib */; };
 		E8C29D0117F76830008F514F /* libopencv_features2d.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0017F76830008F514F /* libopencv_features2d.2.4.6.dylib */; };
 		E8C29D0517F76A47008F514F /* libopencv_contrib.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0417F76A47008F514F /* libopencv_contrib.2.4.6.dylib */; };
@@ -32,7 +33,6 @@
 
 /* Begin PBXFileReference section */
 		E82AA40817F544130032AFEC /* libBridgePTM.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libBridgePTM.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		E83B10B117F8B4DB00B0E562 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E83B10B317F8CD6800B0E562 /* BridgeMatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeMatcher.h; sourceTree = "<group>"; };
 		E83B10B417F8CD7B00B0E562 /* BridgeMatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BridgeMatcher.cpp; sourceTree = "<group>"; };
 		E83B10B717F8E2F000B0E562 /* FeatureSet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureSet.h; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		E843419817F54883009FDC49 /* FeatureCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FeatureCreator.cpp; sourceTree = "<group>"; };
 		E843419A17F548BA009FDC49 /* BridgePTM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgePTM.h; sourceTree = "<group>"; };
 		E878768817F923FF0004F637 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		E8B3439417FDC65A0019FF1A /* FeatureSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FeatureSet.cpp; sourceTree = "<group>"; };
+		E8B3439517FDC65A0019FF1A /* General.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = General.h; sourceTree = "<group>"; };
 		E8C29CFE17F767D6008F514F /* libopencv_nonfree.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_nonfree.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_nonfree.2.4.6.dylib; sourceTree = "<group>"; };
 		E8C29D0017F76830008F514F /* libopencv_features2d.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_features2d.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_features2d.2.4.6.dylib; sourceTree = "<group>"; };
 		E8C29D0417F76A47008F514F /* libopencv_contrib.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_contrib.2.4.6.dylib; sourceTree = "<group>"; };
@@ -79,6 +81,8 @@
 		E82AA3FF17F544130032AFEC = {
 			isa = PBXGroup;
 			children = (
+				E8B3439417FDC65A0019FF1A /* FeatureSet.cpp */,
+				E8B3439517FDC65A0019FF1A /* General.h */,
 				E83B10B917F8E33E00B0E562 /* Image.h */,
 				E878768817F923FF0004F637 /* Image.cpp */,
 				E83B10B817F8E31F00B0E562 /* Document.h */,
@@ -87,7 +91,6 @@
 				E83B10B417F8CD7B00B0E562 /* BridgeMatcher.cpp */,
 				E83B10B317F8CD6800B0E562 /* BridgeMatcher.h */,
 				E843419A17F548BA009FDC49 /* BridgePTM.h */,
-				E83B10B117F8B4DB00B0E562 /* Constants.h */,
 				E843419817F54883009FDC49 /* FeatureCreator.cpp */,
 				E843419717F5480F009FDC49 /* FeatureCreator.h */,
 				E843418A17F54728009FDC49 /* OpenCV */,
@@ -129,11 +132,11 @@
 			files = (
 				E843419D17F54D51009FDC49 /* BridgePTM.h in Headers */,
 				E843419E17F54EA2009FDC49 /* FeatureCreator.h in Headers */,
-				E83B10B217F8B5AE00B0E562 /* Constants.h in Headers */,
 				E83B10B617F8DEF600B0E562 /* BridgeMatcher.h in Headers */,
 				E83B10BC17F8E61700B0E562 /* FeatureSet.h in Headers */,
 				E83B10BD17F8E62500B0E562 /* Document.h in Headers */,
 				E83B10BE17F8E62A00B0E562 /* Image.h in Headers */,
+				E8B3439717FDC65A0019FF1A /* General.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +195,7 @@
 				E83B10B517F8CD7B00B0E562 /* BridgeMatcher.cpp in Sources */,
 				E83B10BB17F8E49700B0E562 /* Document.cpp in Sources */,
 				E878768917F923FF0004F637 /* Image.cpp in Sources */,
+				E8B3439617FDC65A0019FF1A /* FeatureSet.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

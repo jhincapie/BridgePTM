@@ -150,10 +150,6 @@ void showMatch(const char* window, Image* capture, Match* match)
 		cv::line( pageImage, device_corners[3] , device_corners[0] , cv::Scalar( 0, 255, 0), 4 );
 	}
     
-    std::cout << (*match->Page->Features->keypoints).size() << std::endl;
-    std::cout << (*capture->Features->keypoints).size() << std::endl;
-    std::cout << (*match->MatcherMatches).size() << std::endl;
-    
     //-- Draw only "good" matches
     cv::Mat matchesImg;
     cv::drawMatches(*capture->Capture, *capture->Features->keypoints,

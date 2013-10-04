@@ -17,7 +17,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
@@ -46,7 +46,7 @@
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">obj\$(Configuration)\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</LinkIncremental>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_debug</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)</TargetName>
   </PropertyGroup>
@@ -85,6 +85,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -105,6 +106,7 @@
     <ClCompile Include="FeatureCreator.cpp" />
     <ClCompile Include="FeatureSet.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Match.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BridgeMatcher.h" />
@@ -114,6 +116,7 @@
     <ClInclude Include="FeatureCreator.h" />
     <ClInclude Include="FeatureSet.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="match.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="C:\Program Files (x86)\OpenFrameworks\of_v0.7.4\libs\openFrameworksCompiled\project\vs2010\openframeworksLib.vcxproj">

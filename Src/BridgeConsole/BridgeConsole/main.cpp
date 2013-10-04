@@ -5,12 +5,13 @@
 //  Created by Juan David Hincapié-Ramos on 9/22/13.
 //  Copyright (c) 2013 Juan David Hincapié-Ramos. All rights reserved.
 //
-#include<stdio.h>
-#include<cstdlib>
-#include<iostream>
-#include<string.h>
-#include<fstream>
-#include<dirent.h>
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <string.h>
+#include <fstream>
+#include <dirent.h>
+#include <sys/stat.h>
 
 #include "stdafx.h"
 
@@ -23,6 +24,7 @@
 void printUsage();
 void printFolderNotExist();
 void showMatch(const char* window, Image* capture, Match* match);
+int fexist(char *filename);
 
 int main(int argc, const char * argv[])
 {
@@ -55,12 +57,24 @@ int main(int argc, const char * argv[])
     char* testvideo = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
     testvideo[0] = 0;
     strlcat(testvideo, argv[1], MAX_STRING_SIZE);
-    strlcat(testvideo, "//", MAX_STRING_SIZE);
+#ifdef WIN32
+    strlcat(testvideo, "\\", MAX_STRING_SIZE);
+#else
+	strlcat(testvideo, "//", MAX_STRING_SIZE);
+#endif
     strlcat(testvideo, "test.MOV", MAX_STRING_SIZE);
-    
+	if(fexist(testvideo) == 0)
+	{
+		std::cerr << "Video does not exist [" << testvideo << "]" <<  std::endl;
+		return 1;
+	}
+
     cv::VideoCapture *capture = new cv::VideoCapture(testvideo);
-    if(capture == NULL)
-        return 1;
+	if (!capture->isOpened())
+	{
+		std::cerr << "Unable to load the video [" << testvideo << "]" <<  std::endl;
+		return 1;
+	}
 
     cv::Mat frame, halfframe;
     *capture >> frame;
@@ -73,8 +87,7 @@ int main(int argc, const char * argv[])
     int fps = (int)capture->get(CV_CAP_PROP_FPS);
     
     /* display video */
-    cv::namedWindow("video");
-    cv::namedWindow("capture");
+    cv::namedWindow("matches");
     while(key != 'q')
     {
         /* get a frame */
@@ -84,7 +97,7 @@ int main(int argc, const char * argv[])
             break;
         
         /* reduce in size */
-        cv::resize(frame, halfframe, smallSize);
+		cv::resize(frame, halfframe, smallSize);		
         cv::transpose(halfframe, halfframe);
         cv::flip(halfframe, halfframe, 1);
         cv::cvtColor(halfframe, halfframe, CV_BGR2GRAY);
@@ -95,10 +108,10 @@ int main(int argc, const char * argv[])
         if(match == NULL)
             continue;
 
-        showMatch("video", &bridgeIMG, match);
+        showMatch("matches", &bridgeIMG, match);
         
         /* quit if user press 'q' */
-        cvWaitKey( 1000 / fps );
+        cvWaitKey(1000/fps);
     }
     
     /* free memory */
@@ -159,4 +172,14 @@ void showMatch(const char* window, Image* capture, Match* match)
     
     //-- Show detected matches
     cv::imshow(window, matchesImg);
+
+	delete pageImagePath;
+}
+
+int fexist(char *filename) 
+{ 
+	struct stat buffer; 
+	if (stat(filename, &buffer) == -1) 
+		return 0; 
+	return 1; 
 }

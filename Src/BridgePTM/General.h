@@ -12,12 +12,13 @@
 
 #define MAX_STRING_SIZE 1024
 
-#include<stdio.h>
-#include<cstdlib>
-#include<iostream>
-#include<string.h>
-#include<fstream>
-#include<dirent.h>
+#include <stdio.h>
+#include <cstdlib>
+#include <iostream>
+#include <string.h>
+#include <fstream>
+#include <dirent.h>
+#include <time.h>
 
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"

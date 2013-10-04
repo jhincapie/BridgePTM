@@ -42,26 +42,50 @@ Match* BridgeMatcher::Match(Image* capture)
     clock_t start = clock();
     
     std::vector<std::vector<cv::KeyPoint>> * docKeypoints = this->document->GetKeypoints();
-    std::vector<std::vector<cv::DMatch>> dmatches;
-    this->matcher->knnMatch(*capture->Features->descriptors, dmatches, 2);
+    std::vector<std::vector<cv::DMatch>> cvmatches;
+    this->matcher->knnMatch(*capture->Features->descriptors, cvmatches, 2);
     
-    //Initializes the vote indices to 0 in each page
+    //-- Initializes the vote indices to 0 in each page
     int nrPages = (int)this->document->Pages->size();
     cv::vector<int> votingIndices;
     for (int i = 0; i < nrPages; i++)
         votingIndices.push_back(0);
     
-    std::vector<cv::Point2f> mpts_1, mpts_2; // Used for homography
-    std::vector<std::vector<cv::DMatch>>::iterator endIterator = dmatches.end();
-    for (std::vector<std::vector<cv::DMatch>>::iterator iter = dmatches.begin(); iter != endIterator; ++iter)
+    //-- Initializes the vectors for the matched points in each page
+    std::vector<std::vector<cv::Point2f>> mpCapture, mpPage;
+    std::vector< std::vector<cv::DMatch>* >* mtPage = new std::vector< std::vector<cv::DMatch>* >();
+    for(int pageIndex = 0; pageIndex < nrPages; pageIndex++)
+    {
+        mtPage->push_back(new std::vector<cv::DMatch>());
+        mpCapture.push_back(std::vector<cv::Point2f>());
+        mpPage.push_back(std::vector<cv::Point2f>());
+    }
+    
+    //-- Quick calculation of max and min distances between keypoints
+    double max_dist = 0; double min_dist = 100;
+    for(int pageIndex = 0; pageIndex < nrPages; pageIndex++)
+    {
+        for(int descIndex = 0 ; descIndex < cvmatches[pageIndex].size() ; descIndex++)
+        {
+            double dist = cvmatches[pageIndex][descIndex].distance;
+            if( dist < min_dist )
+                min_dist = dist;
+            if( dist > max_dist )
+                max_dist = dist;
+        }
+    }
+    
+    std::vector<std::vector<cv::DMatch>>::iterator endIterator = cvmatches.end();
+    for (std::vector<std::vector<cv::DMatch>>::iterator iter = cvmatches.begin(); iter != endIterator; ++iter)
     {
         std::vector<cv::DMatch>::iterator match = iter->begin();
         if(!iter->empty())
         {
-            if (match->distance < 0.7*(++(iter->begin()))->distance)
+            if (match->distance < 2*min_dist)
             {
-                mpts_1.push_back(capture->Features->keypoints->at(match->queryIdx).pt);
-                mpts_2.push_back(docKeypoints->at(match->imgIdx).at(match->trainIdx).pt);
+                mtPage->at(match->imgIdx)->push_back(*match);
+                mpCapture[match->imgIdx].push_back(capture->Features->keypoints->at(match->queryIdx).pt);
+                mpPage[match->imgIdx].push_back(docKeypoints->at(match->imgIdx).at(match->trainIdx).pt);
                 votingIndices[match->imgIdx]++;
             }
         }
@@ -77,15 +101,12 @@ Match* BridgeMatcher::Match(Image* capture)
         pageIdx = i;
     }
     
-    class Match* result = NULL;
-    if (mpts_1.size() >= 4)
-    {
-        result = new class Match();
-        result->Document = this->document;
-        result->Page = this->document->Pages->at(pageIdx);
-        result->PageIndex = pageIdx;
-        result->Homography = cv::findHomography(mpts_1, mpts_2, cv::RANSAC);
-    }
+    class Match* result = new class Match();
+    result->Document = this->document;
+    result->Page = this->document->Pages->at(pageIdx);
+    result->PageIndex = pageIdx;
+    result->MatcherMatches = mtPage->at(pageIdx);
+    result->Homography = cv::findHomography(mpCapture[pageIdx], mpPage[pageIdx], cv::RANSAC);
     
     clock_t end = clock();
     std::cout << "  -- Matching Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;

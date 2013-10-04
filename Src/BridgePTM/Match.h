@@ -24,6 +24,7 @@ public:
     Page* Page;
     Document*  Document;
     cv::Mat Homography;
+    std::vector<cv::DMatch>* MatcherMatches;
 
 };
 

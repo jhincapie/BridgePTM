@@ -87,14 +87,14 @@ int main(int argc, const char * argv[])
         cv::resize(frame, halfframe, smallSize);
         cv::transpose(halfframe, halfframe);
         cv::flip(halfframe, halfframe, 1);
+        cv::cvtColor(halfframe, halfframe, CV_BGR2GRAY);
         
         Image bridgeIMG(&halfframe);
         creator->ComputeImage(&bridgeIMG);
         Match* match = matcher->Match(&bridgeIMG);
         if(match == NULL)
             continue;
-        
-        cv::imshow("capture", *bridgeIMG.Capture);
+
         showMatch("video", &bridgeIMG, match);
         
         /* quit if user press 'q' */
@@ -150,5 +150,17 @@ void showMatch(const char* window, Image* capture, Match* match)
 		cv::line( pageImage, device_corners[3] , device_corners[0] , cv::Scalar( 0, 255, 0), 4 );
 	}
     
-	cv::imshow(window, pageImage);
+    std::cout << (*match->Page->Features->keypoints).size() << std::endl;
+    std::cout << (*capture->Features->keypoints).size() << std::endl;
+    std::cout << (*match->MatcherMatches).size() << std::endl;
+    
+    //-- Draw only "good" matches
+    cv::Mat matchesImg;
+    cv::drawMatches(*capture->Capture, *capture->Features->keypoints,
+                    pageImage, *match->Page->Features->keypoints,
+                    *match->MatcherMatches, matchesImg, cv::Scalar::all(-1), cv::Scalar::all(-1),
+                    std::vector<char>(), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    
+    //-- Show detected matches
+    cv::imshow(window, matchesImg);
 }

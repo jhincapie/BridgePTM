@@ -97,7 +97,8 @@ int main(int argc, const char * argv[])
             break;
         
         /* reduce in size */
-		cv::resize(frame, halfframe, smallSize);		
+		cv::resize(frame, halfframe, smallSize);
+        //halfframe = frame;
         cv::transpose(halfframe, halfframe);
         cv::flip(halfframe, halfframe, 1);
         cv::cvtColor(halfframe, halfframe, CV_BGR2GRAY);

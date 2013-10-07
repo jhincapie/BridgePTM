@@ -20,7 +20,7 @@ class FeatureCreator
 private:
     
     cv::FREAK *extractor;
-	cv::FastFeatureDetector* detector;
+	cv::SurfFeatureDetector* detector;
     
     void ComputeKeypoitsAndDescriptor(Image* image);
     

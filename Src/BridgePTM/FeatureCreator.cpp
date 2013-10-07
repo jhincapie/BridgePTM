@@ -11,7 +11,7 @@
 FeatureCreator::FeatureCreator()
 {
     this->extractor = new cv::FREAK(true, false, 13.0F, 2);
-    this->detector = new cv::FastFeatureDetector(30, true);
+    this->detector = new cv::SurfFeatureDetector(400, 4, 1, false);
 }
 
 FeatureCreator::~FeatureCreator(void)
@@ -31,7 +31,8 @@ void FeatureCreator::ComputeDocument(Document* document)
     std::cout << "Pages Found: " << document->Pages->size() << std::endl;
     
     char * pageImagePath = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
-    for(int pageIndex = 0 ; pageIndex < document->Pages->size() ; pageIndex++)
+    int nroPages = (int)document->Pages->size();
+    for(int pageIndex = 0 ; pageIndex < nroPages ; pageIndex++)
     {
         Page* page = document->Pages->at(pageIndex);
         size_t requiredLenght = strlen(document->Root) + strlen(page->FileName) + 1;

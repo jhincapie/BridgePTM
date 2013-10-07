@@ -46,6 +46,7 @@ std::vector<Page *> * Document::GetPages(const char* documentFolder)
         
         Page* page = new Page(imageName);
         this->Pages->push_back(page);
+        break;
     }
     closedir(pDIR);
     

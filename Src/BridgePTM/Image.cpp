@@ -24,5 +24,6 @@ Image::Image(cv::Mat* capture)
 
 Image::~Image()
 {
+    delete this->FileName;
 	delete this->Features;
 }

@@ -7,4 +7,7 @@
    <FileRef
       location = "group:BridgeConsole/BridgeConsole.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:BridgeVisualTester/BridgeVisualTester.xcodeproj">
+   </FileRef>
 </Workspace>

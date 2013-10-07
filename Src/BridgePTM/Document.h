@@ -37,7 +37,7 @@ public:
     Document(const char* documentRoot);
     ~Document();
     
-    std::vector<std::vector<cv::KeyPoint>> * GetKeypoints();
+    std::vector<std::vector<cv::KeyPoint> > * GetKeypoints();
     std::vector<cv::Mat> * GetDescriptors();
     
 };

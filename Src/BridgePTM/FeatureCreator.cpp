@@ -10,8 +10,8 @@
 
 FeatureCreator::FeatureCreator()
 {
-    this->extractor = new cv::FREAK(true, false, 13.0F, 2);
     this->detector = new cv::SurfFeatureDetector(400, 4, 1, false);
+    this->extractor = new cv::FREAK(true, false, 13.0F, 2);
 }
 
 FeatureCreator::~FeatureCreator(void)
@@ -89,7 +89,7 @@ void FeatureCreator::ComputeKeypoitsAndDescriptor(Image* image)
     
     //2- Creates a descriptor for the gathered features
     cv::Mat * pageImageDescriptors = new cv::Mat();
-    extractor->compute(*image->Capture, *pageKeyPoints, *pageImageDescriptors);
+    this->extractor->compute(*image->Capture, *pageKeyPoints, *pageImageDescriptors);
     std::cout << "  -- Descriptors Created: " << pageImageDescriptors->size() << std::endl;
     
     clock_t end = clock();

@@ -15,6 +15,8 @@
 class Page : public Image
 {
     
+private:
+    
 public:
     
     Page(const char* pageFile);
@@ -26,6 +28,9 @@ class Document
 {
     
 private:
+    
+    std::vector<std::vector<cv::KeyPoint> > * documentKP;
+    std::vector<cv::Mat> * documentDesc;
     
     std::vector<Page *> * GetPages(const char* documentFolder);
     

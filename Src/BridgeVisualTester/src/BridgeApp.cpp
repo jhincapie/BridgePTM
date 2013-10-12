@@ -23,12 +23,13 @@ BridgeApp::~BridgeApp()
 void BridgeApp::setup()
 {
     *capture >> frame;
-    
     /* calculates the actual frame size */
     halfSize = cv::Size((int)(frame.cols/4), (int)(frame.rows/4));
-
     /* get fps, needed to set the delay */
     fps = (int)capture->get(CV_CAP_PROP_FPS);
+    
+    pGuid.setup();
+    pGuid.add(lbMatches.setup("Matching Results", ""));
 }
 
 //--------------------------------------------------------------
@@ -59,15 +60,22 @@ void BridgeApp::update()
     cv::flip(halfframe, halfframe, 1);
     cv::cvtColor(halfframe, halfframe, CV_BGR2GRAY);
     
-    if(bridgeIMG != NULL)
-        delete bridgeIMG;
-    bridgeIMG = new Image(&halfframe);
+    if(bridgeIMG == NULL)
+        bridgeIMG = new Image(&halfframe);
+    else
+        bridgeIMG->UpdateData(&halfframe);
     creator->ComputeImage(bridgeIMG);
     match = matcher->Match(bridgeIMG);
 }
 
 //--------------------------------------------------------------
 void BridgeApp::draw()
+{
+    this->drawMatches(250, 0, 0.45, 0.45);
+    this->pGuid.draw();
+}
+
+void BridgeApp::drawMatches(float x, float y, float factorX, float factorY)
 {
     if(this->match == NULL)
         return;
@@ -109,9 +117,11 @@ void BridgeApp::draw()
     if(this->matchesImage == NULL)
         this->matchesImage = new ofxCvColorImage();
     this->matchesImage->setFromPixels(matchesImg.data, matchesImg.cols, matchesImg.rows);
-    this->matchesImage->draw(0, 0,
-                             (int)(this->matchesImage->getWidth() * 0.5),
-                             (int)(this->matchesImage->getHeight() * 0.5));
+    this->matchesImage->draw(x, y,
+                             (int)(this->matchesImage->getWidth() * factorX),
+                             (int)(this->matchesImage->getHeight() * factorY));
+    
+    delete this->match;
 }
 
 //--------------------------------------------------------------

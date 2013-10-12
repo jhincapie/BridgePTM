@@ -27,3 +27,12 @@ Image::~Image()
     delete this->FileName;
 	delete this->Features;
 }
+
+void Image::UpdateData(cv::Mat* capture)
+{
+    //delete this->Capture;
+    delete this->FileName;
+	delete this->Features;
+    
+    this->Capture = capture;
+}

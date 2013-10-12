@@ -24,6 +24,8 @@ public:
     Image(const char* imageFile);
     Image(cv::Mat* capture);
     ~Image();
+    
+    void UpdateData(cv::Mat* capture);
 };
 
 #endif

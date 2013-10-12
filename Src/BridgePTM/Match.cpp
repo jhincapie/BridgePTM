@@ -14,3 +14,8 @@ Match::Match()
     this->Page = NULL;
     this->PageIndex = -1;
 }
+
+Match::~Match()
+{
+    delete this->MatcherMatches;
+}

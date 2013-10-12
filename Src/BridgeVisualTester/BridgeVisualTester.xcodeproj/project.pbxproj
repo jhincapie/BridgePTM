@@ -41,7 +41,6 @@
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
 		E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E715D3B6510020DFD4 /* QTKit.framework */; };
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
-		E898BCA21807A7B6007F7AAE /* libBridgePTM.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCA11807A7B6007F7AAE /* libBridgePTM.dylib */; };
 		E898BCAF1807B07B007F7AAE /* libopencv_calib3d.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCA41807B07B007F7AAE /* libopencv_calib3d.2.4.6.dylib */; };
 		E898BCB01807B07B007F7AAE /* libopencv_contrib.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCA51807B07B007F7AAE /* libopencv_contrib.2.4.6.dylib */; };
 		E898BCB11807B07B007F7AAE /* libopencv_core.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCA61807B07B007F7AAE /* libopencv_core.2.4.6.dylib */; };
@@ -53,6 +52,7 @@
 		E898BCB71807B07B007F7AAE /* libopencv_ml.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCAC1807B07B007F7AAE /* libopencv_ml.2.4.6.dylib */; };
 		E898BCB81807B07B007F7AAE /* libopencv_nonfree.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCAD1807B07B007F7AAE /* libopencv_nonfree.2.4.6.dylib */; };
 		E898BCB91807B07B007F7AAE /* libopencv_video.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E898BCAE1807B07B007F7AAE /* libopencv_video.2.4.6.dylib */; };
+		E8AE22271808F85300D87765 /* libBridgePTM.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8AE22261808F85300D87765 /* libBridgePTM.dylib */; };
 		FF7FF1D1366EA1436CBC2945 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9626B6B3C966B227CC75174E /* ofxCvColorImage.cpp */; };
 /* End PBXBuildFile section */
 
@@ -143,7 +143,6 @@
 		E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		E7F985F515E0DE99003869B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
-		E898BCA11807A7B6007F7AAE /* libBridgePTM.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBridgePTM.dylib; path = "../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Release/libBridgePTM.dylib"; sourceTree = "<group>"; };
 		E898BCA41807B07B007F7AAE /* libopencv_calib3d.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.2.4.6.dylib; path = ../../../../../../opt/local/lib/libopencv_calib3d.2.4.6.dylib; sourceTree = "<group>"; };
 		E898BCA51807B07B007F7AAE /* libopencv_contrib.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.4.6.dylib; path = ../../../../../../opt/local/lib/libopencv_contrib.2.4.6.dylib; sourceTree = "<group>"; };
 		E898BCA61807B07B007F7AAE /* libopencv_core.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.2.4.6.dylib; path = ../../../../../../opt/local/lib/libopencv_core.2.4.6.dylib; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		E898BCAC1807B07B007F7AAE /* libopencv_ml.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ml.2.4.6.dylib; path = ../../../../../../opt/local/lib/libopencv_ml.2.4.6.dylib; sourceTree = "<group>"; };
 		E898BCAD1807B07B007F7AAE /* libopencv_nonfree.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_nonfree.2.4.6.dylib; path = ../../../../../../opt/local/lib/libopencv_nonfree.2.4.6.dylib; sourceTree = "<group>"; };
 		E898BCAE1807B07B007F7AAE /* libopencv_video.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.6.dylib; path = ../../../../../../opt/local/lib/libopencv_video.2.4.6.dylib; sourceTree = "<group>"; };
+		E8AE22261808F85300D87765 /* libBridgePTM.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBridgePTM.dylib; path = "../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug/libBridgePTM.dylib"; sourceTree = "<group>"; };
 		EF38AAA5F0E82AFB54E48A17 /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../../../of_v0.8.0/addons/ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
 		F589AC42AB709F8F6F02DB20 /* ofxCvMain.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvMain.h; path = ../../../of_v0.8.0/addons/ofxOpenCv/src/ofxCvMain.h; sourceTree = SOURCE_ROOT; };
 		F8A3CA2D8AD909F34410B1B5 /* ofxCvShortImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxCvShortImage.cpp; path = ../../../of_v0.8.0/addons/ofxOpenCv/src/ofxCvShortImage.cpp; sourceTree = SOURCE_ROOT; };
@@ -165,7 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E898BCA21807A7B6007F7AAE /* libBridgePTM.dylib in Frameworks */,
+				E8AE22271808F85300D87765 /* libBridgePTM.dylib in Frameworks */,
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
 				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
@@ -325,7 +325,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				E898BCA11807A7B6007F7AAE /* libBridgePTM.dylib */,
+				E8AE22261808F85300D87765 /* libBridgePTM.dylib */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -519,7 +519,7 @@
 					/opt/local/include,
 					/opt/local/include/opencv,
 					/opt/local/include/opencv2,
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Release\"",
+					..,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -561,7 +561,7 @@
 					/opt/local/include,
 					/opt/local/include/opencv,
 					/opt/local/include/opencv2,
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Release\"",
+					..,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -656,6 +656,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_52)",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Release\"",
 					/opt/local/lib,
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				WRAPPER_EXTENSION = app;
@@ -743,6 +744,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_51)",
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Release\"",
 					/opt/local/lib,
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

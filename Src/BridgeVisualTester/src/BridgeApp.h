@@ -6,6 +6,7 @@
 
 #include "ofMain.h"
 #include "ofxCvMain.h"
+#include "ofxGui.h"
 
 #include "BridgePTM/BridgePTM.h"
 
@@ -28,6 +29,28 @@ private:
     
     bool parametersChanged;
     
+    //------ UI Elements -------
+    ofxPanel pGuid;
+    ofxLabel lbMatches;
+    ofxGuiGroup gDocument;
+    ofxGuiGroup gCapture;
+    
+    //Matcher
+    //min-distance
+    //cv::flann::LshIndexParams(4, 25, 0)
+    
+    //Document Creator
+    //cv::SurfFeatureDetector(400, 4, 1, false);
+    //cv::FREAK(true, false, 13.0F, 2);
+    
+    //Capture Creator
+    //cv::SurfFeatureDetector(400, 4, 1, false);
+    //cv::FREAK(true, false, 13.0F, 2);
+    
+    //Capture
+    //Size Reduction Factor - 0.1 ... 1.0
+    //Blur factor
+    
 public:
     BridgeApp(Document * document, cv::VideoCapture *capture);
     ~BridgeApp();
@@ -45,4 +68,6 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+    
+    void drawMatches(float x, float y, float factorX, float factorY);
 };

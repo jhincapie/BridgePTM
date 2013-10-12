@@ -17,11 +17,15 @@ Document::Document(const char* documentRoot)
     this->Root = documentRoot;
 	this->Pages = NULL;
     this->Pages = this->GetPages(this->Root);
+    this->documentDesc = NULL;
+    this->documentKP = NULL;
 }
 
 Document::~Document()
 {
 	delete this->Pages;
+    delete this->documentKP;
+    delete this->documentDesc;
 }
 
 std::vector<Page *> * Document::GetPages(const char* documentFolder)
@@ -57,8 +61,10 @@ std::vector<std::vector<cv::KeyPoint>> * Document::GetKeypoints()
 {
     if(this->Pages == NULL || this->Pages->size() == 0)
         return NULL;
+    if(this->documentKP != NULL)
+        return this->documentKP;
     
-    std::vector<std::vector<cv::KeyPoint>> * documentKP = new std::vector<std::vector<cv::KeyPoint>>();
+    documentKP = new std::vector<std::vector<cv::KeyPoint>>();
     for(int pageIndex = 0 ; pageIndex < this->Pages->size() ; pageIndex++)
         documentKP->push_back(* this->Pages->at(pageIndex)->Features->keypoints);
     
@@ -69,8 +75,10 @@ std::vector<cv::Mat> * Document::GetDescriptors()
 {
     if(this->Pages == NULL || this->Pages->size() == 0)
         return NULL;
+    if(this->documentDesc != NULL)
+        return this->documentDesc;
     
-    std::vector<cv::Mat> * documentDesc = new std::vector<cv::Mat>();
+    documentDesc = new std::vector<cv::Mat>();
     for(int pageIndex = 0 ; pageIndex < this->Pages->size() ; pageIndex++)
         documentDesc->push_back(* this->Pages->at(pageIndex)->Features->descriptors);
     

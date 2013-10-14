@@ -24,8 +24,8 @@ private:
     BridgeMatcher* matcher;
     
     int fps;
-    cv::Size halfSize;
-    cv::Mat frame, halfframe;
+    cv::Size processingSize;
+    cv::Mat frame, sizedframe;
     ofxCvColorImage* matchesImage;
     
     //------ Runtime Variables -----
@@ -59,14 +59,17 @@ private:
     ofxSlider<int> sNOctavesCFC;
     
     ofxGuiGroup gMatcher;
-    ofxSlider<int> sMinDistanceFactor;
+    ofxSlider<double> sMinDistanceFactor;
     ofxSlider<int> sLIPTableNumber; //4
     ofxSlider<int> sLIPKeySize; //25
     ofxSlider<int> sLIPMultiProbeLevel; //0
+    ofxSlider<int> sLSPCheckes;
+    ofxSlider<double> sLSPeps;
+    ofxToggle tgLSPSorted;
     
     ofxGuiGroup gCaptureImage;
     ofxSlider<double> sReductionFactor; //0.1 ... 1.0
-    ofxSlider<int> sBlurFactor; 
+    ofxSlider<int> sBlurKernelSize;
     
 public:
     BridgeApp(Document * document, cv::VideoCapture *capture);

@@ -8,10 +8,19 @@
 
 #include "BridgeMatcher.h"
 
-BridgeMatcher::BridgeMatcher()
+BridgeMatcher::BridgeMatcher(int ipTableNumber, int ipKeySize, int ipMultiProbeLevel,
+                             int spChecks, float spEPS, bool spSorted)
 {
 	this->document = NULL;
-    this->matcher = new cv::FlannBasedMatcher(new cv::flann::LshIndexParams(4, 25, 0));
+    
+    this->ipTableNumber = ipTableNumber;
+    this->ipKeySize = ipKeySize;
+    this->ipMultiProbeLevel = ipMultiProbeLevel;
+    this->spChecks = spChecks;
+    this->spEPS = spEPS;
+    this->spSorted = spSorted;
+    this->matcher = new cv::FlannBasedMatcher(new cv::flann::LshIndexParams(ipTableNumber, ipKeySize, ipMultiProbeLevel),
+                                              new cv::flann::SearchParams(spChecks, spEPS, spSorted));
 }
 
 BridgeMatcher::~BridgeMatcher()
@@ -101,12 +110,16 @@ Match* BridgeMatcher::Match(Image* capture)
         pageIdx = i;
     }
     
-    class Match* result = new class Match();
-    result->Document = this->document;
-    result->Page = this->document->Pages->at(pageIdx);
-    result->PageIndex = pageIdx;
-    result->MatcherMatches = mtPage->at(pageIdx);
-    result->Homography = cv::findHomography(mpCapture[pageIdx], mpPage[pageIdx], cv::RANSAC);
+    class Match* result = NULL;
+    if(max >= 4)
+    {
+        result = new class Match();
+        result->Document = this->document;
+        result->Page = this->document->Pages->at(pageIdx);
+        result->PageIndex = pageIdx;
+        result->MatcherMatches = mtPage->at(pageIdx);
+        result->Homography = cv::findHomography(mpCapture[pageIdx], mpPage[pageIdx], cv::RANSAC);
+    }
     
     clock_t end = clock();
     std::cout << "  -- Matching Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;

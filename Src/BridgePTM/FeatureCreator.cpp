@@ -65,8 +65,9 @@ void FeatureCreator::ComputeDocument(Document* document)
         strlcat(pageImagePath, page->FileName, MAX_STRING_SIZE);
         
         //1- Detects the features or keypoints
-        cv::Mat pageImage = cv::imread(pageImagePath, CV_LOAD_IMAGE_GRAYSCALE);
-        page->Capture = &pageImage;
+        cv::Mat * pageImage = new cv::Mat();
+        (*pageImage) = cv::imread(pageImagePath, CV_LOAD_IMAGE_GRAYSCALE);
+        page->Capture = pageImage;
         this->ComputeKeypoitsAndDescriptor(page);
     }
     

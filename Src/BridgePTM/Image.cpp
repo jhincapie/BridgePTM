@@ -26,6 +26,7 @@ Image::~Image()
 {
     delete this->FileName;
 	delete this->Features;
+    delete this->Capture;
 }
 
 void Image::UpdateData(cv::Mat* capture)

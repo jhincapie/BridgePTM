@@ -24,14 +24,22 @@
 class BridgeMatcher
 {
 private:
-    
+        
     Document* document;
     cv::FlannBasedMatcher* matcher;
     
 public:
     
-	BridgeMatcher();
+	BridgeMatcher(int ipTableNumber = 4, int ipKeySize = 25, int ipMultiProbeLevel = 0,
+                  int spChecks = 32, float spEPS = 0, bool spSorted = true);
 	~BridgeMatcher(void);
+    
+    int ipTableNumber;
+    int ipKeySize;
+    int ipMultiProbeLevel;
+    int spChecks;
+    float spEPS;
+    bool spSorted;
     
 	void Train(Document* document);
     Match* Match(Image* capture);

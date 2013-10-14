@@ -18,15 +18,31 @@ class FeatureCreator
 {
     
 private:
-    
+
+    cv::SurfFeatureDetector* detector;
     cv::FREAK *extractor;
-	cv::SurfFeatureDetector* detector;
     
     void ComputeKeypoitsAndDescriptor(Image* image);
     
 public:
     
-	FeatureCreator();
+    double dHessianThreshold;
+    int dOctaves;
+    int dOctaveLayers;
+    bool dUpright;
+    bool eOrientationNormalized;
+    bool eScaleNormalized;
+    float ePatternScale;
+    int eNOctaves;
+    
+	FeatureCreator(double hessianThreshold=400,
+                   int octaves=3,
+                   int octaveLayers=4,
+                   bool upright=false,
+                   bool orientationNormalized = true,
+                   bool scaleNormalized = true,
+                   float patternScale = 22.0f,
+                   int nOctaves = 4);
 	~FeatureCreator(void);
     
 	void ComputeDocument(Document * document);

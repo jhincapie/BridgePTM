@@ -84,3 +84,12 @@ std::vector<cv::Mat> * Document::GetDescriptors()
     
     return documentDesc;
 }
+
+void Document::ClearCache()
+{
+    delete this->documentKP;
+    this->documentKP = NULL;
+    
+    delete this->documentDesc;
+    this->documentDesc = NULL;
+}

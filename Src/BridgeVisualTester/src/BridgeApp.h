@@ -19,7 +19,8 @@ private:
     Image* bridgeIMG;
     Match* match;
     
-    FeatureCreator* creator;
+    FeatureCreator* creatorDoc;
+    FeatureCreator* creatorCap;
     BridgeMatcher* matcher;
     
     int fps;
@@ -27,29 +28,45 @@ private:
     cv::Mat frame, halfframe;
     ofxCvColorImage* matchesImage;
     
+    //------ Runtime Variables -----
     bool parametersChanged;
+    bool isPaused;
     
     //------ UI Elements -------
     ofxPanel pGuid;
-    ofxLabel lbMatches;
-    ofxGuiGroup gDocument;
-    ofxGuiGroup gCapture;
+    ofxGuiGroup gPlayback;
+    ofxButton bPlay;
+    ofxButton bPause;
     
-    //Matcher
-    //min-distance
-    //cv::flann::LshIndexParams(4, 25, 0)
+    ofxGuiGroup gDocumentFC;
+    ofxSlider<double> sHessianDFC;
+    ofxSlider<int> sOctavesDFC;
+    ofxSlider<int> sOctaveLayerDFC;
+    ofxToggle tgUprightDFC;
+    ofxToggle tgOrientationNormalizedDFC;
+    ofxToggle tgScaleNormalizedDFC;
+    ofxSlider<double> sPatternScaleDFC;
+    ofxSlider<int> sNOctavesDFC;
     
-    //Document Creator
-    //cv::SurfFeatureDetector(400, 4, 1, false);
-    //cv::FREAK(true, false, 13.0F, 2);
+    ofxGuiGroup gCaptureFC;
+    ofxSlider<double> sHessianCFC;
+    ofxSlider<int> sOctavesCFC;
+    ofxSlider<int> sOctaveLayerCFC;
+    ofxToggle tgUprightCFC;
+    ofxToggle tgOrientationNormalizedCFC;
+    ofxToggle tgScaleNormalizedCFC;
+    ofxSlider<double> sPatternScaleCFC;
+    ofxSlider<int> sNOctavesCFC;
     
-    //Capture Creator
-    //cv::SurfFeatureDetector(400, 4, 1, false);
-    //cv::FREAK(true, false, 13.0F, 2);
+    ofxGuiGroup gMatcher;
+    ofxSlider<int> sMinDistanceFactor;
+    ofxSlider<int> sLIPTableNumber; //4
+    ofxSlider<int> sLIPKeySize; //25
+    ofxSlider<int> sLIPMultiProbeLevel; //0
     
-    //Capture
-    //Size Reduction Factor - 0.1 ... 1.0
-    //Blur factor
+    ofxGuiGroup gCaptureImage;
+    ofxSlider<double> sReductionFactor; //0.1 ... 1.0
+    ofxSlider<int> sBlurFactor; 
     
 public:
     BridgeApp(Document * document, cv::VideoCapture *capture);
@@ -69,5 +86,11 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+    //UI event handlers
+    void playButtonPressed();
+    void pausedButtonPressed();
+    void sHessianDFCSliderChanged(double & value);
+    
+    //Image drawing
     void drawMatches(float x, float y, float factorX, float factorY);
 };

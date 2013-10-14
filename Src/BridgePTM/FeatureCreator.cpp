@@ -8,16 +8,32 @@
 
 #include "FeatureCreator.h"
 
-FeatureCreator::FeatureCreator()
+FeatureCreator::FeatureCreator(double hessianThreshold,
+                               int octaves,
+                               int octaveLayers,
+                               bool upright,
+                               bool orientationNormalized,
+                               bool scaleNormalized,
+                               float patternScale,
+                               int nOctaves)
 {
-    this->detector = new cv::SurfFeatureDetector(400, 4, 1, false);
-    this->extractor = new cv::FREAK(true, false, 13.0F, 2);
+    dHessianThreshold = hessianThreshold;
+    dOctaves = octaves;
+    dOctaveLayers = octaveLayers;
+    dUpright = upright;
+    this->detector = new cv::SurfFeatureDetector(hessianThreshold, octaves, octaveLayers, upright);
+    
+    eOrientationNormalized = orientationNormalized;
+    eScaleNormalized = scaleNormalized;
+    ePatternScale = patternScale;
+    eNOctaves = nOctaves;
+    this->extractor = new cv::FREAK(orientationNormalized, scaleNormalized, patternScale, nOctaves);
 }
 
 FeatureCreator::~FeatureCreator(void)
 {
-    delete this->extractor;
     delete this->detector;
+    delete this->extractor;
 }
 
 void FeatureCreator::ComputeDocument(Document* document)
@@ -26,6 +42,7 @@ void FeatureCreator::ComputeDocument(Document* document)
         return;
     
     std::cout << "Computing Document Keypoints: " << document->Root << std::endl;
+    document->ClearCache();
     
     //0- Gets the page files from the document folder
     std::cout << "Pages Found: " << document->Pages->size() << std::endl;

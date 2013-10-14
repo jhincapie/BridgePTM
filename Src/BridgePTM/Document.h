@@ -44,6 +44,7 @@ public:
     
     std::vector<std::vector<cv::KeyPoint> > * GetKeypoints();
     std::vector<cv::Mat> * GetDescriptors();
+    void ClearCache();
     
 };
 

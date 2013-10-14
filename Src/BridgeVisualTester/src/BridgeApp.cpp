@@ -35,7 +35,14 @@ void BridgeApp::setup()
     //Set-up event handlers
     bPlay.addListener(this, &BridgeApp::playButtonPressed);
     bPause.addListener(this, &BridgeApp::pausedButtonPressed);
-    sHessianDFC.addListener(this, &BridgeApp::sHessianDFCSliderChanged);
+    sHessianDFC.addListener(this, &BridgeApp::DoubleChanged);
+    sOctavesDFC.addListener(this, &BridgeApp::IntChanged);
+    sOctaveLayerDFC.addListener(this, &BridgeApp::IntChanged);
+    tgUprightDFC.addListener(this, &BridgeApp::BoolChanged);
+    tgOrientationNormalizedDFC.addListener(this, &BridgeApp::BoolChanged);
+    tgScaleNormalizedDFC.addListener(this, &BridgeApp::BoolChanged);
+    sPatternScaleDFC.addListener(this, &BridgeApp::DoubleChanged);
+    sNOctavesDFC.addListener(this, &BridgeApp::IntChanged);
     
     //Putting up the UI elements together
     pGuid.setup();
@@ -45,14 +52,14 @@ void BridgeApp::setup()
     pGuid.add(&gPlayback);
     
     gDocumentFC.setup("Document - Feature Creator");
-    gDocumentFC.add(sHessianDFC.setup("Hessian", 350, 200, 600));
-//    ofxSlider<int> sOctavesDFC;
-//    ofxSlider<int> sOctaveLayerDFC;
-//    ofxToggle tgUprightDFC;
-//    ofxToggle tgOrientationNormalizedDFC;
-//    ofxToggle tgScaleNormalizedDFC;
-//    ofxSlider<double> sPatternScaleDFC;
-//    ofxSlider<int> sNOctavesDFC;
+    gDocumentFC.add(sHessianDFC.setup("Hessian", 350, 300, 450));
+    gDocumentFC.add(sOctavesDFC.setup("Octaves", 3, 1, 10));
+    gDocumentFC.add(sOctaveLayerDFC.setup("Octave Layers", 4, 1, 10));
+    gDocumentFC.add(tgUprightDFC.setup("Uprigth", false));
+    gDocumentFC.add(tgOrientationNormalizedDFC.setup("Orient. Norm.", true));
+    gDocumentFC.add(tgScaleNormalizedDFC.setup("Scale Norm.", true));
+    gDocumentFC.add(sPatternScaleDFC.setup("Pattern Scale", 22, 15, 30));
+    gDocumentFC.add(sNOctavesDFC.setup("Nro Octaves", 4, 1, 10));
     pGuid.add(&gDocumentFC);
     
 //    ofxGuiGroup gCaptureFC;
@@ -88,7 +95,8 @@ void BridgeApp::update()
         updateUI = true;
         
         //Creates feature creator for the document and the capture
-        creatorDoc = new FeatureCreator(sHessianDFC);
+        creatorDoc = new FeatureCreator(sHessianDFC, sOctavesDFC, sOctaveLayerDFC, tgUprightDFC,
+                                        tgOrientationNormalizedDFC, tgScaleNormalizedDFC, sPatternScaleDFC, sNOctavesDFC);
         creatorCap = new FeatureCreator();
         
         //Computes features for the target document
@@ -193,13 +201,42 @@ void BridgeApp::pausedButtonPressed()
     this->isPaused = true;
 }
 
-void BridgeApp::sHessianDFCSliderChanged(double & value)
-{    
-    if(this->creatorDoc == NULL)
-        return;
-    
-    if(this->creatorDoc->dHessianThreshold != sHessianDFC)
-        this->parametersChanged = true;
+void BridgeApp::DoubleChanged(double & value)
+{
+    this->CheckParametersChanged();
+}
+
+void BridgeApp::IntChanged(int & value)
+{
+    this->CheckParametersChanged();
+}
+
+void BridgeApp::BoolChanged(bool & value)
+{
+    this->CheckParametersChanged();
+}
+
+void BridgeApp::CheckParametersChanged()
+{
+    if(this->creatorDoc != NULL)
+    {
+        if(this->creatorDoc->dHessianThreshold != sHessianDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->dOctaves != sOctavesDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->dOctaveLayers != sOctaveLayerDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->dUpright != tgUprightDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->eOrientationNormalized != tgOrientationNormalizedDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->eScaleNormalized != tgScaleNormalizedDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->ePatternScale != sPatternScaleDFC)
+            this->parametersChanged = true;
+        if(this->creatorDoc->eNOctaves != sNOctavesDFC)
+            this->parametersChanged = true;
+    }
 }
 
 //--------------------------------------------------------------

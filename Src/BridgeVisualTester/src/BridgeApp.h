@@ -89,7 +89,10 @@ public:
     //UI event handlers
     void playButtonPressed();
     void pausedButtonPressed();
-    void sHessianDFCSliderChanged(double & value);
+    void DoubleChanged(double & value);
+    void IntChanged(int & value);
+    void BoolChanged(bool & value);
+    void CheckParametersChanged();
     
     //Image drawing
     void drawMatches(float x, float y, float factorX, float factorY);

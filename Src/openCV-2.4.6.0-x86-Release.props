@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_PropertySheetDisplayName>openCV-2.4.6.0-Release</_PropertySheetDisplayName>
+    <_PropertySheetDisplayName>openCV-2.4.6.0-x86-Release</_PropertySheetDisplayName>
     <OutDir>$(SolutionDir)bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>

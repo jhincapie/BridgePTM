@@ -10,8 +10,12 @@ BridgeApp::BridgeApp(Document * document, cv::VideoCapture *capture)
     this->matchesImage = NULL;
     this->creatorDoc = NULL;
     this->creatorCap = NULL;
+    this->matcher = NULL;
     
-    this->parametersChanged = true;
+    this->docParametersChanged = true;
+    this->capParametersChanged = true;
+    this->matchParametersChanged = true;
+    this->preCapParametersChanged = true;
     this->isPaused = true;
 }
 
@@ -60,6 +64,9 @@ void BridgeApp::setup()
     sLSPCheckes.addListener(this, &BridgeApp::IntChanged);
     sLSPeps.addListener(this, &BridgeApp::DoubleChanged);
     tgLSPSorted.addListener(this, &BridgeApp::BoolChanged);
+    //-- Pre Capture Settings
+    sReductionFactor.addListener(this, &BridgeApp::DoubleChanged);
+    sBlurKernelSize.addListener(this, &BridgeApp::IntChanged);
     
     //Putting up the UI elements together
     pGuid.setup();
@@ -109,29 +116,32 @@ void BridgeApp::setup()
 //--------------------------------------------------------------
 void BridgeApp::update()
 {
-    bool updateUI = false;
-    if(this->parametersChanged)
+    if(this->docParametersChanged)
     {
-        this->parametersChanged = false;
-        updateUI = true;
-        
         //Creates feature creator for the document
         creatorDoc = new FeatureCreator(sHessianDFC, sOctavesDFC, sOctaveLayerDFC, tgUprightDFC,
                                         tgOrientationNormalizedDFC, tgScaleNormalizedDFC, sPatternScaleDFC, sNOctavesDFC);
         //Computes features for the target document
         creatorDoc->ComputeDocument(document);
-        
+    }
+    
+    if(this->capParametersChanged)
+    {
         //Creates feature creator for the document
         creatorCap = new FeatureCreator(sHessianCFC, sOctavesCFC, sOctaveLayerCFC, tgUprightCFC,
                                         tgOrientationNormalizedCFC, tgScaleNormalizedCFC, sPatternScaleCFC, sNOctavesCFC);
-        
+    }
+    
+    if(this->matchParametersChanged)
+    {
         //Trains the matcher for the features of the document
         matcher = new BridgeMatcher(sLIPTableNumber, sLIPKeySize, sLIPMultiProbeLevel,
                                     sLSPCheckes, sLSPeps, tgLSPSorted);
         matcher->Train(document);
     }
     
-    if(!this->isPaused || updateUI)
+    if(this->docParametersChanged || this->capParametersChanged ||
+       this->matchParametersChanged || this->preCapParametersChanged || !this->isPaused)
     {
         /* get a frame */
         if(!this->isPaused)
@@ -151,7 +161,11 @@ void BridgeApp::update()
             
             /* blurs the image with a gaussian blur */
             if(sBlurKernelSize > 0)
+            {
+                if(sBlurKernelSize % 2 == 0)
+                    sBlurKernelSize = sBlurKernelSize + 1;
                 cv::GaussianBlur(sizedframe, sizedframe, cv::Size(sBlurKernelSize, sBlurKernelSize), 0, 0);
+            }
             
             cv::imshow("Test", sizedframe);
             
@@ -161,7 +175,7 @@ void BridgeApp::update()
                 bridgeIMG->UpdateData(&sizedframe);
             creatorCap->ComputeImage(bridgeIMG);
             
-            Match* newMatch = matcher->Match(bridgeIMG);
+            Match* newMatch = matcher->Match(bridgeIMG, sMinDistanceFactor);
             Match* tmpMatch = this->match;
             this->match = newMatch;
             delete tmpMatch;
@@ -171,6 +185,11 @@ void BridgeApp::update()
             //restarts the video capture
             capture->set(CV_CAP_PROP_POS_FRAMES, 0);
         }
+        
+        this->docParametersChanged = false;
+        this->capParametersChanged = false;
+        this->matchParametersChanged = false;
+        this->preCapParametersChanged = false;
     }
 }
 
@@ -248,60 +267,61 @@ void BridgeApp::BoolChanged(bool & value)
 
 void BridgeApp::CheckParametersChanged()
 {
+    this->preCapParametersChanged = true;
     if(this->creatorDoc != NULL)
     {
         if(this->creatorDoc->dHessianThreshold != sHessianDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->dOctaves != sOctavesDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->dOctaveLayers != sOctaveLayerDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->dUpright != tgUprightDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->eOrientationNormalized != tgOrientationNormalizedDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->eScaleNormalized != tgScaleNormalizedDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->ePatternScale != sPatternScaleDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
         if(this->creatorDoc->eNOctaves != sNOctavesDFC)
-            this->parametersChanged = true;
+            this->docParametersChanged = true;
     }
     
     if(this->creatorCap != NULL)
     {
         if(this->creatorCap->dHessianThreshold != sHessianCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->dOctaves != sOctavesCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->dOctaveLayers != sOctaveLayerCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->dUpright != tgUprightCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->eOrientationNormalized != tgOrientationNormalizedCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->eScaleNormalized != tgScaleNormalizedCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->ePatternScale != sPatternScaleCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
         if(this->creatorCap->eNOctaves != sNOctavesCFC)
-            this->parametersChanged = true;
+            this->capParametersChanged = true;
     }
     
     if(this->matcher != NULL)
     {
         if(this->matcher->ipTableNumber != sLIPTableNumber)
-            this->parametersChanged = true;
+            this->matchParametersChanged = true;
         if(this->matcher->ipKeySize != sLIPKeySize)
-            this->parametersChanged = true;
+            this->matchParametersChanged = true;
         if(this->matcher->ipMultiProbeLevel != sLIPMultiProbeLevel)
-            this->parametersChanged = true;
+            this->matchParametersChanged = true;
         if(this->matcher->spChecks != sLSPCheckes)
-            this->parametersChanged = true;
+            this->matchParametersChanged = true;
         if(this->matcher->spEPS != sLSPeps)
-            this->parametersChanged = true;
+            this->matchParametersChanged = true;
         if(this->matcher->spSorted != tgLSPSorted)
-            this->parametersChanged = true;
+            this->matchParametersChanged = true;
     }
 }
 

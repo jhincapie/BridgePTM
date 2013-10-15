@@ -42,7 +42,7 @@ public:
     bool spSorted;
     
 	void Train(Document* document);
-    Match* Match(Image* capture);
+    Match* Match(Image* capture, double distanceFactor = 2);
 };
 
 #endif

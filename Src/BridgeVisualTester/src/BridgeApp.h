@@ -29,7 +29,10 @@ private:
     ofxCvColorImage* matchesImage;
     
     //------ Runtime Variables -----
-    bool parametersChanged;
+    bool docParametersChanged;
+    bool capParametersChanged;
+    bool matchParametersChanged;
+    bool preCapParametersChanged;
     bool isPaused;
     
     //------ UI Elements -------

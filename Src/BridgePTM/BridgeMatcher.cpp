@@ -42,7 +42,7 @@ void BridgeMatcher::Train(Document* document)
     std::cout << "  -- Training Time: " << (end - start) / (CLOCKS_PER_SEC/1000) << " ms" << std::endl;
 }
 
-Match* BridgeMatcher::Match(Image* capture)
+Match* BridgeMatcher::Match(Image* capture, double distanceFactor)
 {
     if(capture->Features->descriptors->rows < 4)
         return NULL;
@@ -84,13 +84,14 @@ Match* BridgeMatcher::Match(Image* capture)
         }
     }
     
+    double distanceThreshold = distanceFactor * min_dist;
     std::vector<std::vector<cv::DMatch>>::iterator endIterator = cvmatches.end();
     for (std::vector<std::vector<cv::DMatch>>::iterator iter = cvmatches.begin(); iter != endIterator; ++iter)
     {
         std::vector<cv::DMatch>::iterator match = iter->begin();
         if(!iter->empty())
         {
-            if (match->distance < 2*min_dist)
+            if (match->distance < distanceThreshold)
             {
                 mtPage->at(match->imgIdx)->push_back(*match);
                 mpCapture[match->imgIdx].push_back(capture->Features->keypoints->at(match->queryIdx).pt);

@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_PropertySheetDisplayName>openCV-2.4.6.0-Debug</_PropertySheetDisplayName>
+    <_PropertySheetDisplayName>openCV-2.4.6.0-x64-Debug</_PropertySheetDisplayName>
     <OutDir>$(SolutionDir)bin\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
@@ -12,11 +12,11 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;DISABLE_SOME_FLOATING_POINT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenCV\opencv-2.4.6.0\build\x86\vc10\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenCV\opencv-2.4.6.0\build\x64\vc10\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_core246d.lib;opencv_calib3d246d.lib;opencv_features2d246d.lib;opencv_flann246d.lib;opencv_highgui246d.lib;opencv_imgproc246d.lib;opencv_nonfree246d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /e /i /y "C:\Program Files (x86)\OpenCV\opencv-2.4.6.0\build\x86\vc10\bin\*246d.dll" "$(OutDir)"</Command>
+      <Command>xcopy /e /i /y "C:\Program Files (x86)\OpenCV\opencv-2.4.6.0\build\x64\vc10\bin\*246d.dll" "$(OutDir)"</Command>
       <Message>adding DLLs and creating data folder</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>

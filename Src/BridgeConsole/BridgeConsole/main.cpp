@@ -76,7 +76,8 @@ int main(int argc, const char * argv[])
 		return 1;
 	}
 
-    cv::Mat frame, halfframe;
+    cv::Mat frame;// = new cv::Mat();
+	cv::Mat halfframe;// = new cv::Mat();
     *capture >> frame;
     
     /* calculates the actual frame size */
@@ -86,6 +87,8 @@ int main(int argc, const char * argv[])
     /* get fps, needed to set the delay */
     int fps = (int)capture->get(CV_CAP_PROP_FPS);
     
+	Image *bridgeIMG = NULL;
+
     /* display video */
     cv::namedWindow("matches");
     while(key != 'q')
@@ -98,21 +101,22 @@ int main(int argc, const char * argv[])
         
         /* reduce in size */
 		cv::resize(frame, halfframe, smallSize);
-        //halfframe = frame;
         cv::transpose(halfframe, halfframe);
         cv::flip(halfframe, halfframe, 1);
         cv::cvtColor(halfframe, halfframe, CV_BGR2GRAY);
         
-        Image bridgeIMG(&halfframe);
-        creator->ComputeImage(&bridgeIMG);
-        Match* match = matcher->Match(&bridgeIMG);
+		if(bridgeIMG == NULL)
+			bridgeIMG = new Image(&halfframe);
+		else
+			bridgeIMG->UpdateData(&halfframe);
+		creator->ComputeImage(bridgeIMG);
+
+        Match* match = matcher->Match(bridgeIMG);
         if(match == NULL)
             continue;
 
-        showMatch("matches", &bridgeIMG, match);
-        
-        /* quit if user press 'q' */
-        cvWaitKey(1000/fps);
+        showMatch("matches", bridgeIMG, match);
+		cvWaitKey(1000/fps);
     }
     
     /* free memory */

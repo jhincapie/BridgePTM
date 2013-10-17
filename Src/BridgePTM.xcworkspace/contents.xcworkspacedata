@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:BridgeMobile/BridgeMobile.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:BridgePTM/BridgePTM.xcodeproj">
    </FileRef>
    <FileRef

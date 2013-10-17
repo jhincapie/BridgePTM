@@ -30,29 +30,29 @@ Document::~Document()
 
 std::vector<Page *> * Document::GetPages(const char* documentFolder)
 {
-    DIR *pDIR = opendir(documentFolder);
-    if(pDIR == NULL)
+    path * folder = new path(documentFolder);
+    if(folder == NULL)
         return this->Pages;
- 
+    
     if(this->Pages == NULL)
         this->Pages = new std::vector<Page *>();
     else
         this->Pages->clear();
     
-    dirent * file = 0;
-    while((file = readdir(pDIR)) != false)
+    directory_iterator end_itr; // default construction yields past-the-end
+    for (directory_iterator itr(*folder); itr != end_itr; ++itr )
     {
-        if(strcasestr(file->d_name, ".jpg") == NULL)
+        if (is_directory(itr->status()))
             continue;
-        char* imageName = (char*)malloc(MAX_STRING_SIZE * sizeof(char));
-		imageName[0] = '\0';
-        strlcat(imageName, file->d_name, MAX_STRING_SIZE);
         
-        Page* page = new Page(imageName);
+        path * imageName = new path(itr->path().leaf());
+        if(imageName->extension() != ".jpg")
+            continue;
+        
+        Page* page = new Page(imageName->c_str());
         this->Pages->push_back(page);
         break;
     }
-    closedir(pDIR);
     
     return this->Pages;
 }

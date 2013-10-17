@@ -16,6 +16,8 @@
 		E82AE8D217EFC91B0067E353 /* libopencv_ml.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82AE8CC17EFC91B0067E353 /* libopencv_ml.2.4.6.dylib */; };
 		E82AE8D317EFC91B0067E353 /* libopencv_video.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E82AE8CD17EFC91B0067E353 /* libopencv_video.2.4.6.dylib */; };
 		E843419C17F54C7E009FDC49 /* libBridgePTM.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E843419B17F54C7E009FDC49 /* libBridgePTM.dylib */; };
+		E84F5C61180F8E8D00070C14 /* libboost_filesystem-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F5C60180F8E8D00070C14 /* libboost_filesystem-mt.dylib */; };
+		E84F5C63180F8EEA00070C14 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F5C62180F8EEA00070C14 /* libboost_system-mt.dylib */; };
 		E8C29CFD17F76517008F514F /* libopencv_nonfree.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29CFC17F76517008F514F /* libopencv_nonfree.2.4.6.dylib */; };
 		E8C29D0317F76855008F514F /* libopencv_features2d.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0217F76855008F514F /* libopencv_features2d.2.4.6.dylib */; };
 		E8C29D0717F76A66008F514F /* libopencv_contrib.2.4.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8C29D0617F76A66008F514F /* libopencv_contrib.2.4.6.dylib */; };
@@ -47,6 +49,8 @@
 		E82AE8CC17EFC91B0067E353 /* libopencv_ml.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ml.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_ml.2.4.6.dylib; sourceTree = "<group>"; };
 		E82AE8CD17EFC91B0067E353 /* libopencv_video.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_video.2.4.6.dylib; sourceTree = "<group>"; };
 		E843419B17F54C7E009FDC49 /* libBridgePTM.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libBridgePTM.dylib; path = "../../../Library/Developer/Xcode/DerivedData/BridgePTM-arnjgpranbjzonavbptwywbfkqba/Build/Products/Debug/libBridgePTM.dylib"; sourceTree = "<group>"; };
+		E84F5C60180F8E8D00070C14 /* libboost_filesystem-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-mt.dylib"; path = "../../../../../../opt/local/lib/libboost_filesystem-mt.dylib"; sourceTree = "<group>"; };
+		E84F5C62180F8EEA00070C14 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "../../../../../../opt/local/lib/libboost_system-mt.dylib"; sourceTree = "<group>"; };
 		E8C29CFC17F76517008F514F /* libopencv_nonfree.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_nonfree.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_nonfree.2.4.6.dylib; sourceTree = "<group>"; };
 		E8C29D0217F76855008F514F /* libopencv_features2d.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_features2d.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_features2d.2.4.6.dylib; sourceTree = "<group>"; };
 		E8C29D0617F76A66008F514F /* libopencv_contrib.2.4.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.4.6.dylib; path = ../../../../../opt/local/lib/libopencv_contrib.2.4.6.dylib; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 				E8C29D0717F76A66008F514F /* libopencv_contrib.2.4.6.dylib in Frameworks */,
 				E8C29D0B17F76DEA008F514F /* libopencv_flann.2.4.6.dylib in Frameworks */,
 				E8ED94A817FE1E2D008AAAC7 /* libopencv_calib3d.2.4.6.dylib in Frameworks */,
+				E84F5C61180F8E8D00070C14 /* libboost_filesystem-mt.dylib in Frameworks */,
+				E84F5C63180F8EEA00070C14 /* libboost_system-mt.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +86,7 @@
 		E82AE8B217EFC7900067E353 = {
 			isa = PBXGroup;
 			children = (
+				E84F5C5F180F8E6400070C14 /* Boost */,
 				E843419B17F54C7E009FDC49 /* libBridgePTM.dylib */,
 				E82AE8C717EFC8750067E353 /* OpenCV */,
 				E82AE8BD17EFC7900067E353 /* BridgeConsole */,
@@ -120,6 +127,15 @@
 				E82AE8CD17EFC91B0067E353 /* libopencv_video.2.4.6.dylib */,
 			);
 			name = OpenCV;
+			sourceTree = "<group>";
+		};
+		E84F5C5F180F8E6400070C14 /* Boost */ = {
+			isa = PBXGroup;
+			children = (
+				E84F5C62180F8EEA00070C14 /* libboost_system-mt.dylib */,
+				E84F5C60180F8E8D00070C14 /* libboost_filesystem-mt.dylib */,
+			);
+			name = Boost;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

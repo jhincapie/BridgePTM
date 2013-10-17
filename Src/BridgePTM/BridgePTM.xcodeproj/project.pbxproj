@@ -22,6 +22,8 @@
 		E843419917F54883009FDC49 /* FeatureCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E843419817F54883009FDC49 /* FeatureCreator.cpp */; };
 		E843419D17F54D51009FDC49 /* BridgePTM.h in Headers */ = {isa = PBXBuildFile; fileRef = E843419A17F548BA009FDC49 /* BridgePTM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E843419E17F54EA2009FDC49 /* FeatureCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = E843419717F5480F009FDC49 /* FeatureCreator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E84F5C67180F90E700070C14 /* libboost_filesystem-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F5C65180F90E700070C14 /* libboost_filesystem-mt.dylib */; };
+		E84F5C68180F90E700070C14 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E84F5C66180F90E700070C14 /* libboost_system-mt.dylib */; };
 		E878768917F923FF0004F637 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E878768817F923FF0004F637 /* Image.cpp */; };
 		E8B3439617FDC65A0019FF1A /* FeatureSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8B3439417FDC65A0019FF1A /* FeatureSet.cpp */; };
 		E8B3439717FDC65A0019FF1A /* General.h in Headers */ = {isa = PBXBuildFile; fileRef = E8B3439517FDC65A0019FF1A /* General.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +53,8 @@
 		E843419717F5480F009FDC49 /* FeatureCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeatureCreator.h; sourceTree = "<group>"; };
 		E843419817F54883009FDC49 /* FeatureCreator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FeatureCreator.cpp; sourceTree = "<group>"; };
 		E843419A17F548BA009FDC49 /* BridgePTM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgePTM.h; sourceTree = "<group>"; };
+		E84F5C65180F90E700070C14 /* libboost_filesystem-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-mt.dylib"; path = "../../../../../../opt/local/lib/libboost_filesystem-mt.dylib"; sourceTree = "<group>"; };
+		E84F5C66180F90E700070C14 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "../../../../../../opt/local/lib/libboost_system-mt.dylib"; sourceTree = "<group>"; };
 		E878768817F923FF0004F637 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		E8B3439417FDC65A0019FF1A /* FeatureSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FeatureSet.cpp; sourceTree = "<group>"; };
 		E8B3439517FDC65A0019FF1A /* General.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = General.h; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 				E8C29D0517F76A47008F514F /* libopencv_contrib.2.4.6.dylib in Frameworks */,
 				E8C29D0917F76DD3008F514F /* libopencv_flann.2.4.6.dylib in Frameworks */,
 				E8ED94A617FE1E10008AAAC7 /* libopencv_calib3d.2.4.6.dylib in Frameworks */,
+				E84F5C67180F90E700070C14 /* libboost_filesystem-mt.dylib in Frameworks */,
+				E84F5C68180F90E700070C14 /* libboost_system-mt.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +94,7 @@
 		E82AA3FF17F544130032AFEC = {
 			isa = PBXGroup;
 			children = (
+				E84F5C64180F90C700070C14 /* Boost */,
 				E8ED94AB17FE2D42008AAAC7 /* Match.cpp */,
 				E8ED94A917FE297E008AAAC7 /* Match.h */,
 				E8B3439417FDC65A0019FF1A /* FeatureSet.cpp */,
@@ -131,6 +138,15 @@
 				E843419017F54766009FDC49 /* libopencv_video.2.4.6.dylib */,
 			);
 			name = OpenCV;
+			sourceTree = "<group>";
+		};
+		E84F5C64180F90C700070C14 /* Boost */ = {
+			isa = PBXGroup;
+			children = (
+				E84F5C65180F90E700070C14 /* libboost_filesystem-mt.dylib */,
+				E84F5C66180F90E700070C14 /* libboost_system-mt.dylib */,
+			);
+			name = Boost;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

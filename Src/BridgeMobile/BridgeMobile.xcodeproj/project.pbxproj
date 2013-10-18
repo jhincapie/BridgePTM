@@ -470,6 +470,7 @@
 				E89909DD1810314A0080A280 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E89909DE1810314A0080A280 /* Build configuration list for PBXNativeTarget "BridgeMobileTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +479,7 @@
 				E89909E01810314A0080A280 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

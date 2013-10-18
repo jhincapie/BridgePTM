@@ -12,6 +12,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZhD-h4-NcT">
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hello World!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-kp-fKt">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -33,10 +36,14 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                         <constraints>
+                            <constraint firstItem="tri-7H-7hi" firstAttribute="centerX" secondItem="ZhD-h4-NcT" secondAttribute="centerX" type="default" id="2I4-Ts-UmM"/>
+                            <constraint firstItem="ZhD-h4-NcT" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="BiN-Pf-Nzf"/>
                             <constraint firstAttribute="bottom" secondItem="tri-7H-7hi" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Cty-1N-yD4"/>
+                            <constraint firstItem="ZhD-h4-NcT" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="EOI-Uw-O0w"/>
                             <constraint firstItem="tri-7H-7hi" firstAttribute="centerX" secondItem="IsF-kp-fKt" secondAttribute="centerX" type="default" id="FVN-eW-V2p"/>
-                            <constraint firstItem="tri-7H-7hi" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="Gbj-hi-t5A"/>
+                            <constraint firstItem="ZhD-h4-NcT" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Nxi-Gi-8as"/>
                             <constraint firstItem="IsF-kp-fKt" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="nAg-bu-TBr"/>
+                            <constraint firstItem="ZhD-h4-NcT" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="zBB-Ml-pVf"/>
                         </constraints>
                     </view>
                     <connections>

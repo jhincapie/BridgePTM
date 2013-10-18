@@ -10,7 +10,6 @@
 #include <iostream>
 #include <string.h>
 #include <fstream>
-#include <dirent.h>
 #include <sys/stat.h>
 
 #include "stdafx.h"
@@ -21,10 +20,13 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
+#include "boost/filesystem.hpp"
+
+using namespace boost::filesystem;
+
 void printUsage();
 void printFolderNotExist();
 void showMatch(const char* window, Image* capture, Match* match);
-int fexist(char *filename);
 
 int main(int argc, const char * argv[])
 {
@@ -33,15 +35,13 @@ int main(int argc, const char * argv[])
         printUsage();
         return 1;
     }
-    
-    DIR *pDIR = opendir(argv[1]);
-    if(pDIR == NULL)
+
+    if(!exists(argv[1]))
     {
         printFolderNotExist();
         printUsage();
         return 1;
     }
-    closedir(pDIR);
 
     //Creates the document object - loads the pages and content on the constructor
     Document * document = new Document(argv[1]);
@@ -63,7 +63,7 @@ int main(int argc, const char * argv[])
 	strlcat(testvideo, "//", MAX_STRING_SIZE);
 #endif
     strlcat(testvideo, "test.MOV", MAX_STRING_SIZE);
-	if(fexist(testvideo) == 0)
+	if(!exists(testvideo))
 	{
 		std::cerr << "Video does not exist [" << testvideo << "]" <<  std::endl;
 		return 1;
@@ -179,12 +179,4 @@ void showMatch(const char* window, Image* capture, Match* match)
     cv::imshow(window, matchesImg);
 
 	delete pageImagePath;
-}
-
-int fexist(char *filename) 
-{ 
-	struct stat buffer; 
-	if (stat(filename, &buffer) == -1) 
-		return 0; 
-	return 1; 
 }

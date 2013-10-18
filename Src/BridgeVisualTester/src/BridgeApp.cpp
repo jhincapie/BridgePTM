@@ -167,8 +167,6 @@ void BridgeApp::update()
                 cv::GaussianBlur(sizedframe, sizedframe, cv::Size(sBlurKernelSize, sBlurKernelSize), 0, 0);
             }
             
-            cv::imshow("Test", sizedframe);
-            
             if(bridgeIMG == NULL)
                 bridgeIMG = new Image(&sizedframe);
             else

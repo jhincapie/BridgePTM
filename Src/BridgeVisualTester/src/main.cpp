@@ -1,7 +1,4 @@
 
-#include <dirent.h>
-#include <sys/stat.h>
-
 #include "ofMain.h"
 
 #include "BridgeApp.h"
@@ -11,7 +8,6 @@
 //========================================================================
 void printUsage();
 void printFolderNotExist();
-int fexist(char *filename);
 
 //========================================================================
 int main(int argc, const char * argv[])
@@ -24,14 +20,12 @@ int main(int argc, const char * argv[])
     }
     
     //Checks that the provided folder path actually exists
-    DIR *pDIR = opendir(argv[1]);
-    if(pDIR == NULL)
+    if(!exists(argv[1]))
     {
         printFolderNotExist();
         printUsage();
         return 1;
     }
-    closedir(pDIR);
     
     //Creates the document object - loads the pages and content on the constructor
     Document * document = new Document(argv[1]);
@@ -46,7 +40,7 @@ int main(int argc, const char * argv[])
 	strlcat(testvideo, "//", MAX_STRING_SIZE);
 #endif
     strlcat(testvideo, "test.MOV", MAX_STRING_SIZE);
-	if(fexist(testvideo) == 0)
+	if(!exists(testvideo))
 	{
 		std::cerr << "Video does not exist [" << testvideo << "]" <<  std::endl;
 		return 1;
@@ -77,10 +71,3 @@ void printFolderNotExist()
     std::cout << "Given folder does not exist, please use full path." << std::endl;
 }
 
-int fexist(char *filename)
-{
-	struct stat buffer;
-	if (stat(filename, &buffer) == -1)
-		return 0;
-	return 1;
-}

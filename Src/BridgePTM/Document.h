@@ -9,6 +9,10 @@
 #include "General.h"
 #include "Image.h"
 
+#include "boost/filesystem.hpp"
+
+using namespace boost::filesystem;
+
 #ifndef BridgePTM_Document_h
 #define BridgePTM_Document_h
 

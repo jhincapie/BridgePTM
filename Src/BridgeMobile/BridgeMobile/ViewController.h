@@ -10,11 +10,14 @@
 
 @interface ViewController : UIViewController
 {
-    int counter;
+    UIImageView* ivImageHolder;
     
-    IBOutlet UILabel* lbHelloWorld; 
+    IBOutlet UIScrollView* svImageNavigator;
+    IBOutlet UIButton* btnRegistration;
 }
 
-- (IBAction)btnHelloWorld :(id)sender;
+- (IBAction)btnStartRegistration :(id)sender;
+
+- (IBAction)btnStopRegistration :(id)sender;
 
 @end

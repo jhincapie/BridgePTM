@@ -14,20 +14,28 @@
 
 @implementation ViewController
 
-- (IBAction)btnHelloWorld:(id)sender
+- (IBAction)btnStartRegistration:(id)sender
 {
-    if(counter%2 == 0)
-        lbHelloWorld.text = @"Juan David Hincapie-Ramos";
-    else
-        lbHelloWorld.text = @"Hello World!";
-    counter++;
+    UIColor *highlightRed = [[UIColor alloc]initWithRed:255 green:0 blue:0 alpha:1];
+    [btnRegistration setBackgroundColor:highlightRed];
+}
+
+- (IBAction)btnStopRegistration:(id)sender
+{
+    UIColor *highlightBlue = [[UIColor alloc]initWithRed:0 green:0 blue:255 alpha:1];
+    [btnRegistration setBackgroundColor:highlightBlue];
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    UIImage * pageImage = [UIImage imageNamed: @"interruptme-system-final-0.jpg"];
+    ivImageHolder = [[UIImageView alloc]initWithImage:pageImage];
     
-    counter = 0;
+    [svImageNavigator setScrollEnabled:true];
+    [svImageNavigator addSubview:ivImageHolder];
+    [svImageNavigator setContentSize:ivImageHolder.frame.size];
+    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

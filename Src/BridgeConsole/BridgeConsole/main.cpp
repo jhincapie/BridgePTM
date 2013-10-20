@@ -21,7 +21,6 @@
 #include "opencv2/highgui/highgui.hpp"
 
 #include "boost/filesystem.hpp"
-
 using namespace boost::filesystem;
 
 void printUsage();

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+#import <opencv2/highgui/ios.h>
 
 @interface ViewController : UIViewController
 {

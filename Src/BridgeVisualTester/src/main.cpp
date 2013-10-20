@@ -5,6 +5,9 @@
 
 #include "BridgePTM/BridgePTM.h"
 
+#include "boost/filesystem.hpp"
+using namespace boost::filesystem;
+
 //========================================================================
 void printUsage();
 void printFolderNotExist();

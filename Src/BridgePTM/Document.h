@@ -9,9 +9,10 @@
 #include "General.h"
 #include "Image.h"
 
-#include "boost/filesystem.hpp"
-
-using namespace boost::filesystem;
+#ifndef TARGET_IOS
+    #include "boost/filesystem.hpp"
+    using namespace boost::filesystem;
+#endif
 
 #ifndef BridgePTM_Document_h
 #define BridgePTM_Document_h
@@ -35,8 +36,10 @@ private:
     
     std::vector<std::vector<cv::KeyPoint> > * documentKP;
     std::vector<cv::Mat> * documentDesc;
-    
+
+#ifndef TARGET_IOS
     std::vector<Page *> * GetPages(const char* documentFolder);
+#endif
     
 public:
     

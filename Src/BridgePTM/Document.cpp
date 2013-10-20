@@ -16,9 +16,12 @@ Document::Document(const char* documentRoot)
 {
     this->Root = documentRoot;
 	this->Pages = NULL;
-    this->Pages = this->GetPages(this->Root);
     this->documentDesc = NULL;
     this->documentKP = NULL;
+
+#ifndef TARGET_IOS
+    this->Pages = this->GetPages(this->Root);
+#endif
 }
 
 Document::~Document()
@@ -27,6 +30,8 @@ Document::~Document()
     delete this->documentKP;
     delete this->documentDesc;
 }
+
+#ifndef TARGET_IOS
 
 std::vector<Page *> * Document::GetPages(const char* documentFolder)
 {
@@ -56,6 +61,8 @@ std::vector<Page *> * Document::GetPages(const char* documentFolder)
     
     return this->Pages;
 }
+
+#endif
 
 std::vector<std::vector<cv::KeyPoint>> * Document::GetKeypoints()
 {

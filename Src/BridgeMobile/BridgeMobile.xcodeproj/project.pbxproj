@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E80CD5FA18122D2200A26BA1 /* interruptme-system-final-0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E80CD5F918122D2200A26BA1 /* interruptme-system-final-0.jpg */; };
+		E81EFF7018143C66005F774D /* OpenCvUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E81EFF6F18143C66005F774D /* OpenCvUtil.m */; };
+		E81EFF72181442D4005F774D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81EFF71181442D4005F774D /* opencv2.framework */; };
 		E89909A41810314A0080A280 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A31810314A0080A280 /* UIKit.framework */; };
 		E89909A61810314A0080A280 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A51810314A0080A280 /* Foundation.framework */; };
 		E89909A81810314A0080A280 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A71810314A0080A280 /* CoreGraphics.framework */; };
@@ -19,7 +21,7 @@
 		E89909BA1810314A0080A280 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E89909B91810314A0080A280 /* Default-568h@2x.png */; };
 		E89909BD1810314A0080A280 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89909BB1810314A0080A280 /* MainStoryboard_iPhone.storyboard */; };
 		E89909C01810314A0080A280 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89909BE1810314A0080A280 /* MainStoryboard_iPad.storyboard */; };
-		E89909C31810314A0080A280 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E89909C21810314A0080A280 /* ViewController.m */; };
+		E89909C31810314A0080A280 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = E89909C21810314A0080A280 /* ViewController.mm */; };
 		E89909CB1810314A0080A280 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909CA1810314A0080A280 /* SenTestingKit.framework */; };
 		E89909CC1810314A0080A280 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A31810314A0080A280 /* UIKit.framework */; };
 		E89909CD1810314A0080A280 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A51810314A0080A280 /* Foundation.framework */; };
@@ -39,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		E80CD5F918122D2200A26BA1 /* interruptme-system-final-0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "interruptme-system-final-0.jpg"; path = "../../../Data/SampleDocs/InterruptMe/interruptme-system-final-0.jpg"; sourceTree = "<group>"; };
+		E81EFF6E18143C66005F774D /* OpenCvUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCvUtil.h; sourceTree = "<group>"; };
+		E81EFF6F18143C66005F774D /* OpenCvUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenCvUtil.m; sourceTree = "<group>"; };
+		E81EFF71181442D4005F774D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../Lib/opencv2.framework; sourceTree = "<group>"; };
 		E89909A01810314A0080A280 /* BridgeMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BridgeMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89909A31810314A0080A280 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E89909A51810314A0080A280 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,8 +59,8 @@
 		E89909B91810314A0080A280 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E89909BC1810314A0080A280 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		E89909BF1810314A0080A280 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		E89909C11810314A0080A280 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E89909C21810314A0080A280 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E89909C11810314A0080A280 /* ViewController.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = ViewController.h; sourceTree = "<group>"; };
+		E89909C21810314A0080A280 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		E89909C91810314A0080A280 /* BridgeMobileTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BridgeMobileTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89909CA1810314A0080A280 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		E89909D21810314A0080A280 /* BridgeMobileTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BridgeMobileTests-Info.plist"; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E81EFF72181442D4005F774D /* opencv2.framework in Frameworks */,
 				E89909A41810314A0080A280 /* UIKit.framework in Frameworks */,
 				E89909A61810314A0080A280 /* Foundation.framework in Frameworks */,
 				E89909A81810314A0080A280 /* CoreGraphics.framework in Frameworks */,
@@ -110,6 +116,7 @@
 		E89909A21810314A0080A280 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E81EFF71181442D4005F774D /* opencv2.framework */,
 				E89909A31810314A0080A280 /* UIKit.framework */,
 				E89909A51810314A0080A280 /* Foundation.framework */,
 				E89909A71810314A0080A280 /* CoreGraphics.framework */,
@@ -126,8 +133,10 @@
 				E89909BB1810314A0080A280 /* MainStoryboard_iPhone.storyboard */,
 				E89909BE1810314A0080A280 /* MainStoryboard_iPad.storyboard */,
 				E89909C11810314A0080A280 /* ViewController.h */,
-				E89909C21810314A0080A280 /* ViewController.m */,
+				E89909C21810314A0080A280 /* ViewController.mm */,
 				E89909AA1810314A0080A280 /* Supporting Files */,
+				E81EFF6E18143C66005F774D /* OpenCvUtil.h */,
+				E81EFF6F18143C66005F774D /* OpenCvUtil.m */,
 			);
 			path = BridgeMobile;
 			sourceTree = "<group>";
@@ -278,9 +287,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E81EFF7018143C66005F774D /* OpenCvUtil.m in Sources */,
 				E89909B01810314A0080A280 /* main.m in Sources */,
 				E89909B41810314A0080A280 /* AppDelegate.m in Sources */,
-				E89909C31810314A0080A280 /* ViewController.m in Sources */,
+				E89909C31810314A0080A280 /* ViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +376,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -392,7 +402,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -400,6 +410,11 @@
 		E89909DC1810314A0080A280 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../Lib,
+					/Users/jhincapie/Development/BridgePTM/Lib,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BridgeMobile/BridgeMobile-Prefix.pch";
 				INFOPLIST_FILE = "BridgeMobile/BridgeMobile-Info.plist";
@@ -412,6 +427,11 @@
 		E89909DD1810314A0080A280 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../Lib,
+					/Users/jhincapie/Development/BridgePTM/Lib,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BridgeMobile/BridgeMobile-Prefix.pch";
 				INFOPLIST_FILE = "BridgeMobile/BridgeMobile-Info.plist";

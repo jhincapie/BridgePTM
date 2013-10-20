@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E80CD5FA18122D2200A26BA1 /* interruptme-system-final-0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E80CD5F918122D2200A26BA1 /* interruptme-system-final-0.jpg */; };
-		E81EFF7018143C66005F774D /* OpenCvUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E81EFF6F18143C66005F774D /* OpenCvUtil.m */; };
+		E81EFF7018143C66005F774D /* OpenCvUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = E81EFF6F18143C66005F774D /* OpenCvUtil.mm */; };
 		E81EFF72181442D4005F774D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81EFF71181442D4005F774D /* opencv2.framework */; };
 		E89909A41810314A0080A280 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A31810314A0080A280 /* UIKit.framework */; };
 		E89909A61810314A0080A280 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89909A51810314A0080A280 /* Foundation.framework */; };
@@ -41,8 +41,8 @@
 
 /* Begin PBXFileReference section */
 		E80CD5F918122D2200A26BA1 /* interruptme-system-final-0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "interruptme-system-final-0.jpg"; path = "../../../Data/SampleDocs/InterruptMe/interruptme-system-final-0.jpg"; sourceTree = "<group>"; };
-		E81EFF6E18143C66005F774D /* OpenCvUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCvUtil.h; sourceTree = "<group>"; };
-		E81EFF6F18143C66005F774D /* OpenCvUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenCvUtil.m; sourceTree = "<group>"; };
+		E81EFF6E18143C66005F774D /* OpenCvUtil.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = OpenCvUtil.h; sourceTree = "<group>"; };
+		E81EFF6F18143C66005F774D /* OpenCvUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCvUtil.mm; sourceTree = "<group>"; };
 		E81EFF71181442D4005F774D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../Lib/opencv2.framework; sourceTree = "<group>"; };
 		E89909A01810314A0080A280 /* BridgeMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BridgeMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89909A31810314A0080A280 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -136,7 +136,7 @@
 				E89909C21810314A0080A280 /* ViewController.mm */,
 				E89909AA1810314A0080A280 /* Supporting Files */,
 				E81EFF6E18143C66005F774D /* OpenCvUtil.h */,
-				E81EFF6F18143C66005F774D /* OpenCvUtil.m */,
+				E81EFF6F18143C66005F774D /* OpenCvUtil.mm */,
 			);
 			path = BridgeMobile;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E81EFF7018143C66005F774D /* OpenCvUtil.m in Sources */,
+				E81EFF7018143C66005F774D /* OpenCvUtil.mm in Sources */,
 				E89909B01810314A0080A280 /* main.m in Sources */,
 				E89909B41810314A0080A280 /* AppDelegate.m in Sources */,
 				E89909C31810314A0080A280 /* ViewController.mm in Sources */,

@@ -177,5 +177,5 @@ void showMatch(const char* window, Image* capture, Match* match)
     //-- Show detected matches
     cv::imshow(window, matchesImg);
 
-	delete pageImagePath;
+	free(pageImagePath);
 }

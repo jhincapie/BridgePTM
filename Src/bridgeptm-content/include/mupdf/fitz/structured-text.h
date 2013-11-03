@@ -231,6 +231,11 @@ void fz_print_text_page_html(fz_context *ctx, fz_output *out, fz_text_page *page
 void fz_print_text_page_xml(fz_context *ctx, fz_output *out, fz_text_page *page);
 
 /*
+	fz_print_text_page_bridgeholders: Output a page to a file in the BridgePTM content holder format.
+*/
+void fz_print_text_page_bridgeholders(fz_context *ctx, fz_output *out, fz_text_page *page);
+
+/*
 	fz_print_text_page: Output a page to a file in UTF-8 format.
 */
 void fz_print_text_page(fz_context *ctx, fz_output *out, fz_text_page *page);

@@ -359,6 +359,98 @@ fz_print_text_page_xml(fz_context *ctx, fz_output *out, fz_text_page *page)
 	fz_printf(out, "</page>\n");
 }
 
+void 
+fz_print_text_page_bridgeholders(fz_context *ctx, fz_output *out, fz_text_page *page)
+{
+	//For the first version we should stick to a block/line/word approach, in order to simplify things.
+	//Line Format
+	//page (0 to n-1)
+	//block (0..) -> in reference to the page only
+	//line (0..) -> in reference to the block
+	//word (0..) -> in reference to the line
+	//word visual -> is the text including special (non-searchable) characters such as "\.,:^*"·$%· 
+	//word search -> only alpha numeric characters
+	//upperleft lowerright (0..1w 0..1h 0..1w 0..1h)
+	double pagewidth = page->mediabox.x1 - page->mediabox.x0;
+	double pageheight = page->mediabox.y1 - page->mediabox.y0;
+
+	int block_n;
+	for (block_n = 0; block_n < page->len; block_n++)
+	{
+		switch (page->blocks[block_n].type)
+		{
+		case FZ_PAGE_BLOCK_TEXT:
+		{
+			fz_text_block *block = page->blocks[block_n].u.text;
+			fz_text_line *line;
+			char *s;
+
+			fz_printf(out, "<block bbox=\"%g %g %g %g\">\n",
+				block->bbox.x0, block->bbox.y0, block->bbox.x1, block->bbox.y1);
+			for (line = block->lines; line < block->lines + block->len; line++)
+			{
+				fz_text_span *span;
+				fz_printf(out, "<line bbox=\"%g %g %g %g\">\n",
+					line->bbox.x0, line->bbox.y0, line->bbox.x1, line->bbox.y1);
+				for (span = line->first_span; span; span = span->next)
+				{
+					fz_text_style *style = NULL;
+					int char_num;
+					for (char_num = 0; char_num < span->len; char_num++)
+					{
+						fz_text_char *ch = &span->text[char_num];
+						if (ch->style != style)
+						{
+							if (style)
+							{
+								fz_printf(out, "</span>\n");
+							}
+							style = ch->style;
+							s = strchr(style->font->name, '+');
+							s = s ? s + 1 : style->font->name;
+							fz_printf(out, "<span bbox=\"%g %g %g %g\" font=\"%s\" size=\"%g\">\n",
+								span->bbox.x0, span->bbox.y0, span->bbox.x1, span->bbox.y1,
+								s, style->size);
+						}
+						{
+							fz_rect rect;
+							fz_text_char_bbox(&rect, span, char_num);
+							fz_printf(out, "<char bbox=\"%g %g %g %g\" x=\"%g\" y=\"%g\" c=\"",
+								rect.x0, rect.y0, rect.x1, rect.y1, ch->p.x, ch->p.y);
+						}
+						switch (ch->c)
+						{
+						case '<': fz_printf(out, "&lt;"); break;
+						case '>': fz_printf(out, "&gt;"); break;
+						case '&': fz_printf(out, "&amp;"); break;
+						case '"': fz_printf(out, "&quot;"); break;
+						case '\'': fz_printf(out, "&apos;"); break;
+						default:
+							if (ch->c >= 32 && ch->c <= 127)
+								fz_printf(out, "%c", ch->c);
+							else
+								fz_printf(out, "&#x%x;", ch->c);
+							break;
+						}
+						fz_printf(out, "\"/>\n");
+					}
+					if (style)
+						fz_printf(out, "</span>\n");
+				}
+				fz_printf(out, "</line>\n");
+			}
+			fz_printf(out, "</block>\n");
+			break;
+		}
+		case FZ_PAGE_BLOCK_IMAGE:
+		{
+			break;
+		}
+	}
+	}
+	fz_printf(out, "</page>\n");
+}
+
 void
 fz_print_text_page(fz_context *ctx, fz_output *out, fz_text_page *page)
 {

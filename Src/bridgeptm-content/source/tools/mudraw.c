@@ -167,6 +167,8 @@ static char *filename;
 static int files = 0;
 fz_output *out = NULL;
 
+static int produceholders = 0;
+
 static char *mujstest_filename = NULL;
 static FILE *mujstest_file = NULL;
 static int mujstest_count = 0;
@@ -207,6 +209,7 @@ static void usage(void)
 		"\t-l\tprint outline\n"
 		"\t-j -\tOutput mujstest file\n"
 		"\t-i\tignore errors and continue with the next file\n"
+		"\t-X\tproduce the content holders needed for the BridgePTM platform\n"		
 		"\tpages\tcomma separated list of ranges\n");
 	exit(1);
 }
@@ -439,7 +442,6 @@ static void drawpage(fz_context *ctx, fz_document *doc, int pagenum)
 	if (showtext)
 	{
 		fz_text_page *text = NULL;
-
 		fz_var(text);
 
 		fz_try(ctx)
@@ -481,6 +483,39 @@ static void drawpage(fz_context *ctx, fz_document *doc, int pagenum)
 			fz_free_page(doc, page);
 			fz_rethrow(ctx);
 		}
+	}
+
+	if(produceholders)
+	{
+		fz_text_page *text = NULL;
+		fz_var(text);
+
+		fz_try(ctx)
+		{
+			text = fz_new_text_page(ctx);
+			dev = fz_new_text_device(ctx, sheet, text);
+			if (list)
+				fz_run_display_list(list, dev, &fz_identity, &fz_infinite_rect, &cookie);
+			else
+				fz_run_page(doc, page, dev, &fz_identity, &cookie);
+			fz_free_device(dev);
+			dev = NULL;
+
+			fz_print_text_page_bridgeholders(ctx, out, text);
+		}
+		fz_always(ctx)
+		{
+			fz_free_device(dev);
+			dev = NULL;
+			fz_free_text_page(ctx, text);
+		}
+		fz_catch(ctx)
+		{
+			fz_drop_display_list(ctx, list);
+			fz_free_page(doc, page);
+			fz_rethrow(ctx);
+		}
+
 	}
 
 	if (showmd5 || showtime)
@@ -852,6 +887,7 @@ static void drawpage(fz_context *ctx, fz_document *doc, int pagenum)
 
 static void drawrange(fz_context *ctx, fz_document *doc, char *range)
 {
+	printf("drawrange");
 	int page, spage, epage, pagecount;
 	char *spec, *dash;
 
@@ -992,7 +1028,7 @@ int main(int argc, char **argv)
 
 	fz_var(doc);
 
-	while ((c = fz_getopt(argc, argv, "lo:F:p:r:R:b:c:dgmtx5G:Iw:h:fij:MB:")) != -1)
+	while ((c = fz_getopt(argc, argv, "lo:F:p:r:R:b:c:dgmtx5G:Iw:h:fij:MB:X")) != -1)
 	{
 		switch (c)
 		{
@@ -1019,6 +1055,7 @@ int main(int argc, char **argv)
 		case 'I': invert++; break;
 		case 'j': mujstest_filename = fz_optarg; break;
 		case 'i': ignore_errors = 1; break;
+		case 'X': produceholders = 1; break;
 		default: usage(); break;
 		}
 	}
@@ -1026,7 +1063,7 @@ int main(int argc, char **argv)
 	if (fz_optind == argc)
 		usage();
 
-	if (!showtext && !showxml && !showtime && !showmd5 && !showoutline && !output && !mujstest_filename)
+	if (!showtext && !showxml && !showtime && !showmd5 && !showoutline && !output && !mujstest_filename && !produceholders)
 	{
 		printf("nothing to do\n");
 		exit(0);
@@ -1162,13 +1199,14 @@ int main(int argc, char **argv)
 	timing.minfilename = "";
 	timing.maxfilename = "";
 
-	if (showxml || showtext)
+
+	if (showxml || showtext || produceholders)
 		out = fz_new_output_with_file(ctx, stdout);
 
 	if (showxml || showtext == TEXT_XML)
 		fz_printf(out, "<?xml version=\"1.0\"?>\n");
 
-	if (showtext)
+	if (showtext || produceholders)
 		sheet = fz_new_text_sheet(ctx);
 
 	if (showtext == TEXT_HTML)
@@ -1222,7 +1260,7 @@ int main(int argc, char **argv)
 				if (showoutline)
 					drawoutline(ctx, doc);
 
-				if (showtext || showxml || showtime || showmd5 || output || mujstest_file)
+				if (showtext || showxml || showtime || showmd5 || output || mujstest_file || produceholders)
 				{
 					if (fz_optind == argc || !isrange(argv[fz_optind]))
 						drawrange(ctx, doc, "1-");

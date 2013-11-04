@@ -501,7 +501,7 @@ static void drawpage(fz_context *ctx, fz_document *doc, int pagenum)
 			fz_free_device(dev);
 			dev = NULL;
 
-			fz_print_text_page_bridgeholders(ctx, out, text);
+			fz_print_text_page_bridgeholders(ctx, out, text, pagenum);
 		}
 		fz_always(ctx)
 		{
@@ -887,7 +887,6 @@ static void drawpage(fz_context *ctx, fz_document *doc, int pagenum)
 
 static void drawrange(fz_context *ctx, fz_document *doc, char *range)
 {
-	printf("drawrange");
 	int page, spage, epage, pagecount;
 	char *spec, *dash;
 

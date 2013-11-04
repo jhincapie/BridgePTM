@@ -3,6 +3,8 @@
 #define SUBSCRIPT_OFFSET 0.2f
 #define SUPERSCRIPT_OFFSET -0.2f
 
+#define BRIDGEPTM_BUFFER_SIZE 250
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -360,9 +362,9 @@ fz_print_text_page_xml(fz_context *ctx, fz_output *out, fz_text_page *page)
 }
 
 void 
-fz_print_text_page_bridgeholders(fz_context *ctx, fz_output *out, fz_text_page *page)
+fz_print_text_page_bridgeholders(fz_context *ctx, fz_output *out, fz_text_page *page, int pagenum)
 {
-	//For the first version we should stick to a block/line/word approach, in order to simplify things.
+	//For the first version we should stick to a block/line/word approach, in order to simplify things (avoid multi-line boxes).
 	//Line Format
 	//page (0 to n-1)
 	//block (0..) -> in reference to the page only
@@ -371,84 +373,132 @@ fz_print_text_page_bridgeholders(fz_context *ctx, fz_output *out, fz_text_page *
 	//word visual -> is the text including special (non-searchable) characters such as "\.,:^*"·$%· 
 	//word search -> only alpha numeric characters
 	//upperleft lowerright (0..1w 0..1h 0..1w 0..1h)
+
+	pagenum = pagenum - 1;
+	int block_n;
+	int line_n;
+	int word_n;
+	fz_buffer* wordvisual = fz_new_buffer(ctx, BRIDGEPTM_BUFFER_SIZE);
+	fz_buffer* wordtext = fz_new_buffer(ctx, BRIDGEPTM_BUFFER_SIZE);
+	fz_rect wordrec;
+
 	double pagewidth = page->mediabox.x1 - page->mediabox.x0;
 	double pageheight = page->mediabox.y1 - page->mediabox.y0;
 
-	int block_n;
 	for (block_n = 0; block_n < page->len; block_n++)
 	{
-		switch (page->blocks[block_n].type)
-		{
-		case FZ_PAGE_BLOCK_TEXT:
-		{
-			fz_text_block *block = page->blocks[block_n].u.text;
-			fz_text_line *line;
-			char *s;
+		if (page->blocks[block_n].type != FZ_PAGE_BLOCK_TEXT)
+			continue;
 
-			fz_printf(out, "<block bbox=\"%g %g %g %g\">\n",
-				block->bbox.x0, block->bbox.y0, block->bbox.x1, block->bbox.y1);
-			for (line = block->lines; line < block->lines + block->len; line++)
-			{
-				fz_text_span *span;
-				fz_printf(out, "<line bbox=\"%g %g %g %g\">\n",
-					line->bbox.x0, line->bbox.y0, line->bbox.x1, line->bbox.y1);
-				for (span = line->first_span; span; span = span->next)
-				{
-					fz_text_style *style = NULL;
-					int char_num;
-					for (char_num = 0; char_num < span->len; char_num++)
-					{
-						fz_text_char *ch = &span->text[char_num];
-						if (ch->style != style)
-						{
-							if (style)
-							{
-								fz_printf(out, "</span>\n");
-							}
-							style = ch->style;
-							s = strchr(style->font->name, '+');
-							s = s ? s + 1 : style->font->name;
-							fz_printf(out, "<span bbox=\"%g %g %g %g\" font=\"%s\" size=\"%g\">\n",
-								span->bbox.x0, span->bbox.y0, span->bbox.x1, span->bbox.y1,
-								s, style->size);
-						}
-						{
-							fz_rect rect;
-							fz_text_char_bbox(&rect, span, char_num);
-							fz_printf(out, "<char bbox=\"%g %g %g %g\" x=\"%g\" y=\"%g\" c=\"",
-								rect.x0, rect.y0, rect.x1, rect.y1, ch->p.x, ch->p.y);
-						}
-						switch (ch->c)
-						{
-						case '<': fz_printf(out, "&lt;"); break;
-						case '>': fz_printf(out, "&gt;"); break;
-						case '&': fz_printf(out, "&amp;"); break;
-						case '"': fz_printf(out, "&quot;"); break;
-						case '\'': fz_printf(out, "&apos;"); break;
-						default:
-							if (ch->c >= 32 && ch->c <= 127)
-								fz_printf(out, "%c", ch->c);
-							else
-								fz_printf(out, "&#x%x;", ch->c);
-							break;
-						}
-						fz_printf(out, "\"/>\n");
-					}
-					if (style)
-						fz_printf(out, "</span>\n");
-				}
-				fz_printf(out, "</line>\n");
-			}
-			fz_printf(out, "</block>\n");
-			break;
-		}
-		case FZ_PAGE_BLOCK_IMAGE:
+		fz_text_block *block = page->blocks[block_n].u.text;
+		fz_text_line *line;
+		char *s;
+
+		line_n = 0;
+		for (line = block->lines; line < block->lines + block->len; line++, line_n++)
 		{
-			break;
+			word_n = 0;
+			fz_text_span *span = NULL;
+			for (span = line->first_span; span; span = span->next)
+			{
+				fz_text_style *style = NULL;
+				int char_num;
+				for (char_num = 0; char_num < span->len; char_num++)
+				{
+					int wordend = 0;
+					fz_text_char *ch = &span->text[char_num];
+					if (ch->style != style)
+					{
+						if (style)
+							wordend = 1;
+						style = ch->style;
+					}
+				
+					if(ch->c == ' ')
+						wordend = 1;
+
+					if(wordend && wordtext->len > 0) 
+					{
+						//writes the old word 
+						fz_printf(out, "%d;", pagenum);
+						fz_printf(out, "%d;", block_n);
+						fz_printf(out, "%d;", line_n);
+						fz_printf(out, "%d;", word_n);
+						fz_printf(out, "%.4g;%.4g;%.4g;%.4g;", wordrec.x0 / pagewidth, wordrec.y0 / pageheight, wordrec.x1  / pagewidth, wordrec.y1 / pageheight);
+						fz_printf(out, "%s;", wordtext->data);
+						fz_printf(out, "%s\n", wordvisual->data);
+
+						//resets the buffers
+						word_n++;
+						memset(wordtext->data, 0, BRIDGEPTM_BUFFER_SIZE); wordtext->len = 0;
+						memset(wordvisual->data, 0, BRIDGEPTM_BUFFER_SIZE); wordvisual->len = 0;
+						continue;
+					}
+					else if (wordend) //there is a space and nothing on the buffers
+						continue;
+
+					fz_rect charrect;
+					fz_text_char_bbox(&charrect, span, char_num);
+					if(wordtext->len == 0)
+					{
+						//it is a new word and so it should capture the start of the bbox
+						wordrec.x0 = charrect.x0;
+						wordrec.y0 = charrect.y0;
+					}
+
+					//saves the end of the current character as the end of the word bbox
+					wordrec.x1 = charrect.x1;
+					wordrec.y1 = charrect.y1;
+					
+					switch (ch->c)
+					{
+					case '<': 
+						fz_buffer_printf(ctx, wordvisual, "&lt;"); 
+						break;
+					case '>': 
+						fz_buffer_printf(ctx, wordvisual, "&gt;"); 
+						break;
+					case '&': 
+						fz_buffer_printf(ctx, wordvisual, "&amp;"); 
+						break;
+					case '"': 
+						fz_buffer_printf(ctx, wordvisual, "&quot;"); 
+						break;
+					case '\'': 
+						fz_buffer_printf(ctx, wordvisual, "&apos;"); 
+						break;
+					default:
+						if (ch->c >= 32 && ch->c <= 127)
+						{
+						 	fz_buffer_printf(ctx, wordtext, "%c", ch->c);
+						 	fz_buffer_printf(ctx, wordvisual, "%c", ch->c);
+						}
+						else
+							fz_buffer_printf(ctx, wordvisual, "&#x%x;", ch->c);
+						break;
+					}
+				}
+
+				//writes the word and resets the buffers
+				{
+					//writes the old word 
+					fz_printf(out, "%d;", pagenum);
+					fz_printf(out, "%d;", block_n);
+					fz_printf(out, "%d;", line_n);
+					fz_printf(out, "%d;", word_n);
+					fz_printf(out, "%.4g;%.4g;%.4g;%.4g;", wordrec.x0 / pagewidth, wordrec.y0 / pageheight, wordrec.x1  / pagewidth, wordrec.y1 / pageheight);
+					fz_printf(out, "%s;", wordtext->data);
+					fz_printf(out, "%s\n", wordvisual->data);
+
+					//resets the buffers
+					word_n++;
+					memset(wordtext->data, 0, BRIDGEPTM_BUFFER_SIZE); wordtext->len = 0;
+					memset(wordvisual->data, 0, BRIDGEPTM_BUFFER_SIZE); wordvisual->len = 0;
+				}
+
+			}
 		}
 	}
-	}
-	fz_printf(out, "</page>\n");
 }
 
 void

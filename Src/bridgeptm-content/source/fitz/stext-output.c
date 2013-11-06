@@ -374,7 +374,6 @@ fz_print_text_page_bridgeholders(fz_context *ctx, fz_output *out, fz_text_page *
 	//word search -> only alpha numeric characters
 	//upperleft lowerright (0..1w 0..1h 0..1w 0..1h)
 
-	pagenum = pagenum - 1;
 	int block_n;
 	int line_n;
 	int word_n;

@@ -9,7 +9,6 @@
 
 #import "MuLibraryController.h"
 
-#import "opencv2/core/core_c.h"
 
 @interface MuAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate>
 {

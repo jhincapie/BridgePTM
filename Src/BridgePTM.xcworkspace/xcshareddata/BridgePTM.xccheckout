@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4215BF95-2315-4467-A289-DABF40558DC3</string>
+	<string>2C11ED30-5666-4520-AB5B-D2809758BCD4</string>
 	<key>IDESourceControlProjectName</key>
 	<string>BridgePTM</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1C7C92E8-A757-43C9-AB30-D8EF0902CCF8</key>
+		<key>B90C9653-31F8-40E0-83E9-CB75C24A88DD</key>
 		<string>https://github.com/jhincapie/BridgePTM.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Src/BridgePTM.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1C7C92E8-A757-43C9-AB30-D8EF0902CCF8</key>
+		<key>B90C9653-31F8-40E0-83E9-CB75C24A88DD</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1C7C92E8-A757-43C9-AB30-D8EF0902CCF8</string>
+	<string>B90C9653-31F8-40E0-83E9-CB75C24A88DD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1C7C92E8-A757-43C9-AB30-D8EF0902CCF8</string>
+			<string>B90C9653-31F8-40E0-83E9-CB75C24A88DD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BridgePTM</string>
 		</dict>

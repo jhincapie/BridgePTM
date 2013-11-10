@@ -58,6 +58,7 @@
 		E8FA20E1183025870040791D /* libopenjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FA20DA183025870040791D /* libopenjpeg.a */; };
 		E8FA20E2183025870040791D /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FA20DB183025870040791D /* libz.a */; };
 		E8FA20E418302EF10040791D /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FA20E318302EF10040791D /* libc++.dylib */; };
+		E8FA20E6183036AF0040791D /* libBridgePTM-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FA20E5183036AF0040791D /* libBridgePTM-iOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		E8FA20DA183025870040791D /* libopenjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopenjpeg.a; path = "../../build/debug-ios-armv7-armv7s/libopenjpeg.a"; sourceTree = "<group>"; };
 		E8FA20DB183025870040791D /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = "../../build/debug-ios-armv7-armv7s/libz.a"; sourceTree = "<group>"; };
 		E8FA20E318302EF10040791D /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/usr/lib/libc++.dylib"; sourceTree = DEVELOPER_DIR; };
+		E8FA20E5183036AF0040791D /* libBridgePTM-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libBridgePTM-iOS.a"; path = "../../../../../../Library/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug-iphoneos/libBridgePTM-iOS.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FA20E6183036AF0040791D /* libBridgePTM-iOS.a in Frameworks */,
 				E8FA20E418302EF10040791D /* libc++.dylib in Frameworks */,
 				E8FA20DC183025870040791D /* libfreetype.a in Frameworks */,
 				E8FA20DD183025870040791D /* libjbig2dec.a in Frameworks */,
@@ -210,6 +213,7 @@
 		968E1E3F1779A54F0050CEA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8FA20E5183036AF0040791D /* libBridgePTM-iOS.a */,
 				E8FA20E318302EF10040791D /* libc++.dylib */,
 				E8FA20D5183025870040791D /* libfreetype.a */,
 				E8FA20D6183025870040791D /* libjbig2dec.a */,
@@ -503,6 +507,7 @@
 					"$(inherited)",
 					"/Users/jhincapie/Development/BridgePTM/Src/bridgeptm-content/bin/lib",
 					"/Users/jhincapie/Development/BridgePTM/Src/bridgeptm-content/build/debug-ios-armv7-armv7s",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -526,6 +531,7 @@
 					"$(inherited)",
 					"/Users/jhincapie/Development/BridgePTM/Src/bridgeptm-content/bin/lib",
 					"/Users/jhincapie/Development/BridgePTM/Src/bridgeptm-content/build/debug-ios-armv7-armv7s",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

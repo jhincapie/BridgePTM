@@ -9,7 +9,7 @@
 
 #import "MuLibraryController.h"
 
-#import "opencv2/core/core_c.h"
+//#include "BridgePTM-iOS/BridgePTM.h"
 
 @interface MuAppDelegate : NSObject <UIApplicationDelegate, UINavigationControllerDelegate>
 {

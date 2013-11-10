@@ -16,8 +16,9 @@
 	NSString *filename;
 	queue = dispatch_queue_create("com.artifex.mupdf.queue", NULL);
 
-    //testing opencv
-    IplImage* opencvimage = cvCreateImage(cvSize(100,100), IPL_DEPTH_32S, 4);
+    //testing opencv - c interface
+    //IplImage* opencvimage = cvCreateImage(cvSize(100,100), IPL_DEPTH_32S, 4);
+    //cv::Mat image;
     
 	// use at most 128M for resource cache
 	ctx = fz_new_context(NULL, NULL, 128<<20);

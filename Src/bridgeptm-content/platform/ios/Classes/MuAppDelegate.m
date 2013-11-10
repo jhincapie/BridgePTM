@@ -8,6 +8,7 @@
 #include "common.h"
 
 #import "MuAppDelegate.h"
+#import "Mu.h"
 
 @implementation MuAppDelegate
 
@@ -16,9 +17,11 @@
 	NSString *filename;
 	queue = dispatch_queue_create("com.artifex.mupdf.queue", NULL);
 
-    //testing opencv - c interface
-    //IplImage* opencvimage = cvCreateImage(cvSize(100,100), IPL_DEPTH_32S, 4);
-    //cv::Mat image;
+    //testing opencv
+   // IplImage* opencvimage = cvCreateImage(cvSize(100,100), IPL_DEPTH_32S, 4);
+   // cv::Mat image;
+    Mu *mu = [[Mu alloc] init];
+    [mu test];
     
 	// use at most 128M for resource cache
 	ctx = fz_new_context(NULL, NULL, 128<<20);

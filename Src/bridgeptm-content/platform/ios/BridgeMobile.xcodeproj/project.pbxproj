@@ -15,6 +15,7 @@
 		413CB79F182ECBB600373840 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413CB79E182ECBB500373840 /* AssetsLibrary.framework */; };
 		413CB7A1182ECBC600373840 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413CB7A0182ECBC600373840 /* Accelerate.framework */; };
 		413CB7A5182ECBEA00373840 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413CB7A4182ECBEA00373840 /* UIKit.framework */; };
+		413CB7A918303BD200373840 /* Mu.mm in Sources */ = {isa = PBXBuildFile; fileRef = 413CB7A818303BD200373840 /* Mu.mm */; };
 		968E1E431779A54F0050CEA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968E1E421779A54F0050CEA3 /* Foundation.framework */; };
 		968E1E451779A54F0050CEA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968E1E441779A54F0050CEA3 /* CoreGraphics.framework */; };
 		968E1E531779A54F0050CEA3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 968E1E521779A54F0050CEA3 /* Default.png */; };
@@ -80,6 +81,8 @@
 		413CB79E182ECBB500373840 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
 		413CB7A0182ECBC600373840 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		413CB7A4182ECBEA00373840 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		413CB7A718303BD200373840 /* Mu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mu.h; path = Classes/Mu.h; sourceTree = "<group>"; };
+		413CB7A818303BD200373840 /* Mu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mu.mm; path = Classes/Mu.mm; sourceTree = "<group>"; };
 		968E1E3D1779A54F0050CEA3 /* MuPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E1E421779A54F0050CEA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		968E1E441779A54F0050CEA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -293,6 +296,8 @@
 				DABF8CC4180C2C640069CB6D /* MuChoiceFieldController.h */,
 				DABF8CC5180C2C640069CB6D /* MuChoiceFieldController.m */,
 				DABF8CC2180C28E60069CB6D /* MuChoiceFieldController.xib */,
+				413CB7A718303BD200373840 /* Mu.h */,
+				413CB7A818303BD200373840 /* Mu.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				DAA6E56F17F03F96002B1E4E /* MuPageViewReflow.m in Sources */,
 				DA1C68AB17E86A500061F586 /* MuLibraryController.m in Sources */,
 				DA1C68AD17E86A500061F586 /* MuOutlineController.m in Sources */,
+				413CB7A918303BD200373840 /* Mu.mm in Sources */,
 				DA1C68AF17E86A500061F586 /* MuHitView.m in Sources */,
 				DA1C68B117E86A500061F586 /* MuPageViewNormal.m in Sources */,
 				DA1C68B317E86A500061F586 /* MuDocumentController.m in Sources */,

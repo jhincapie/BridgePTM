@@ -9,13 +9,15 @@
 #import "Mu.h"
 
 #import "opencv2/opencv.hpp"
-
+#import "Image.h"
 @implementation Mu
 
 
 -(void)test{
     
      cv::Mat image;
+    
+    Image* test = new Image("pathtoimage.png");
 
 }
 

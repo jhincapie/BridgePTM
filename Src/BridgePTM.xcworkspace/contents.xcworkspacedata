@@ -11,9 +11,6 @@
       location = "group:BridgeVisualTester/BridgeVisualTester.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:BridgePTM/BridgePTM-iOS.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:BridgeMobile/BridgeMobile.xcodeproj">
    </FileRef>
 </Workspace>

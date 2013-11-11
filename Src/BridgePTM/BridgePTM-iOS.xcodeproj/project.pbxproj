@@ -10,9 +10,6 @@
 		E8709E4318146AA800FBB2BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8709E4218146AA800FBB2BC /* Foundation.framework */; };
 		E8709E4818146AA900FBB2BC /* BridgePTM_iOS.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8709E4718146AA900FBB2BC /* BridgePTM_iOS.h */; };
 		E8709E4A18146AA900FBB2BC /* BridgePTM_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = E8709E4918146AA900FBB2BC /* BridgePTM_iOS.m */; };
-		E8709E5118146AA900FBB2BC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8709E5018146AA900FBB2BC /* XCTest.framework */; };
-		E8709E5218146AA900FBB2BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8709E4218146AA800FBB2BC /* Foundation.framework */; };
-		E8709E5718146AA900FBB2BC /* libBridgePTM-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8709E3F18146AA800FBB2BC /* libBridgePTM-iOS.a */; };
 		E873EB5718146F88007F8393 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873EB5618146F88007F8393 /* UIKit.framework */; };
 		E873EB6618147088007F8393 /* BridgeMatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E873EB5818147088007F8393 /* BridgeMatcher.cpp */; };
 		E873EB6718147088007F8393 /* Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E873EB5B18147088007F8393 /* Document.cpp */; };
@@ -22,16 +19,6 @@
 		E873EB6B18147088007F8393 /* Match.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E873EB6418147088007F8393 /* Match.cpp */; };
 		E873EB6D18147169007F8393 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E873EB6C18147169007F8393 /* opencv2.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E8709E5518146AA900FBB2BC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8709E3718146AA800FBB2BC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E8709E3E18146AA800FBB2BC;
-			remoteInfo = "BridgePTM-iOS";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		E8709E3D18146AA800FBB2BC /* CopyFiles */ = {
@@ -52,7 +39,6 @@
 		E8709E4618146AA900FBB2BC /* BridgePTM-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BridgePTM-iOS-Prefix.pch"; sourceTree = "<group>"; };
 		E8709E4718146AA900FBB2BC /* BridgePTM_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgePTM_iOS.h; sourceTree = "<group>"; };
 		E8709E4918146AA900FBB2BC /* BridgePTM_iOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BridgePTM_iOS.m; sourceTree = "<group>"; };
-		E8709E4F18146AA900FBB2BC /* BridgePTM-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BridgePTM-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8709E5018146AA900FBB2BC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E873EB5618146F88007F8393 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E873EB5818147088007F8393 /* BridgeMatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BridgeMatcher.cpp; sourceTree = SOURCE_ROOT; };
@@ -83,16 +69,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E8709E4C18146AA900FBB2BC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E8709E5118146AA900FBB2BC /* XCTest.framework in Frameworks */,
-				E8709E5718146AA900FBB2BC /* libBridgePTM-iOS.a in Frameworks */,
-				E8709E5218146AA900FBB2BC /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				E8709E3F18146AA800FBB2BC /* libBridgePTM-iOS.a */,
-				E8709E4F18146AA900FBB2BC /* BridgePTM-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -177,24 +152,6 @@
 			productReference = E8709E3F18146AA800FBB2BC /* libBridgePTM-iOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E8709E4E18146AA900FBB2BC /* BridgePTM-iOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E8709E6518146AA900FBB2BC /* Build configuration list for PBXNativeTarget "BridgePTM-iOSTests" */;
-			buildPhases = (
-				E8709E4B18146AA900FBB2BC /* Sources */,
-				E8709E4C18146AA900FBB2BC /* Frameworks */,
-				E8709E4D18146AA900FBB2BC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E8709E5618146AA900FBB2BC /* PBXTargetDependency */,
-			);
-			name = "BridgePTM-iOSTests";
-			productName = "BridgePTM-iOSTests";
-			productReference = E8709E4F18146AA900FBB2BC /* BridgePTM-iOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -217,20 +174,9 @@
 			projectRoot = "";
 			targets = (
 				E8709E3E18146AA800FBB2BC /* BridgePTM-iOS */,
-				E8709E4E18146AA900FBB2BC /* BridgePTM-iOSTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		E8709E4D18146AA900FBB2BC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E8709E3B18146AA800FBB2BC /* Sources */ = {
@@ -247,22 +193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E8709E4B18146AA900FBB2BC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E8709E5618146AA900FBB2BC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E8709E3E18146AA800FBB2BC /* BridgePTM-iOS */;
-			targetProxy = E8709E5518146AA900FBB2BC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E8709E6018146AA900FBB2BC /* Debug */ = {
@@ -371,44 +302,6 @@
 			};
 			name = Release;
 		};
-		E8709E6618146AA900FBB2BC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BridgePTM-iOS/BridgePTM-iOS-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "BridgePTM-iOSTests/BridgePTM-iOSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		E8709E6718146AA900FBB2BC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BridgePTM-iOS/BridgePTM-iOS-Prefix.pch";
-				INFOPLIST_FILE = "BridgePTM-iOSTests/BridgePTM-iOSTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -426,15 +319,6 @@
 			buildConfigurations = (
 				E8709E6318146AA900FBB2BC /* Debug */,
 				E8709E6418146AA900FBB2BC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E8709E6518146AA900FBB2BC /* Build configuration list for PBXNativeTarget "BridgePTM-iOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E8709E6618146AA900FBB2BC /* Debug */,
-				E8709E6718146AA900FBB2BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -63,6 +63,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		413CB8331830535700373840 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8709E3F18146AA800FBB2BC;
+			remoteInfo = "BridgePTM-iOS";
+		};
+		413CB8351830535700373840 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8709E4F18146AA900FBB2BC;
+			remoteInfo = "BridgePTM-iOSTests";
+		};
+		413CB8371830535F00373840 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E8709E3E18146AA800FBB2BC;
+			remoteInfo = "BridgePTM-iOS";
+		};
 		963AD8CF17D60084000B0779 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 968E1E351779A54F0050CEA3 /* Project object */;
@@ -83,6 +104,7 @@
 		413CB7A4182ECBEA00373840 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		413CB7A718303BD200373840 /* Mu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mu.h; path = Classes/Mu.h; sourceTree = "<group>"; };
 		413CB7A818303BD200373840 /* Mu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mu.mm; path = Classes/Mu.mm; sourceTree = "<group>"; };
+		413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BridgePTM-iOS.xcodeproj"; path = "../../../BridgePTM/BridgePTM-iOS.xcodeproj"; sourceTree = "<group>"; };
 		968E1E3D1779A54F0050CEA3 /* MuPDF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuPDF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		968E1E421779A54F0050CEA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		968E1E441779A54F0050CEA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,9 +207,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		413CB82F1830535700373840 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				413CB8341830535700373840 /* libBridgePTM-iOS.a */,
+				413CB8361830535700373840 /* BridgePTM-iOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		968E1E341779A54F0050CEA3 = {
 			isa = PBXGroup;
 			children = (
+				413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */,
 				DA1C68C317E8969C0061F586 /* common.m */,
 				DA1C68C217E8968C0061F586 /* common.h */,
 				96C8ED001779A88E00A30AF4 /* main.m */,
@@ -334,6 +366,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				413CB8381830535F00373840 /* PBXTargetDependency */,
 				963AD8D017D60084000B0779 /* PBXTargetDependency */,
 			);
 			name = MuPDF;
@@ -361,6 +394,12 @@
 			mainGroup = 968E1E341779A54F0050CEA3;
 			productRefGroup = 968E1E3E1779A54F0050CEA3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 413CB82F1830535700373840 /* Products */;
+					ProjectRef = 413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				963AD8CB17D5FFD9000B0779 /* Generate */,
@@ -368,6 +407,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		413CB8341830535700373840 /* libBridgePTM-iOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libBridgePTM-iOS.a";
+			remoteRef = 413CB8331830535700373840 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		413CB8361830535700373840 /* BridgePTM-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "BridgePTM-iOSTests.xctest";
+			remoteRef = 413CB8351830535700373840 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		968E1E3B1779A54F0050CEA3 /* Resources */ = {
@@ -446,6 +502,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		413CB8381830535F00373840 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "BridgePTM-iOS";
+			targetProxy = 413CB8371830535F00373840 /* PBXContainerItemProxy */;
+		};
 		963AD8D017D60084000B0779 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 963AD8CB17D5FFD9000B0779 /* Generate */;
@@ -507,6 +568,11 @@
 					../../../../Lib,
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../../BridgePTM/",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -515,6 +581,7 @@
 					"/Users/jhincapie/Development/BridgePTM/Src/bridgeptm-content/build/debug-ios-armv7-armv7s",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug-iphoneos",
 				);
+				OTHER_LDFLAGS = "-lBridgePTM-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -531,6 +598,11 @@
 					../../../../Lib,
 				);
 				GCC_OPTIMIZATION_LEVEL = s;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../../BridgePTM/",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -539,6 +611,7 @@
 					"/Users/jhincapie/Development/BridgePTM/Src/bridgeptm-content/build/debug-ios-armv7-armv7s",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/BridgePTM-bihudnqwksveepctlsnjiiswrhal/Build/Products/Debug-iphoneos",
 				);
+				OTHER_LDFLAGS = "-lBridgePTM-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

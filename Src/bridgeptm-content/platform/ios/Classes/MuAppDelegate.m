@@ -17,9 +17,6 @@
 	NSString *filename;
 	queue = dispatch_queue_create("com.artifex.mupdf.queue", NULL);
 
-    //testing opencv
-   // IplImage* opencvimage = cvCreateImage(cvSize(100,100), IPL_DEPTH_32S, 4);
-   // cv::Mat image;
     Mu *mu = [[Mu alloc] init];
     [mu test];
     
@@ -31,8 +28,8 @@
 	library = [[MuLibraryController alloc] initWithStyle: UITableViewStylePlain];
 
 	navigator = [[UINavigationController alloc] initWithRootViewController: library];
-	[[navigator navigationBar] setTranslucent: YES];
-	[[navigator toolbar] setTranslucent: YES];
+	[[navigator navigationBar] setTranslucent: NO];
+	[[navigator toolbar] setTranslucent: NO];
 	[navigator setDelegate: self];
 
 	window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];

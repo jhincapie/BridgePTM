@@ -10,15 +10,14 @@
 
 #import "opencv2/opencv.hpp"
 #import "Image.h"
+
 @implementation Mu
 
-
--(void)test{
-    
-     cv::Mat image;
-    
+-(void)test
+{
+    cv::Mat image;
+    image.resize(10);
     Image* test = new Image("pathtoimage.png");
-
 }
 
 @end

@@ -25,12 +25,11 @@ static void showAlert(NSString *msg, NSString *filename)
 
 - (void) viewWillAppear: (BOOL)animated
 {
-<<<<<<< HEAD
 
     [self.navigationController setNavigationBarHidden:YES];
-=======
+
 	[self setTitle: @"PDF documents"];
->>>>>>> aeb158f416a40bcb183fa2c7a7238147e4d64e50
+
 	[self reload];
 	printf("library viewWillAppear (starting reload timer)\n");
 	timer = [NSTimer timerWithTimeInterval: 3
@@ -121,11 +120,7 @@ static void showAlert(NSString *msg, NSString *filename)
 - (void) onTapDelete: (UIControl*)sender
 {
 	int row = [sender tag];
-<<<<<<< HEAD
-=======
-    printf("row to delete: %d\n", row);
-    printf("rows: %d\n", [files count]);
->>>>>>> aeb158f416a40bcb183fa2c7a7238147e4d64e50
+
 	NSString *title = [NSString stringWithFormat: @"Delete %@?", [files objectAtIndex: row]];
 	UIActionSheet *sheet = [[UIActionSheet alloc]
 							initWithTitle: title

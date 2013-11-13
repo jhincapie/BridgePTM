@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41D1807418343B0A00251DB8 /* PMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D1807218343B0A00251DB8 /* PMHomeViewController.m */; };
+		41D1807518343B0A00251DB8 /* PMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D1807318343B0A00251DB8 /* PMHomeViewController.xib */; };
 		E8BBE9FC183155FD00AF049A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968E1E421779A54F0050CEA3 /* Foundation.framework */; };
 		E8BBE9FD183155FD00AF049A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968E1E441779A54F0050CEA3 /* CoreGraphics.framework */; };
 		E8BBE9FE183155FD00AF049A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413CB7A4182ECBEA00373840 /* UIKit.framework */; };
@@ -98,6 +100,9 @@
 		413CB7A718303BD200373840 /* Mu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mu.h; path = Classes/Mu.h; sourceTree = "<group>"; };
 		413CB7A818303BD200373840 /* Mu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mu.mm; path = Classes/Mu.mm; sourceTree = "<group>"; };
 		413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BridgePTM-iOS.xcodeproj"; path = "../../../BridgePTM/BridgePTM-iOS.xcodeproj"; sourceTree = "<group>"; };
+		41D1807118343B0A00251DB8 /* PMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMHomeViewController.h; sourceTree = "<group>"; };
+		41D1807218343B0A00251DB8 /* PMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMHomeViewController.m; sourceTree = "<group>"; };
+		41D1807318343B0A00251DB8 /* PMHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMHomeViewController.xib; sourceTree = "<group>"; };
 		968E1E421779A54F0050CEA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		968E1E441779A54F0050CEA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		968E1E481779A54F0050CEA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -221,6 +226,9 @@
 		41D180701834345300251DB8 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				41D1807118343B0A00251DB8 /* PMHomeViewController.h */,
+				41D1807218343B0A00251DB8 /* PMHomeViewController.m */,
+				41D1807318343B0A00251DB8 /* PMHomeViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -448,6 +456,7 @@
 				E8BBEA4218315A3900AF049A /* Icon.png in Resources */,
 				E8BBEA4318315A3900AF049A /* Icon@2x.png in Resources */,
 				E8BBEA4418315A3900AF049A /* iTunesArtwork.png in Resources */,
+				41D1807518343B0A00251DB8 /* PMHomeViewController.xib in Resources */,
 				E8BBEA4518315A3900AF049A /* x_alt_blue.png in Resources */,
 				E8BBEA4618315A3900AF049A /* x_alt_blue@2x.png in Resources */,
 				E8BBEA4718315A3900AF049A /* Default.png in Resources */,
@@ -496,6 +505,7 @@
 				E8BBEA5118315A6B00AF049A /* MuAppDelegate.m in Sources */,
 				E8BBEA5218315A6B00AF049A /* MuDocRef.m in Sources */,
 				E8BBEA5318315A6B00AF049A /* MuPageViewReflow.m in Sources */,
+				41D1807418343B0A00251DB8 /* PMHomeViewController.m in Sources */,
 				E8BBEA5418315A6B00AF049A /* MuTapResult.m in Sources */,
 				E8BBEA5518315A6B00AF049A /* MuTextFieldController.m in Sources */,
 				E8BBEA5618315A6B00AF049A /* MuChoiceFieldController.m in Sources */,

@@ -25,8 +25,12 @@ static void showAlert(NSString *msg, NSString *filename)
 
 - (void) viewWillAppear: (BOOL)animated
 {
+<<<<<<< HEAD
 
     [self.navigationController setNavigationBarHidden:YES];
+=======
+	[self setTitle: @"PDF documents"];
+>>>>>>> aeb158f416a40bcb183fa2c7a7238147e4d64e50
 	[self reload];
 	printf("library viewWillAppear (starting reload timer)\n");
 	timer = [NSTimer timerWithTimeInterval: 3
@@ -46,7 +50,8 @@ static void showAlert(NSString *msg, NSString *filename)
 
 - (void) reload
 {
-	if (files) {
+	if (files)
+    {
 		[files release];
 		files = nil;
 	}
@@ -57,7 +62,8 @@ static void showAlert(NSString *msg, NSString *filename)
 	NSDirectoryEnumerator *direnum = [fileman enumeratorAtPath:docdir];
 	NSString *file;
 	BOOL isdir;
-	while (file = [direnum nextObject]) {
+	while (file = [direnum nextObject])
+    {
 		NSString *filepath = [docdir stringByAppendingPathComponent:file];
 		NSLog(@"file %@\n", file);
 		if ([fileman fileExistsAtPath:filepath isDirectory:&isdir] && !isdir) {
@@ -66,7 +72,6 @@ static void showAlert(NSString *msg, NSString *filename)
 	}
 
 	files = outfiles;
-
 	[[self tableView] reloadData];
 }
 
@@ -116,6 +121,11 @@ static void showAlert(NSString *msg, NSString *filename)
 - (void) onTapDelete: (UIControl*)sender
 {
 	int row = [sender tag];
+<<<<<<< HEAD
+=======
+    printf("row to delete: %d\n", row);
+    printf("rows: %d\n", [files count]);
+>>>>>>> aeb158f416a40bcb183fa2c7a7238147e4d64e50
 	NSString *title = [NSString stringWithFormat: @"Delete %@?", [files objectAtIndex: row]];
 	UIActionSheet *sheet = [[UIActionSheet alloc]
 							initWithTitle: title
@@ -210,7 +220,8 @@ static void showAlert(NSString *msg, NSString *filename)
 - (void) onPasswordOkay
 {
 	MuDocumentController *document = [[MuDocumentController alloc] initWithFilename: _filename document: doc];
-	if (document) {
+	if (document)
+    {
 		[self setTitle: @"Library"];
 		[[self navigationController] pushViewController: document animated: YES];
 		[document release];

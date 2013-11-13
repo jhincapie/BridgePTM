@@ -28,8 +28,6 @@
 	library = [[MuLibraryController alloc] initWithStyle: UITableViewStylePlain];
 
 	navigator = [[UINavigationController alloc] initWithRootViewController: library];
-	[[navigator navigationBar] setTranslucent: NO];
-	[[navigator toolbar] setTranslucent: NO];
 	[navigator setDelegate: self];
 
 	window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];

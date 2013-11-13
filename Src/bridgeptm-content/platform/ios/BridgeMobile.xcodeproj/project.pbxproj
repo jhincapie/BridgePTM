@@ -70,13 +70,6 @@
 			remoteGlobalIDString = E8709E3F18146AA800FBB2BC;
 			remoteInfo = "BridgePTM-iOS";
 		};
-		413CB8351830535700373840 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E8709E4F18146AA900FBB2BC;
-			remoteInfo = "BridgePTM-iOSTests";
-		};
 		E8BBEA5818315A9300AF049A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 968E1E351779A54F0050CEA3 /* Project object */;
@@ -212,9 +205,24 @@
 			isa = PBXGroup;
 			children = (
 				413CB8341830535700373840 /* libBridgePTM-iOS.a */,
-				413CB8361830535700373840 /* BridgePTM-iOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		415071881832DC9A00F6D7B7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				41D180701834345300251DB8 /* Home */,
+			);
+			name = Controllers;
+			path = Classes/Controllers;
+			sourceTree = "<group>";
+		};
+		41D180701834345300251DB8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		968E1E341779A54F0050CEA3 = {
@@ -304,6 +312,7 @@
 		DA1C689717E85E4A0061F586 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				415071881832DC9A00F6D7B7 /* Controllers */,
 				DA1C689817E85E8E0061F586 /* MuLibraryController.h */,
 				DA1C689917E85E8E0061F586 /* MuLibraryController.m */,
 				DA1C689C17E861020061F586 /* MuOutlineController.h */,
@@ -416,13 +425,6 @@
 			fileType = archive.ar;
 			path = "libBridgePTM-iOS.a";
 			remoteRef = 413CB8331830535700373840 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		413CB8361830535700373840 /* BridgePTM-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "BridgePTM-iOSTests.xctest";
-			remoteRef = 413CB8351830535700373840 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		415CCA551839201F00DC9B68 /* PMAppContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CCA541839201F00DC9B68 /* PMAppContext.m */; };
+		415CCA5D183936D600DC9B68 /* PMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 415CCA5C183936D600DC9B68 /* PMViewController.m */; };
 		41D1807418343B0A00251DB8 /* PMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D1807218343B0A00251DB8 /* PMHomeViewController.m */; };
 		41D1807518343B0A00251DB8 /* PMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D1807318343B0A00251DB8 /* PMHomeViewController.xib */; };
 		41D1807A183445DE00251DB8 /* PMDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D18078183445DE00251DB8 /* PMDocumentsViewController.m */; };
@@ -104,6 +106,11 @@
 		413CB7A718303BD200373840 /* Mu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mu.h; path = Classes/Mu.h; sourceTree = "<group>"; };
 		413CB7A818303BD200373840 /* Mu.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Mu.mm; path = Classes/Mu.mm; sourceTree = "<group>"; };
 		413CB82E1830535700373840 /* BridgePTM-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "BridgePTM-iOS.xcodeproj"; path = "../../../BridgePTM/BridgePTM-iOS.xcodeproj"; sourceTree = "<group>"; };
+		415CCA531839201F00DC9B68 /* PMAppContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMAppContext.h; sourceTree = "<group>"; };
+		415CCA541839201F00DC9B68 /* PMAppContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMAppContext.m; sourceTree = "<group>"; };
+		415CCA571839279E00DC9B68 /* PMBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMBlocks.h; sourceTree = "<group>"; };
+		415CCA5B183936D600DC9B68 /* PMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMViewController.h; sourceTree = "<group>"; };
+		415CCA5C183936D600DC9B68 /* PMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMViewController.m; sourceTree = "<group>"; };
 		41D1807118343B0A00251DB8 /* PMHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMHomeViewController.h; sourceTree = "<group>"; };
 		41D1807218343B0A00251DB8 /* PMHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMHomeViewController.m; sourceTree = "<group>"; };
 		41D1807318343B0A00251DB8 /* PMHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMHomeViewController.xib; sourceTree = "<group>"; };
@@ -227,11 +234,32 @@
 		415071881832DC9A00F6D7B7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				415CCA5B183936D600DC9B68 /* PMViewController.h */,
+				415CCA5C183936D600DC9B68 /* PMViewController.m */,
 				41D180761834452E00251DB8 /* Documents */,
 				41D180701834345300251DB8 /* Home */,
 			);
 			name = Controllers;
 			path = Classes/Controllers;
+			sourceTree = "<group>";
+		};
+		415CCA5218391FC900DC9B68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				415CCA531839201F00DC9B68 /* PMAppContext.h */,
+				415CCA541839201F00DC9B68 /* PMAppContext.m */,
+			);
+			name = Model;
+			path = Classes/Model;
+			sourceTree = "<group>";
+		};
+		415CCA56183926C800DC9B68 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				415CCA571839279E00DC9B68 /* PMBlocks.h */,
+			);
+			name = Utils;
+			path = Classes/Utils;
 			sourceTree = "<group>";
 		};
 		41D180701834345300251DB8 /* Home */ = {
@@ -344,6 +372,8 @@
 		DA1C689717E85E4A0061F586 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				415CCA56183926C800DC9B68 /* Utils */,
+				415CCA5218391FC900DC9B68 /* Model */,
 				415071881832DC9A00F6D7B7 /* Controllers */,
 				DA1C689817E85E8E0061F586 /* MuLibraryController.h */,
 				DA1C689917E85E8E0061F586 /* MuLibraryController.m */,
@@ -522,6 +552,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8BBEA4A18315A6B00AF049A /* common.m in Sources */,
+				415CCA5D183936D600DC9B68 /* PMViewController.m in Sources */,
+				415CCA551839201F00DC9B68 /* PMAppContext.m in Sources */,
 				E8BBEA4B18315A6B00AF049A /* main.m in Sources */,
 				41D180821834494B00251DB8 /* PMDocumentCell.m in Sources */,
 				E8BBEA4C18315A6B00AF049A /* MuLibraryController.m in Sources */,
@@ -615,7 +647,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = ../../../../Lib;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -637,7 +671,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = ../../../../Lib;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

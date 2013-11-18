@@ -44,16 +44,11 @@
 	self = [super init];
 	if (self)
 	{
-		url = [aString retain];
+		url = aString;
 	}
 	return self;
 }
 
--(void) dealloc
-{
-	[url release];
-	[super dealloc];
-}
 
 -(void)	switchCaseInternal:(void (^)(MuTapResultInternalLink *))internalLinkBlock caseExternal:(void (^)(MuTapResultExternalLink *))externalLinkBlock caseRemote:(void (^)(MuTapResultRemoteLink *))remoteLinkBlock caseWidget:(void (^)(MuTapResultWidget *))widgetBlock
 {
@@ -72,18 +67,13 @@
 	self = [super init];
 	if (self)
 	{
-		fileSpec = [aString retain];
+		fileSpec = aString;
 		pageNumber = aNumber;
 		newWindow = aBool;
 	}
 	return  self;
 }
 
--(void) dealloc
-{
-	[fileSpec release];
-	[super dealloc];
-}
 
 -(void) switchCaseInternal:(void (^)(MuTapResultInternalLink *))internalLinkBlock caseExternal:(void (^)(MuTapResultExternalLink *))externalLinkBlock caseRemote:(void (^)(MuTapResultRemoteLink *))remoteLinkBlock caseWidget:(void (^)(MuTapResultWidget *))widgetBlock
 {

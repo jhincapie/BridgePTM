@@ -2,14 +2,13 @@
 //  PMDocumentsViewController.h
 //  BridgeMobile
 //
-//  Created by Andrés Castaño on 13/11/2013.
-//  Copyright (c) 2013 Artifex Software, Inc. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
+#import "PMViewController.h"
+#import "PMAppContext.h"
 
-@interface PMDocumentsViewController : UIViewController
+@interface PMDocumentsViewController : PMViewController
 
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

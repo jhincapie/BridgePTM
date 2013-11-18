@@ -62,7 +62,7 @@ NSString *textAsHtml(fz_document *doc, int pageNum)
 		fz_close_output(out);
 		out = NULL;
 
-		str = [[[NSString alloc] initWithBytes:buf->data length:buf->len encoding:NSUTF8StringEncoding] autorelease];
+		str = [[NSString alloc] initWithBytes:buf->data length:buf->len encoding:NSUTF8StringEncoding];
 	}
 	fz_always(ctx)
 	{
@@ -92,7 +92,7 @@ NSString *textAsHtml(fz_document *doc, int pageNum)
 		self.scalesPageToFit = NO;
 		[self setDelegate:self];
 		dispatch_async(queue, ^{
-			__block NSString *cont = [textAsHtml(aDoc->doc, aNumber) retain];
+			__weak NSString *cont = textAsHtml(aDoc->doc, aNumber);
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self loadHTMLString:cont baseURL:nil];
 			});
@@ -109,7 +109,6 @@ NSString *textAsHtml(fz_document *doc, int pageNum)
 -(void) dealloc
 {
 	[self setDelegate:nil];
-	[super dealloc];
 }
 
 -(int) number

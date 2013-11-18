@@ -29,7 +29,6 @@
 	dispatch_async(queue, ^{
 		fz_close_document(block_doc);
 	});
-	[super dealloc];
 }
 
 @end

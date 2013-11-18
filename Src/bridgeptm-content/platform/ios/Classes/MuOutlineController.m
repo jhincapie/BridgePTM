@@ -6,6 +6,7 @@
 //
 
 #import "MuOutlineController.h"
+#import "MuDocumentController.h"
 
 @implementation MuOutlineController
 
@@ -15,19 +16,13 @@
 	if (self) {
 		[self setTitle: @"Table of Contents"];
 		target = aTarget; // only keep a weak reference, to avoid retain cycles
-		titles = [aTitles retain];
-		pages = [aPages retain];
+		titles = aTitles;
+		pages = aPages;
 		[[self tableView] setSeparatorStyle: UITableViewCellSeparatorStyleNone];
 	}
 	return self;
 }
 
-- (void) dealloc
-{
-	[titles release];
-	[pages release];
-	[super dealloc];
-}
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)o
 {
@@ -55,7 +50,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellid];
 	if (!cell)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleValue1 reuseIdentifier: cellid] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleValue1 reuseIdentifier: cellid];
 		[[cell textLabel] setFont: [UIFont systemFontOfSize: 16]];
 		[[cell detailTextLabel] setFont: [UIFont systemFontOfSize: 16]];
 	}
@@ -69,7 +64,7 @@
 - (void) tableView: (UITableView*)tableView didSelectRowAtIndexPath: (NSIndexPath*)indexPath
 {
 	NSNumber *page = [pages objectAtIndex: [indexPath row]];
-	[target gotoPage: [page intValue] animated: NO];
+    [(MuDocumentController*)target gotoPage: [page intValue] animated: NO];
 	[[self navigationController] popViewControllerAnimated: YES];
 }
 

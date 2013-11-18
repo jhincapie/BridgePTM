@@ -68,7 +68,7 @@ static NSArray *enumerateWidgetRects(fz_document *doc, fz_page *page, CGSize pag
 			(rect.y1-rect.y0) * scale.height)]];
 	}
 
-	return [arr retain];
+	return arr;
 }
 
 static int setFocussedWidgetText(fz_document *doc, fz_page *page, const char *text)
@@ -369,7 +369,7 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 {
 	self = [super initWithFrame: frame];
 	if (self) {
-		docRef = [aDoc retain];
+		docRef = aDoc;
 		doc = docRef->doc;
 		number = aNumber;
 		cancel = NO;
@@ -402,8 +402,8 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 	// our last owner, and releases us on completion.
 	// Send the dealloc back to the main thread so we don't mess up UIKit.
 	if (dispatch_get_current_queue() != dispatch_get_main_queue()) {
-		__block id block_self = self; // don't auto-retain self!
-		dispatch_async(dispatch_get_main_queue(), ^{ [block_self dealloc]; });
+		__weak id block_self = self; // don't auto-retain self!
+		dispatch_async(dispatch_get_main_queue(), ^{  });
 	} else {
 		__block fz_display_list *block_page_list = page_list;
 		__block fz_display_list *block_annot_list = annot_list;
@@ -422,14 +422,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 			CGDataProviderRelease(block_tileData);
 			CGDataProviderRelease(block_imageData);
 		});
-		[docRef release];
-		[widgetRects release];
-		[linkView release];
-		[hitView release];
-		[tileView release];
-		[loadingView release];
-		[imageView release];
-		[super dealloc];
 	}
 }
 
@@ -462,7 +454,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 - (void) hideLinks
 {
 	[linkView removeFromSuperview];
-	[linkView release];
 	linkView = nil;
 }
 
@@ -470,7 +461,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 {
 	if (hitView) {
 		[hitView removeFromSuperview];
-		[hitView release];
 		hitView = nil;
 	}
 	hitView = [[MuHitView alloc] initWithSearchResults: count forDocument: doc];
@@ -485,7 +475,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 {
 	if (hitView) {
 		[hitView removeFromSuperview];
-		[hitView release];
 		hitView = nil;
 	}
 }
@@ -497,7 +486,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 	tileScale = 1;
 	if (tileView) {
 		[tileView removeFromSuperview];
-		[tileView release];
 		tileView = nil;
 	}
 
@@ -529,7 +517,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 			widgetRects = enumerateWidgetRects(doc, page, pageSize, self.bounds.size);
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[self displayImage: image];
-				[image release];
 			});
 		} else {
 			printf("cancel page %d\n", number);
@@ -541,7 +528,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 {
 	if (loadingView) {
 		[loadingView removeFromSuperview];
-		[loadingView release];
 		loadingView = nil;
 	}
 
@@ -683,7 +669,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 			if (isValid) {
 				if (tileView) {
 					[tileView removeFromSuperview];
-					[tileView release];
 					tileView = nil;
 				}
 
@@ -697,7 +682,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 			} else {
 				printf("discard tile\n");
 			}
-			[image release];
 		});
 	});
 }
@@ -718,7 +702,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 	tileScale = 1;
 	if (tileView) {
 		[tileView removeFromSuperview];
-		[tileView release];
 		tileView = nil;
 	}
 }
@@ -749,7 +732,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 			BOOL isValid = CGRectEqualToRect(tframe, tileFrame) && tscale == tileScale;
 			if (isValid)
 				[tileView setImage:timage];
-			[timage release];
 		});
 	}
 	CGSize fscale = fitPageToScreen(pageSize, self.bounds.size);
@@ -759,7 +741,6 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 	UIImage *image = newImageWithPixmap(image_pix, imageData);
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[imageView setImage:image];
-		[image release];
 	});
 }
 
@@ -847,10 +828,9 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 				case PDF_WIDGET_TYPE_TEXT:
 				{
 					text = pdf_text_widget_text(idoc, focus);
-					NSString *stext = [[NSString stringWithUTF8String:text?text:""] retain];
+					NSString *stext = [NSString stringWithUTF8String:text?text:""];
 					dispatch_async(dispatch_get_main_queue(), ^{
 						[self invokeTextDialog:stext];
-						[stext release];
 					});
 					break;
 				}
@@ -861,12 +841,11 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 					int nopts = pdf_choice_widget_options(idoc, focus, NULL);
 					opts = fz_malloc(ctx, nopts * sizeof(*opts));
 					(void)pdf_choice_widget_options(idoc, focus, opts);
-					NSMutableArray *arr = [[NSMutableArray arrayWithCapacity:nopts] retain];
+					NSMutableArray *arr = [NSMutableArray arrayWithCapacity:nopts];
 					for (int i = 0; i < nopts; i++)
 						[arr addObject:[NSString stringWithUTF8String:opts[i]]];
 					dispatch_async(dispatch_get_main_queue(), ^{
 						[self invokeChoiceDialog:arr];
-						[arr release];
 					});
 					break;
 				}
@@ -910,7 +889,7 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 				if (changed)
 					[self updatePageAndTileWithTileFrame:tframe tileScale:tscale viewFrame:vframe];
 			});
-			return [[[MuTapResultWidget alloc] init] autorelease];
+			return [[MuTapResultWidget alloc] init];
 		}
 	}
 	CGPoint lpt = [self convertPoint:pt toView:linkView];

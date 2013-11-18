@@ -18,7 +18,6 @@ static void showAlert(NSString *msg, NSString *filename)
 		cancelButtonTitle: @"Okay"
 		otherButtonTitles: nil];
 	[alert show];
-	[alert release];
 }
 
 @implementation MuLibraryController
@@ -51,7 +50,6 @@ static void showAlert(NSString *msg, NSString *filename)
 {
 	if (files)
     {
-		[files release];
 		files = nil;
 	}
 
@@ -74,12 +72,6 @@ static void showAlert(NSString *msg, NSString *filename)
 	[[self tableView] reloadData];
 }
 
-- (void) dealloc
-{
-	[doc release];
-	[files release];
-	[super dealloc];
-}
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation)o
 {
@@ -130,7 +122,6 @@ static void showAlert(NSString *msg, NSString *filename)
 							otherButtonTitles: nil];
 	[sheet setTag: row];
 	[sheet showInView: [self tableView]];
-	[sheet release];
 }
 
 - (UITableViewCell*) tableView: (UITableView*)tableView cellForRowAtIndexPath: (NSIndexPath*)indexPath
@@ -138,7 +129,7 @@ static void showAlert(NSString *msg, NSString *filename)
 	static NSString *cellid = @"MuCellIdent";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellid];
 	if (!cell)
-		cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: cellid] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: cellid];
 	int row = [indexPath row];
 	[[cell textLabel] setText: [files objectAtIndex: row]];
 	[[cell textLabel] setFont: [UIFont systemFontOfSize: 20]];
@@ -171,8 +162,7 @@ static void showAlert(NSString *msg, NSString *filename)
 
 	printf("open document '%s'\n", filename);
 
-	_filename = [nsfilename retain];
-	[doc release];
+	_filename = nsfilename;
 	doc = [[MuDocRef alloc] initWithFilename:filename];
 	if (!doc) {
 		showAlert(@"Cannot open document", nsfilename);
@@ -195,7 +185,6 @@ static void showAlert(NSString *msg, NSString *filename)
 		otherButtonTitles: @"Done", nil];
 	[passwordAlertView setAlertViewStyle: UIAlertViewStyleSecureTextInput];
 	[passwordAlertView show];
-	[passwordAlertView release];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -219,14 +208,11 @@ static void showAlert(NSString *msg, NSString *filename)
     {
 		[self setTitle: @"Library"];
 		[[self navigationController] pushViewController: document animated: YES];
-		[document release];
 	}
-	[_filename release];
 }
 
 - (void) onPasswordCancel
 {
-	[_filename release];
 	printf("close document (password cancel)\n");
 }
 

@@ -2,17 +2,17 @@
 
 int main(int argc, char *argv[])
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	int retVal;
+	@autoreleasepool {
+		int retVal;
 
-	@try {
-		retVal = UIApplicationMain(argc, argv, nil, @"MuAppDelegate");
-	}
-	@catch (NSException* exception) {
-		NSLog(@"Uncaught exception %@", exception);
-		NSLog(@"Stack trace: %@", [exception callStackSymbols]);
-	}
+		@try {
+			retVal = UIApplicationMain(argc, argv, nil, @"MuAppDelegate");
+		}
+		@catch (NSException* exception) {
+			NSLog(@"Uncaught exception %@", exception);
+			NSLog(@"Stack trace: %@", [exception callStackSymbols]);
+		}
 
-	[pool release];
-	return retVal;
+		return retVal;
+	}
 }

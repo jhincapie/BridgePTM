@@ -16,7 +16,7 @@
 	if (self) {
 		[self setOpaque: NO];
 
-		color = [[UIColor colorWithRed: 0x25/255.0 green: 0x72/255.0 blue: 0xAC/255.0 alpha: 0.5] retain];
+		color = [UIColor colorWithRed: 0x25/255.0 green: 0x72/255.0 blue: 0xAC/255.0 alpha: 0.5];
 
 		pageSize = CGSizeMake(100,100);
 
@@ -38,7 +38,7 @@
 	if (self) {
 		[self setOpaque: NO];
 
-		color = [[UIColor colorWithRed: 0xAC/255.0 green: 0x72/255.0 blue: 0x25/255.0 alpha: 0.5] retain];
+		color = [UIColor colorWithRed: 0xAC/255.0 green: 0x72/255.0 blue: 0x25/255.0 alpha: 0.5];
 
 		pageSize = CGSizeMake(100,100);
 
@@ -78,12 +78,12 @@
 		{
 			if (linkPage[i] >= 0)
 			{
-				return [[[MuTapResultInternalLink alloc] initWithPageNumber:linkPage[i]] autorelease];
+				return [[MuTapResultInternalLink alloc] initWithPageNumber:linkPage[i]];
 			}
 			if (linkUrl[i])
 			{
 				NSString *url = [NSString stringWithUTF8String:linkUrl[i]];
-				return [[[MuTapResultExternalLink alloc] initWithUrl:url] autorelease];
+				return [[MuTapResultExternalLink alloc] initWithUrl:url];
 			}
 		}
 	}
@@ -110,10 +110,8 @@
 - (void) dealloc
 {
 	int i;
-	[color release];
 	for (i = 0; i < hitCount; i++)
 		free(linkUrl[i]);
-	[super dealloc];
 }
 
 @end

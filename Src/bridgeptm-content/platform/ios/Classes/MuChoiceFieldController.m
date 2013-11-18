@@ -18,8 +18,8 @@
 	self = [super initWithNibName:@"MuChoiceFieldController" bundle:nil];
 	if (self)
 	{
-		okayBlock = Block_copy(block);
-		choices = [_choices retain];
+		okayBlock = [block copy];
+		choices = _choices;
 		selected = -1;
 	}
 	return self;
@@ -39,13 +39,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-	[okayBlock release];
-	[choices release];
-    [_picker release];
-    [super dealloc];
-}
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {

@@ -9,6 +9,14 @@
 
 #import "MuAppDelegate.h"
 #import "Mu.h"
+#import "PMHomeViewController.h"
+#import "PMAppContext.h"
+
+@interface MuAppDelegate ()
+
+@property (nonatomic, strong) PMHomeViewController *homeViewController;
+
+@end
 
 @implementation MuAppDelegate
 
@@ -26,8 +34,13 @@
 	screenScale = [[UIScreen mainScreen] scale];
 
 	library = [[MuLibraryController alloc] initWithStyle: UITableViewStylePlain];
+    
+    PMAppContext *context = [[PMAppContext alloc] init];
+    
+    //self.homeViewController = [[PMHomeViewController alloc] initWithContext:context];
+    
 
-	navigator = [[UINavigationController alloc] initWithRootViewController: library];
+	navigator = [[UINavigationController alloc] initWithRootViewController:library];
 	[navigator setDelegate: self];
 
 	window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
@@ -89,10 +102,6 @@
 - (void) dealloc
 {
 	dispatch_release(queue);
-	[library release];
-	[navigator release];
-	[window release];
-	[super dealloc];
 }
 
 @end

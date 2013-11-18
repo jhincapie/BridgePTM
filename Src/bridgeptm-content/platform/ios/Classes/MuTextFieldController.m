@@ -17,8 +17,8 @@
 	self = [super initWithNibName:@"MuTextFieldController" bundle:nil];
 	if (self)
 	{
-		okayBlock = Block_copy(block);
-		initialText = [text retain];
+		okayBlock = [block copy];
+		initialText = text;
 	}
 	return self;
 }
@@ -36,13 +36,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc
-{
-	[okayBlock release];
-	[initialText release];
-    [_textView release];
-    [super dealloc];
-}
 
 - (IBAction)okayTapped:(id)sender
 {

@@ -13,7 +13,7 @@
 	NSArray *choices;
 	int selected;
 }
-@property (retain, nonatomic) IBOutlet UIPickerView *picker;
+@property (strong, nonatomic) IBOutlet UIPickerView *picker;
 - (id)initWithChoices:(NSArray *)choices okayAction:(void (^)(NSArray *))block;
 - (IBAction)okayTapped:(id)sender;
 - (IBAction)cancelTapped:(id)sender;

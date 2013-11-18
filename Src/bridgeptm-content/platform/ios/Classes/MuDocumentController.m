@@ -52,8 +52,8 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	if (!self)
 		return nil;
 
-	key = [filename retain];
-	docRef = [aDoc retain];
+	key = filename;
+	docRef = aDoc;
 	doc = docRef->doc;
 
 	dispatch_sync(queue, ^{});
@@ -65,8 +65,6 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 		flattenOutline(titles, pages, root, 0);
 		if ([titles count])
 			outline = [[MuOutlineController alloc] initWithTarget: self titles: titles pages: pages];
-		[titles release];
-		[pages release];
 		fz_free_outline(ctx, root);
 	}
 
@@ -100,13 +98,11 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	UITapGestureRecognizer *tapRecog = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(onTap:)];
 	tapRecog.delegate = self;
 	[canvas addGestureRecognizer: tapRecog];
-	[tapRecog release];
 	// In reflow mode, we need to track pinch gestures on the canvas and pass
 	// the scale changes to the subviews.
 	UIPinchGestureRecognizer *pinchRecog = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(onPinch:)];
 	pinchRecog.delegate = self;
 	[canvas addGestureRecognizer:pinchRecog];
-	[pinchRecog release];
 
 	scale = 1.0;
 
@@ -159,27 +155,23 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	// TODO: add activityindicator to search bar
 
 	[self setView: view];
-	[view release];
 }
 
 - (void) dealloc
 {
-	[docRef release]; docRef = nil; doc = NULL;
-	[indicator release]; indicator = nil;
-	[slider release]; slider = nil;
-	[sliderWrapper release]; sliderWrapper = nil;
-	[reflowButton release]; reflowButton = nil;
-	[searchBar release]; searchBar = nil;
-	[outlineButton release]; outlineButton = nil;
-	[searchButton release]; searchButton = nil;
-	[cancelButton release]; cancelButton = nil;
-	[prevButton release]; prevButton = nil;
-	[nextButton release]; nextButton = nil;
-	[canvas release]; canvas = nil;
+	 docRef = nil; doc = NULL;
+	 indicator = nil;
+	 slider = nil;
+	 sliderWrapper = nil;
+	 reflowButton = nil;
+	 searchBar = nil;
+	 outlineButton = nil;
+	 searchButton = nil;
+	 cancelButton = nil;
+	 prevButton = nil;
+	 nextButton = nil;
+	 canvas = nil;
 
-	[outline release];
-	[key release];
-	[super dealloc];
 }
 
 - (void) viewWillAppear: (BOOL)animated
@@ -405,7 +397,6 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 				cancelButtonTitle: @"Close"
 				otherButtonTitles: nil];
 			[alert show];
-			[alert release];
 			free(needle);
 		});
 	});
@@ -551,7 +542,7 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	}
 	for (UIView<MuPageView> *view in invisiblePages)
 		[view removeFromSuperview];
-	[invisiblePages release]; // don't bother recycling them...
+	 // don't bother recycling them...
 
 	[self createPageView: current];
 	[self createPageView: current - 1];
@@ -579,7 +570,6 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 		[canvas addSubview: view];
 		if (showLinks)
 			[view showLinks];
-		[view release];
 	}
 }
 
@@ -627,7 +617,6 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	MuTextFieldController *tf = [[MuTextFieldController alloc] initWithText:aString okayAction:block];
 	tf.modalPresentationStyle = UIModalPresentationFormSheet;
 	[self presentViewController:tf animated:YES completion:nil];
-	[tf release];
 }
 
 - (void) invokeChoiceDialog:(NSArray *)anArray okayAction:(void (^)(NSArray *))block
@@ -635,7 +624,6 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	MuChoiceFieldController *cf = [[MuChoiceFieldController alloc] initWithChoices:anArray okayAction:block];
 	cf.modalPresentationStyle = UIModalPresentationFormSheet;
 	[self presentViewController:cf animated:YES completion:nil];
-	[cf release];
 }
 
 - (void) onGotoPageFinished

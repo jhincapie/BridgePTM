@@ -12,7 +12,7 @@
 	void (^okayBlock)(NSString *);
 	NSString *initialText;
 }
-@property (retain, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
 - (id)initWithText:(NSString *)text okayAction:(void (^)(NSString *))block;
 - (IBAction)okayTapped:(id)sender;
 - (IBAction)cancelTapped:(id)sender;

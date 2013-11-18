@@ -2,16 +2,13 @@
 //  PMDocumentsViewController.m
 //  BridgeMobile
 //
-//  Created by Andrés Castaño on 13/11/2013.
-//  Copyright (c) 2013 Artifex Software, Inc. All rights reserved.
-//
 
 #import "PMDocumentsViewController.h"
 #import "PMDocumentCell.h"
 
 @interface PMDocumentsViewController ()
 
-@property (nonatomic, retain) NSArray *documents;
+@property (nonatomic, strong) NSArray *documents;
 
 @end
 
@@ -23,6 +20,14 @@
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"", nil);
+    
+    [self.context documentList:^(NSArray *results, NSError *error) {
+       
+        self.documents = results;
+        
+        [self.tableView reloadData];
+        
+    }];
     
 }
 
@@ -69,6 +74,10 @@
         }
         
     }
+    
+    NSString *document = [self.documents objectAtIndex:indexPath.row];
+    
+    cell.descriptionLabel.text = document;
     
     return cell;
     

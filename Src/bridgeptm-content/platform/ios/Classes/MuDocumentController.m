@@ -53,8 +53,8 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 		return nil;
 
 	key = filename;
-	docRef = aDoc;
-	doc = docRef->doc;
+	docMU = aDoc;
+	doc = docMU->doc;
 
 	dispatch_sync(queue, ^{});
 
@@ -159,7 +159,7 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 
 - (void) dealloc
 {
-	 docRef = nil; doc = NULL;
+	 docMU = nil; doc = NULL;
 	 indicator = nil;
 	 slider = nil;
 	 sliderWrapper = nil;
@@ -564,8 +564,8 @@ static void flattenOutline(NSMutableArray *titles, NSMutableArray *pages, fz_out
 	if (!found) {
 		UIView<MuPageView> *view
 			= reflowMode
-				? [[MuPageViewReflow alloc] initWithFrame:CGRectMake(number * width, 0, width-GAP, height) document:docRef page:number]
-				: [[MuPageViewNormal alloc] initWithFrame:CGRectMake(number * width, 0, width-GAP, height) dialogCreator:self document:docRef page:number];
+				? [[MuPageViewReflow alloc] initWithFrame:CGRectMake(number * width, 0, width-GAP, height) document:docMU page:number]
+				: [[MuPageViewNormal alloc] initWithFrame:CGRectMake(number * width, 0, width-GAP, height) dialogCreator:self document:docMU page:number];
 		[view setScale:scale];
 		[canvas addSubview: view];
 		if (showLinks)

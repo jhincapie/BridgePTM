@@ -6,6 +6,7 @@
 //
 
 #include "common.h"
+
 #import "MuDocRef.h"
 
 @implementation MuDocRef

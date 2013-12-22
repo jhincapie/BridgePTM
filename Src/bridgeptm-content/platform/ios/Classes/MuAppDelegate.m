@@ -25,8 +25,16 @@
 	NSString *filename;
 	queue = dispatch_queue_create("com.artifex.mupdf.queue", NULL);
 
+    //--------------------------------------
+    // This is an object to test the invoking of OpenCV
     Mu *mu = [[Mu alloc] init];
     [mu test];
+    //--------------------------------------
+    
+    //--------------------------------------
+    // This is the code castaño started to introduce
+    PMAppContext *context = [[PMAppContext alloc] init];
+    //--------------------------------------
     
 	// use at most 128M for resource cache
 	ctx = fz_new_context(NULL, NULL, 128<<20);
@@ -35,11 +43,6 @@
 
 	library = [[MuLibraryController alloc] initWithStyle: UITableViewStylePlain];
     
-    PMAppContext *context = [[PMAppContext alloc] init];
-    
-    //self.homeViewController = [[PMHomeViewController alloc] initWithContext:context];
-    
-
 	navigator = [[UINavigationController alloc] initWithRootViewController:library];
 	[navigator setDelegate: self];
 

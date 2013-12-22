@@ -14,5 +14,6 @@
 @public
 	fz_document *doc;
 }
+
 -(id) initWithFilename:(char *)aFilename;
 @end

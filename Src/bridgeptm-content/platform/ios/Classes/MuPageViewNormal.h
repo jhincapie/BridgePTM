@@ -18,9 +18,12 @@
 #import "MuDocRef.h"
 #import "MuDialogCreator.h"
 
+#import "Model/PMDocRef.h"
+
 @interface MuPageViewNormal : UIScrollView <UIScrollViewDelegate,MuPageView>
 {
-	MuDocRef *docRef;
+	MuDocRef *docMU;
+    PMDocRef *docPM;
 	fz_document *doc;
 	fz_page *page;
 	fz_display_list *page_list;

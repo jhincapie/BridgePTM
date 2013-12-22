@@ -17,10 +17,13 @@
 #import "MuDocRef.h"
 #import "MuDialogCreator.h"
 
+#import "Model/PMDocRef.h"
+
 @interface MuDocumentController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, MuDialogCreator>
 {
 	fz_document *doc;
-	MuDocRef *docRef;
+	MuDocRef *docMU;
+    PMDocRef *docPM;
 	NSString *key;
 	BOOL reflowMode;
 	MuOutlineController *outline;

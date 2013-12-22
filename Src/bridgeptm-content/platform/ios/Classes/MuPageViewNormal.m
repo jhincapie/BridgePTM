@@ -369,8 +369,8 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 {
 	self = [super initWithFrame: frame];
 	if (self) {
-		docRef = aDoc;
-		doc = docRef->doc;
+		docMU = aDoc;
+		doc = docMU->doc;
 		number = aNumber;
 		cancel = NO;
 		dialogCreator = dia;
@@ -408,7 +408,7 @@ static void updatePixmap(fz_document *doc, fz_display_list *page_list, fz_displa
 		__block fz_display_list *block_page_list = page_list;
 		__block fz_display_list *block_annot_list = annot_list;
 		__block fz_page *block_page = page;
-		__block fz_document *block_doc = docRef->doc;
+		__block fz_document *block_doc = docMU->doc;
 		__block CGDataProviderRef block_tileData = tileData;
 		__block CGDataProviderRef block_imageData = imageData;
 		dispatch_async(queue, ^{

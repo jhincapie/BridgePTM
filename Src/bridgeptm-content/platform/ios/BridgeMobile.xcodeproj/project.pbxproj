@@ -15,6 +15,7 @@
 		41D1807B183445DE00251DB8 /* PMDocumentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D18079183445DE00251DB8 /* PMDocumentsViewController.xib */; };
 		41D180821834494B00251DB8 /* PMDocumentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D1807D1834494B00251DB8 /* PMDocumentCell.m */; };
 		41D180831834494B00251DB8 /* PMDocumentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41D1807E1834494B00251DB8 /* PMDocumentCell.xib */; };
+		E81609E8185EA24D006FD991 /* PMDocRef.mm in Sources */ = {isa = PBXBuildFile; fileRef = E81609E7185EA24D006FD991 /* PMDocRef.mm */; };
 		E8BBE9FC183155FD00AF049A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968E1E421779A54F0050CEA3 /* Foundation.framework */; };
 		E8BBE9FD183155FD00AF049A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 968E1E441779A54F0050CEA3 /* CoreGraphics.framework */; };
 		E8BBE9FE183155FD00AF049A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 413CB7A4182ECBEA00373840 /* UIKit.framework */; };
@@ -176,6 +177,8 @@
 		DABF8CC4180C2C640069CB6D /* MuChoiceFieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MuChoiceFieldController.h; path = Classes/MuChoiceFieldController.h; sourceTree = "<group>"; };
 		DABF8CC5180C2C640069CB6D /* MuChoiceFieldController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MuChoiceFieldController.m; path = Classes/MuChoiceFieldController.m; sourceTree = "<group>"; };
 		DADD8D6917EB24C000C49E0B /* MuPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MuPageView.h; path = Classes/MuPageView.h; sourceTree = "<group>"; };
+		E81609E6185EA24D006FD991 /* PMDocRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMDocRef.h; sourceTree = "<group>"; };
+		E81609E7185EA24D006FD991 /* PMDocRef.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PMDocRef.mm; sourceTree = "<group>"; };
 		E8BBE9FB183155FD00AF049A /* BridgePTM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BridgePTM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8BBEA12183155FD00AF049A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E8FA20CF18301B1E0040791D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../../../Lib/opencv2.framework; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 			children = (
 				415CCA531839201F00DC9B68 /* PMAppContext.h */,
 				415CCA541839201F00DC9B68 /* PMAppContext.m */,
+				E81609E6185EA24D006FD991 /* PMDocRef.h */,
+				E81609E7185EA24D006FD991 /* PMDocRef.mm */,
 			);
 			name = Model;
 			path = Classes/Model;
@@ -453,9 +458,9 @@
 		968E1E351779A54F0050CEA3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = Mu;
+				CLASSPREFIX = PM;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "Artifex Software, Inc";
+				ORGANIZATIONNAME = "Bridge PTM, Inc";
 			};
 			buildConfigurationList = 968E1E381779A54F0050CEA3 /* Build configuration list for PBXProject "BridgeMobile" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -564,6 +569,7 @@
 				E8BBEA5018315A6B00AF049A /* MuDocumentController.m in Sources */,
 				E8BBEA5118315A6B00AF049A /* MuAppDelegate.m in Sources */,
 				E8BBEA5218315A6B00AF049A /* MuDocRef.m in Sources */,
+				E81609E8185EA24D006FD991 /* PMDocRef.mm in Sources */,
 				E8BBEA5318315A6B00AF049A /* MuPageViewReflow.m in Sources */,
 				41D1807418343B0A00251DB8 /* PMHomeViewController.m in Sources */,
 				E8BBEA5418315A6B00AF049A /* MuTapResult.m in Sources */,

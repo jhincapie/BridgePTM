@@ -14,12 +14,14 @@
 #include "mupdf/fitz.h"
 
 #import "MuDocRef.h"
+#import "Model/PMDocRef.h"
 
 @interface MuLibraryController : UITableViewController <UIActionSheetDelegate>
 {
 	NSArray *files;
 	NSTimer *timer;
-	MuDocRef *doc;
+	MuDocRef *docMU;
+    PMDocRef *docPM;
 	NSString *_filename;
 }
 - (void) openDocument: (NSString*)filename;
